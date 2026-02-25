@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { MiddlewareResult } from "./types";
-import { isProtectedRoute, getRedirectUrl } from "./routes";
-import { getSessionCookie, isValidSession } from "./auth-handler";
+import { MiddlewareResult } from "../types";
+import { isProtectedRoute, getRedirectUrl } from "../routes";
+import { getSessionCookie, isValidSession } from "../session-validator";
 
 export function createRouteProtectionHandler(): (request: NextRequest) => MiddlewareResult {
   return function (request: NextRequest): MiddlewareResult {

@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
-import { executeMiddlewareChain } from "./chain";
-import { createRouteProtectionHandler, createAuthRedirectHandler } from "./handlers";
+import { executeMiddlewareChain } from "./middleware/chain";
+import { createRouteProtectionHandler, createAuthRedirectHandler } from "./middleware/handlers";
 
 const middlewareHandlers = [
   createRouteProtectionHandler(),
