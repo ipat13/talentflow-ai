@@ -28,7 +28,6 @@ export default function LoginPage() {
       setIsLoading(false);
     }
   };
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900 flex items-center justify-center px-4">
