@@ -5,8 +5,10 @@ export interface Job {
   id: string;
   title: string;
   department: string;
+  company: string;
   location: string;
   type: JobType;
+  salary: string;
   description: string;
   requirements: string[];
   competencies: string[];
@@ -14,13 +16,18 @@ export interface Job {
   createdBy: string;
   createdAt: Date;
   updatedAt: Date;
+  _count?: {
+    candidates: number;
+  };
 }
 
 export interface JobInput {
   title: string;
-  department: string;
-  location: string;
+  department?: string;
+  company: string;
+  location?: string;
   type: JobType;
+  salary?: string;
   description?: string;
   requirements?: string[];
   competencies?: string[];

@@ -1,32 +1,34 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getAdminAuth, getAdminDb } from "@/lib/firebase-admin";
+import { getAdminAuth } from "@/lib/firebase-admin";
+import { cookies } from "next/headers";
 
 export async function GET(request: NextRequest) {
   try {
-    const sessionCookie = request.cookies.get("session")?.value;
+    const cookieStore = await cookies();
+    const sessionCookie = cookieStore.get("session")?.value;
 
     if (!sessionCookie) {
-      return NextResponse.json({ user: null }, { status: 200 });
+      return NextResponse.json({ user: null });
     }
 
-    const adminAuth = getAdminAuth();
-    const adminDb = getAdminDb();
-
-    const decodedClaims = await adminAuth.verifySessionCookie(sessionCookie, true);
+    const auth = getAdminAuth();
     
-    const userDoc = await adminDb.collection("users").doc(decodedClaims.uid).get();
-    const userData = userDoc.data();
-    
-    return NextResponse.json({
-      user: {
-        uid: decodedClaims.uid,
-        email: decodedClaims.email,
-        name: decodedClaims.name || userData?.name,
-        role: userData?.role || "viewer",
-      },
-    });
+    try {
+      const decodedClaims = await auth.verifySessionCookie(sessionCookie);
+      
+      return NextResponse.json({
+        user: {
+          uid: decodedClaims.uid,
+          email: decodedClaims.email,
+          name: decodedClaims.name || null,
+          role: (decodedClaims as any).role || "user",
+        },
+      });
+    } catch (error) {
+      return NextResponse.json({ user: null });
+    }
   } catch (error) {
-    console.error("Session verification error:", error);
-    return NextResponse.json({ user: null }, { status: 200 });
+    console.error("Auth me error:", error);
+    return NextResponse.json({ user: null });
   }
 }

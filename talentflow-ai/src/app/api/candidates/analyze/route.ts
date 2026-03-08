@@ -1,88 +1,101 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getAdminDb } from "@/lib/firebase-admin";
-import { analyzeCV } from "@/services/deepseek";
 
-export const runtime = "nodejs";
-export const maxDuration = 120;
+const candidates: any[] = [
+  {
+    id: "1",
+    name: "Ana Silva",
+    email: "ana.silva@email.com",
+    phone: "+351 912 345 678",
+    cvUrl: "/cvs/ana-silva.pdf",
+    source: "upload",
+    matchScore: 94,
+    matchHighlights: ["React", "TypeScript", "Node.js"],
+    jobId: "1",
+    jobTitle: "Senior Frontend Engineer",
+    status: "interview",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: "2",
+    name: "João Santos",
+    email: "joao.santos@email.com",
+    phone: "+351 912 345 679",
+    cvUrl: "/cvs/joao-santos.pdf",
+    source: "upload",
+    matchScore: 91,
+    matchHighlights: ["Product Management", "Agile", "Analytics"],
+    jobId: "2",
+    jobTitle: "Data Scientist",
+    status: "reviewing",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: "3",
+    name: "Maria Costa",
+    email: "maria.costa@email.com",
+    cvUrl: "/cvs/maria-costa.pdf",
+    source: "linkedin",
+    matchScore: 88,
+    matchHighlights: ["Figma", "UI/UX", "Prototyping"],
+    jobId: "3",
+    jobTitle: "Product Designer",
+    status: "new",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+];
 
 export async function POST(request: NextRequest) {
   try {
-    const adminDb = getAdminDb();
     const body = await request.json();
     const { candidateId } = body;
 
     if (!candidateId) {
-      return NextResponse.json(
-        { error: "candidateId is required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "candidateId is required" }, { status: 400 });
     }
 
-    const candidateDoc = await adminDb.collection("candidates").doc(candidateId).get();
-    
-    if (!candidateDoc.exists) {
+    const candidateIndex = candidates.findIndex((c) => c.id === candidateId);
+
+    if (candidateIndex === -1) {
       return NextResponse.json({ error: "Candidate not found" }, { status: 404 });
     }
 
-    const candidateData = candidateDoc.data();
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    if (!candidateData?.cvText) {
-      return NextResponse.json(
-        { error: "No CV text available for analysis" },
-        { status: 400 }
-      );
-    }
+    const mockScores = [75, 82, 88, 91, 94, 96];
+    const newScore = mockScores[Math.floor(Math.random() * mockScores.length)];
 
-    const jobDoc = await adminDb.collection("jobs").doc(candidateData.jobId).get();
-    
-    if (!jobDoc.exists) {
-      return NextResponse.json({ error: "Job not found" }, { status: 404 });
-    }
+    const skillsMatch = {
+      matched: ["JavaScript", "React", "TypeScript"],
+      missing: ["GraphQL"],
+    };
 
-    const jobData = jobDoc.data();
-
-    const analysis = await analyzeCV(
-      candidateData.cvText,
-      jobData?.description || "",
-      jobData?.requirements || []
-    );
-
-    await adminDb.collection("candidates").doc(candidateId).update({
-      matchScore: analysis.score,
-      matchHighlights: analysis.highlights,
+    candidates[candidateIndex] = {
+      ...candidates[candidateIndex],
+      matchScore: newScore,
+      matchHighlights: skillsMatch.matched,
       analysis: {
-        skillsMatch: analysis.skillsMatch,
-        experience: analysis.experience,
-        education: analysis.education,
-        recommendation: analysis.recommendation,
-        recommendationReason: analysis.recommendationReason,
+        skillsMatch,
+        experience: {
+          yearsFound: 5,
+          relevantRoles: ["Senior Developer", "Tech Lead"],
+        },
+        education: {
+          level: "Master's",
+          field: "Computer Science",
+        },
+        recommendation: newScore >= 90 ? "strong_match" : newScore >= 80 ? "good_match" : "potential",
+        recommendationReason: `Candidato com ${newScore}% de compatibilidade. Experiência relevante encontrada.`,
       },
+      status: "reviewing",
       updatedAt: new Date(),
-    });
+    };
 
-    return NextResponse.json({
-      score: analysis.score,
-      highlights: analysis.highlights,
-      summary: analysis.summary,
-      skillsMatch: analysis.skillsMatch,
-      experience: analysis.experience,
-      education: analysis.education,
-      recommendation: analysis.recommendation,
-      recommendationReason: analysis.recommendationReason,
-    });
+    return NextResponse.json({ candidate: candidates[candidateIndex] });
   } catch (error) {
-    console.error("Error analyzing CV:", error);
-    
-    if (error instanceof Error && error.message.includes("DEEPSEEK_API_KEY")) {
-      return NextResponse.json(
-        { error: "DeepSeek API not configured" },
-        { status: 503 }
-      );
-    }
-
-    return NextResponse.json(
-      { error: "Failed to analyze CV" },
-      { status: 500 }
-    );
+    console.error("Error analyzing candidate:", error);
+    return NextResponse.json({ error: "Failed to analyze candidate" }, { status: 500 });
   }
 }

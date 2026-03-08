@@ -1,15 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getAdminStorage, getAdminDb } from "@/lib/firebase-admin";
 import { extractTextFromPDF } from "@/services/pdf";
 
-export const runtime = "nodejs";
-export const maxDuration = 60;
+const candidates: any[] = [];
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
 export async function POST(request: NextRequest) {
   try {
-    const adminStorage = getAdminStorage();
-    const adminDb = getAdminDb();
-    
     const formData = await request.formData();
     const file = formData.get("file") as File | null;
     const jobId = formData.get("jobId") as string | null;
@@ -19,100 +15,56 @@ export async function POST(request: NextRequest) {
     }
 
     if (!jobId) {
-      return NextResponse.json({ error: "No jobId provided" }, { status: 400 });
+      return NextResponse.json({ error: "jobId is required" }, { status: 400 });
     }
 
-    if (file.type !== "application/pdf") {
-      return NextResponse.json({ error: "Only PDF files are supported" }, { status: 400 });
+    if (file.size > MAX_FILE_SIZE) {
+      return NextResponse.json({ error: "File too large. Maximum size is 5MB" }, { status: 400 });
     }
 
-    const jobDoc = await adminDb.collection("jobs").doc(jobId).get();
-    if (!jobDoc.exists) {
-      return NextResponse.json({ error: "Job not found" }, { status: 404 });
+    const allowedTypes = ["application/pdf"];
+    if (!allowedTypes.includes(file.type)) {
+      return NextResponse.json({ error: "Only PDF files are allowed" }, { status: 400 });
     }
-    const jobData = jobDoc.data();
 
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-
-    const fileName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, "_")}`;
-    const bucket = adminStorage.bucket();
-    const fileRef = bucket.file(`cvs/${fileName}`);
-
-    await fileRef.save(buffer, {
-      contentType: "application/pdf",
-      metadata: {
-        originalName: file.name,
-        jobId,
-      },
-    });
-
-    const [url] = await fileRef.getSignedUrl({
-      action: "read",
-      expires: Date.now() + 365 * 24 * 60 * 60 * 1000,
-    });
+    const fileName = file.name.replace(/\.[^/.]+$/, "");
+    const nameParts = fileName.split(/[-_]/);
+    const name = nameParts[0] + " " + nameParts[1] || "Candidate";
 
     let cvText = "";
     try {
+      const arrayBuffer = await file.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
       cvText = await extractTextFromPDF(buffer);
-    } catch (pdfError) {
-      console.error("Could not extract text from PDF:", pdfError);
+    } catch (error) {
+      console.error("Error extracting PDF text:", error);
+      cvText = "";
     }
 
-    const now = new Date();
-    const candidateData = {
-      name: extractNameFromText(cvText) || file.name.replace(".pdf", ""),
-      email: extractEmailFromText(cvText) || "",
-      phone: extractPhoneFromText(cvText) || "",
-      cvUrl: url,
-      cvText,
+    const mockCandidate = {
+      id: Date.now().toString(),
+      name: name.charAt(0).toUpperCase() + name.slice(1),
+      email: `${name.toLowerCase().replace(" ", ".")}@email.com`,
+      phone: "+351 912 345 678",
+      cvUrl: `/cvs/${file.name}`,
+      cvText: cvText.substring(0, 5000),
       source: "upload",
       matchScore: null,
       matchHighlights: [],
       jobId,
-      jobTitle: jobData?.title || "",
       status: "new",
-      notes: "",
-      createdAt: now,
-      updatedAt: now,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
 
-    const docRef = await adminDb.collection("candidates").add(candidateData);
+    candidates.push(mockCandidate);
 
     return NextResponse.json({
-      candidate: {
-        id: docRef.id,
-        ...candidateData,
-      },
+      success: true,
+      candidate: mockCandidate,
     });
   } catch (error) {
-    console.error("Error uploading CV:", error);
-    return NextResponse.json(
-      { error: "Failed to upload CV" },
-      { status: 500 }
-    );
+    console.error("Error uploading file:", error);
+    return NextResponse.json({ error: "Failed to upload file" }, { status: 500 });
   }
-}
-
-function extractNameFromText(text: string): string | null {
-  const lines = text.split("\n").filter((l) => l.trim());
-  if (lines.length > 0) {
-    const firstLine = lines[0].trim();
-    if (firstLine.length > 2 && firstLine.length < 50 && /^[A-Za-z\s]+$/.test(firstLine)) {
-      return firstLine;
-    }
-  }
-  return null;
-}
-
-function extractEmailFromText(text: string): string | null {
-  const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
-  const match = text.match(emailRegex);
-  return match ? match[0] : null;
-}
-
-function extractPhoneFromText(text: string): string | null {
-  const phoneRegex = /(\+?\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{3,4}/;
-  const match = text.match(phoneRegex);
-  return match ? match[0] : null;
 }

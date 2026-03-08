@@ -47,13 +47,13 @@
     --color-danger-hover: #fca5a5;
     --color-warning: #fbbf24;
     --color-warning-hover: #fcd34d;
-    --color-background: #0a0a0a;
-    --color-surface: #18181b;
-    --color-surface-hover: #27272a;
-    --color-border: #27272a;
-    --color-text: #fafafa;
-    --color-text-muted: #a1a1aa;
-    --color-text-inverse: #18181b;
+    --color-background: #1e293b;
+    --color-surface: #334155;
+    --color-surface-hover: #475569;
+    --color-border: #475569;
+    --color-text: #f1f5f9;
+    --color-text-muted: #94a3b8;
+    --color-text-inverse: #1e293b;
   }
 }
 

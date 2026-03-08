@@ -11,6 +11,7 @@
     "clean": "rm -rf .next node_modules/.cache"
   },
   "dependencies": {
+    "esbuild": "^0.19.2",
     "firebase": "^12.9.0",
     "firebase-admin": "^13.6.1",
     "lucide-react": "^0.575.0",
@@ -29,6 +30,7 @@
     "cross-env": "^10.1.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "firebase-tools": "^15.8.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

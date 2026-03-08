@@ -111,74 +111,53 @@ function CandidatesContent() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <Loader2 className="w-8 h-8 animate-spin text-[var(--color-primary)]" />
+        <Loader2 className="w-8 h-8 animate-spin text-white" />
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800/50 to-slate-900 p-8 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[var(--color-text)]">
-            Candidatos
-          </h1>
-          <p className="text-[var(--color-text-muted)]">
-            Gerir e analisar candidatos com IA
-          </p>
+          <h1 className="text-2xl font-bold text-white">Candidatos</h1>
+          <p className="text-slate-300">Gerir e analisar candidatos com IA</p>
         </div>
-        <Button onClick={() => setShowUploader(!showUploader)}>
+        <Button onClick={() => setShowUploader(!showUploader)} className="bg-indigo-600 hover:bg-indigo-700">
           <Upload className="w-4 h-4 mr-2" />
           Upload CVs
         </Button>
       </div>
 
       {showUploader && (
-        <Card>
+        <Card className="bg-slate-800/80 border-slate-700">
           <CardHeader>
             <div className="flex items-center justify-between">
-              <CardTitle>Upload de CVs</CardTitle>
-              <button
-                onClick={() => setShowUploader(false)}
-                className="text-[var(--color-text-muted)] hover:text-[var(--color-text)]"
-              >
+              <CardTitle className="text-white">Upload de CVs</CardTitle>
+              <button onClick={() => setShowUploader(false)} className="text-slate-300 hover:text-white">
                 <X className="w-5 h-5" />
               </button>
             </div>
           </CardHeader>
           <CardContent>
             <div className="mb-4">
-              <label className="text-sm font-medium text-[var(--color-text)] mb-2 block">
-                Selecionar Vaga
-              </label>
+              <label className="text-slate-200 text-sm mb-2 block">Selecionar Vaga</label>
               <select
                 value={selectedJobId === "all" ? "" : selectedJobId}
                 onChange={(e) => setSelectedJobId(e.target.value || "all")}
-                className="w-full px-3 py-2 bg-[var(--color-background)] border border-[var(--color-border)] rounded-[var(--radius-md)] text-[var(--color-text)]"
+                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white"
               >
                 <option value="">Escolhe uma vaga...</option>
-                {jobs
-                  .filter((j) => j.status === "active")
-                  .map((job) => (
-                    <option key={job.id} value={job.id}>
-                      {job.title}
-                    </option>
-                  ))}
+                {jobs.filter((j) => j.status === "active").map((job) => (
+                  <option key={job.id} value={job.id}>{job.title}</option>
+                ))}
               </select>
             </div>
 
             {selectedJobId && selectedJobId !== "all" ? (
-              <CVUploader
-                jobId={selectedJobId}
-                onUploadComplete={() => {
-                  fetchCandidates();
-                  setShowUploader(false);
-                }}
-              />
+              <CVUploader jobId={selectedJobId} onUploadComplete={() => { fetchCandidates(); setShowUploader(false); }} />
             ) : (
-              <p className="text-sm text-[var(--color-text-muted)] text-center py-4">
-                Seleciona uma vaga para fazer upload de CVs
-              </p>
+              <p className="text-slate-400 text-center py-4">Seleciona uma vaga para fazer upload de CVs</p>
             )}
           </CardContent>
         </Card>
@@ -186,78 +165,42 @@ function CandidatesContent() {
 
       <div className="flex flex-wrap gap-4">
         <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-[var(--color-text-muted)]" />
-          <span className="text-sm text-[var(--color-text-muted)]">Vaga:</span>
+          <Filter className="w-4 h-4 text-slate-300" />
+          <span className="text-slate-200 text-sm">Vaga:</span>
           <select
             value={selectedJobId}
             onChange={(e) => setSelectedJobId(e.target.value)}
-            className="px-3 py-1.5 text-sm bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg text-[var(--color-text)]"
+            className="px-3 py-1.5 text-sm bg-slate-700 border border-slate-600 rounded-lg text-white"
           >
             <option value="all">Todas ({candidates.length})</option>
             {jobs.map((job) => (
-              <option key={job.id} value={job.id}>
-                {job.title} ({candidates.filter((c) => c.jobId === job.id).length})
-              </option>
+              <option key={job.id} value={job.id}>{job.title} ({candidates.filter((c) => c.jobId === job.id).length})</option>
             ))}
           </select>
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-sm text-[var(--color-text-muted)]">Estado:</span>
+          <span className="text-slate-200 text-sm">Estado:</span>
           <div className="flex gap-1">
-            <button
-              onClick={() => setStatusFilter("all")}
-              className={`px-3 py-1.5 text-sm rounded-lg transition-colors ${
-                statusFilter === "all"
-                  ? "bg-[var(--color-primary)] text-[var(--color-text-inverse)]"
-                  : "bg-[var(--color-surface)] text-[var(--color-text)] hover:bg-[var(--color-surface-hover)]"
-              }`}
-            >
-              Todos
-            </button>
+            <button onClick={() => setStatusFilter("all")} className={`px-3 py-1.5 text-sm rounded-lg ${statusFilter === "all" ? "bg-indigo-600 text-white" : "bg-slate-700 text-slate-200 hover:bg-slate-600"}`}>Todos</button>
             {Object.entries(CANDIDATE_STATUS_LABELS).map(([value, label]) => (
-              <button
-                key={value}
-                onClick={() => setStatusFilter(value)}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-colors ${
-                  statusFilter === value
-                    ? "bg-[var(--color-primary)] text-[var(--color-text-inverse)]"
-                    : "bg-[var(--color-surface)] text-[var(--color-text)] hover:bg-[var(--color-surface-hover)]"
-                }`}
-              >
-                {label}
-              </button>
+              <button key={value} onClick={() => setStatusFilter(value)} className={`px-3 py-1.5 text-sm rounded-lg ${statusFilter === value ? "bg-indigo-600 text-white" : "bg-slate-700 text-slate-200 hover:bg-slate-600"}`}>{label}</button>
             ))}
           </div>
         </div>
       </div>
 
       {sortedCandidates.length === 0 ? (
-        <Card>
+        <Card className="bg-slate-800/80 border-slate-700">
           <CardContent className="py-12 text-center">
-            <p className="text-[var(--color-text-muted)] mb-4">
-              {candidates.length === 0
-                ? "Nenhum candidato ainda."
-                : "Nenhum candidato corresponde aos filtros."}
-            </p>
-            {candidates.length === 0 && (
-              <Button onClick={() => setShowUploader(true)}>
-                <Upload className="w-4 h-4 mr-2" />
-                Fazer Upload de CVs
-              </Button>
-            )}
+            <p className="text-slate-300 mb-4">{candidates.length === 0 ? "Nenhum candidato ainda." : "Nenhum candidato corresponde aos filtros."}</p>
+            {candidates.length === 0 && <Button onClick={() => setShowUploader(true)} className="bg-indigo-600 hover:bg-indigo-700"><Upload className="w-4 h-4 mr-2" />Fazer Upload de CVs</Button>}
           </CardContent>
         </Card>
       ) : (
         <div className="grid gap-4">
           {sortedCandidates.map((candidate) => (
-            <CandidateCard
-              key={candidate.id}
-              candidate={candidate}
-              onAnalyze={handleAnalyze}
-              onDelete={handleDelete}
-              analyzing={analyzingId === candidate.id}
-            />
+            <CandidateCard key={candidate.id} candidate={candidate} onAnalyze={handleAnalyze} onDelete={handleDelete} analyzing={analyzingId === candidate.id} />
           ))}
         </div>
       )}
@@ -267,13 +210,7 @@ function CandidatesContent() {
 
 export default function CandidatesPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="flex items-center justify-center h-64">
-          <Loader2 className="w-8 h-8 animate-spin text-[var(--color-primary)]" />
-        </div>
-      }
-    >
+    <Suspense fallback={<div className="flex items-center justify-center h-64"><Loader2 className="w-8 h-8 animate-spin text-white" /></div>}>
       <CandidatesContent />
     </Suspense>
   );

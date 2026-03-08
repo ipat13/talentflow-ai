@@ -1,67 +1,52 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verifyIdToken, getAdminAuth, getAdminDb } from "@/lib/firebase-admin";
-import { Role } from "@/lib/rbac";
+import { getAdminAuth } from "@/lib/firebase-admin";
+import { cookies } from "next/headers";
 
 export async function POST(request: NextRequest) {
   try {
-    const { idToken } = await request.json();
+    const body = await request.json();
+    const { idToken } = body;
 
     if (!idToken) {
-      return NextResponse.json({ error: "No ID token provided" }, { status: 400 });
+      return NextResponse.json({ error: "Missing idToken" }, { status: 400 });
     }
 
-    const decodedToken = await verifyIdToken(idToken);
-    if (!decodedToken) {
-      return NextResponse.json({ error: "Invalid token" }, { status: 401 });
-    }
+    const auth = getAdminAuth();
+    
+    const decodedToken = await auth.verifyIdToken(idToken);
+    const uid = decodedToken.uid;
 
-    const adminAuth = getAdminAuth();
-    const adminDb = getAdminDb();
-
-    const expiresIn = 60 * 60 * 24 * 5 * 1000;
-    const sessionCookie = await adminAuth.createSessionCookie(idToken, { expiresIn });
-
-    let userDoc = await adminDb.collection("users").doc(decodedToken.uid).get();
-
-    if (!userDoc.exists) {
-      await adminDb.collection("users").doc(decodedToken.uid).set({
-        email: decodedToken.email,
-        name: decodedToken.name || "",
-        role: "viewer" as Role,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      });
-      userDoc = await adminDb.collection("users").doc(decodedToken.uid).get();
-    }
-
-    const userData = userDoc.data();
-
-    const response = NextResponse.json({
-      user: {
-        uid: decodedToken.uid,
-        email: decodedToken.email,
-        name: decodedToken.name,
-        role: userData?.role || "viewer",
-      },
+    const sessionCookie = await auth.createSessionCookie(idToken, {
+      expiresIn: 60 * 60 * 24 * 5 * 1000,
     });
 
-    response.cookies.set("session", sessionCookie, {
-      maxAge: expiresIn / 1000,
+    const cookieStore = await cookies();
+    
+    cookieStore.set("session", sessionCookie, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
+      maxAge: 60 * 60 * 24 * 5,
       path: "/",
     });
 
-    return response;
+    return NextResponse.json({ 
+      success: true, 
+      user: { uid, email: decodedToken.email } 
+    });
   } catch (error) {
     console.error("Session creation error:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    return NextResponse.json({ error: "Failed to create session" }, { status: 500 });
   }
 }
 
 export async function DELETE() {
-  const response = NextResponse.json({ success: true });
-  response.cookies.delete("session");
-  return response;
+  try {
+    const cookieStore = await cookies();
+    cookieStore.delete("session");
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Session deletion error:", error);
+    return NextResponse.json({ error: "Failed to delete session" }, { status: 500 });
+  }
 }
