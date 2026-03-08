@@ -3,31 +3,35 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui";
 import { Card, CardContent } from "@/components/ui";
-import { Chrome } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Chrome, Loader2 } from "lucide-react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-  const { signInWithGoogle, user } = useAuth();
+  const { signInWithGoogle, user, loading: authLoading } = useAuth();
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (user) {
+    if (!authLoading && user) {
       router.push("/dashboard");
     }
-  }, [user, router]);
+  }, [user, authLoading, router]);
 
   const handleGoogleLogin = async () => {
-    setIsLoading(true);
     try {
       await signInWithGoogle();
-      router.push("/dashboard");
     } catch (error) {
       console.error("Login failed:", error);
-      setIsLoading(false);
     }
   };
+
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900 flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-white" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900 flex items-center justify-center px-4">
@@ -46,13 +50,12 @@ export default function LoginPage() {
 
             <Button
               onClick={handleGoogleLogin}
-              disabled={isLoading}
               size="lg"
-              className="w-full bg-white text-indigo-900 hover:bg-gray-100 font-semibold py-3 disabled:opacity-50"
+              className="w-full bg-white text-indigo-900 hover:bg-gray-100 font-semibold py-3"
               aria-label="Entrar com conta Google"
             >
               <Chrome className="w-5 h-5 mr-2" aria-hidden="true" />
-              {isLoading ? "A entrar..." : "Entrar com Google"}
+              Entrar com Google
             </Button>
 
             <p className="text-center text-white/40 text-xs mt-6">

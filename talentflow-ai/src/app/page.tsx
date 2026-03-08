@@ -7,27 +7,22 @@ import { Button } from "@/components/ui/Button";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Users, Briefcase, Zap, Search, Globe, Loader2 } from "lucide-react";
-import { useState } from "react";
 
 export default function Home() {
   const { user, signInWithGoogle, loading } = useAuth();
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (user) {
+    if (!loading && user) {
       router.push("/dashboard");
     }
-  }, [user, router]);
+  }, [user, loading, router]);
 
   const handleSignIn = async () => {
-    setIsLoading(true);
     try {
       await signInWithGoogle();
     } catch (error) {
       console.error("Sign in error:", error);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -56,10 +51,9 @@ export default function Home() {
           <Button 
             size="lg" 
             onClick={handleSignIn} 
-            disabled={isLoading} 
             className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-8 shadow-lg shadow-pink-500/25"
           >
-            {isLoading ? "A entrar..." : "Entrar com Google"}
+            Entrar com Google
           </Button>
         </div>
       </div>
