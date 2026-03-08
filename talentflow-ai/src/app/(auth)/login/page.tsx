@@ -22,10 +22,12 @@ export default function LoginPage() {
     setIsLoading(true);
     try {
       await signInWithGoogle();
+      router.push("/dashboard");
     } catch (error) {
       console.error("Login failed:", error);
       setIsLoading(false);
     }
+  };
   };
 
   return (

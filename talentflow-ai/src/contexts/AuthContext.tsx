@@ -45,16 +45,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       console.log("Auth state changed:", user?.email);
       setUser(user);
       setLoading(false);
-      initialized.current = false;
     });
 
-    const timeout = setTimeout(() => {
-      console.log("Auth timeout - setting loading to false");
-      setLoading(false);
-    }, 5000);
-
     return () => {
-      clearTimeout(timeout);
       unsubscribe();
     };
   }, []);
