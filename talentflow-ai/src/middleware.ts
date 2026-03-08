@@ -1,14 +1,7 @@
-import { NextRequest } from "next/server";
-import { executeMiddlewareChain } from "./middleware/chain";
-import { createRouteProtectionHandler, createAuthRedirectHandler } from "./middleware/handlers";
+import { NextRequest, NextResponse } from "next/server";
 
-const middlewareHandlers = [
-  createRouteProtectionHandler(),
-  createAuthRedirectHandler(),
-];
-
-export async function middleware(request: NextRequest) {
-  return executeMiddlewareChain(request, middlewareHandlers);
+export function middleware(request: NextRequest) {
+  return NextResponse.next();
 }
 
 export const config = {
@@ -16,6 +9,5 @@ export const config = {
     "/dashboard/:path*",
     "/jobs/:path*",
     "/candidates/:path*",
-    "/login",
   ],
 };
