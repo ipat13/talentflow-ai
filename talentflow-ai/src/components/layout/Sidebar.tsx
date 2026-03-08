@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSession } from "@/lib/useSession";
+import { useAuth } from "@/contexts/AuthContext";
 import {
   LayoutDashboard,
   Briefcase,
@@ -21,7 +21,7 @@ const navItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
-  const { signOut } = useSession();
+  const { signOut } = useAuth();
   const [collapsed, setCollapsed] = useState(false);
 
   return (
