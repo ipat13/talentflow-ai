@@ -40,17 +40,16 @@ export default function RootLayout({
                       document.body.appendChild(dropdown);
                     }
                     
-                    dropdown.style.cssText = '
-                      position: fixed !important;
-                      z-index: 2147483647 !important;
-                      background: #1e293b !important;
-                      border: 2px solid #10b981 !important;
-                      border-radius: 0.75rem !important;
-                      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
-                      display: block !important;
-                      visibility: visible !important;
-                      opacity: 1 !important;
-                    ';
+                    dropdown.style.cssText = 
+                      'position: fixed !important;' +
+                      'z-index: 2147483647 !important;' +
+                      'background: #1e293b !important;' +
+                      'border: 2px solid #10b981 !important;' +
+                      'border-radius: 0.75rem !important;' +
+                      'box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;' +
+                      'display: block !important;' +
+                      'visibility: visible !important;' +
+                      'opacity: 1 !important;';
                     
                     const header = document.querySelector('header');
                     if (header) {

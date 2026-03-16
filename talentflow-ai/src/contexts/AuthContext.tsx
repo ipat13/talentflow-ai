@@ -38,7 +38,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (!auth) {
       // Firebase não está configurado - isso é normal em desenvolvimento
       // ou quando as variáveis de ambiente não estão definidas
-      console.log("🔧 Firebase não configurado - Modo de demonstração ativo");
+      if (process.env.NODE_ENV === 'development') {
+        console.log("🔧 Firebase não configurado - Modo de demonstração ativo");
+      }
       // Timeout para garantir que saia do loading mesmo sem Firebase
       setTimeout(() => {
         setLoading(false);
