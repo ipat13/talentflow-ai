@@ -212,9 +212,7 @@ export default function Home() {
                 <li>Achieve an dramatic reduction in direct costs</li>
               </ul>
             </div>
-            <div>
-              {/* Esta div vazia representa a imagem que está no site original */}
-            </div>
+            <div>{/* Imagem placeholder */}</div>
           </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-6" style={{ color: '#2C3E50' }}>
                 Cut Your Hiring Cost and Timespan
@@ -256,9 +254,7 @@ export default function Home() {
                 <li>Adaptive questioning based on candidate responses</li>
               </ul>
             </div>
-            <div>
-              {/* Esta div vazia representa a imagem que está no site original */}
-            </div>
+            <div>{/* Imagem placeholder */}</div>
           </div>
         </div>
       </section>
@@ -283,9 +279,7 @@ export default function Home() {
                 <li>Candidate comparison tools</li>
               </ul>
             </div>
-            <div>
-              {/* Esta div vazia representa a imagem que está no site original */}
-            </div>
+            <div>{/* Imagem placeholder */}</div>
           </div>
         </div>
       </section>
