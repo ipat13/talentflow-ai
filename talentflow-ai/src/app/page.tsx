@@ -26,7 +26,14 @@ import {
   Briefcase,
   MapPin,
   DollarSign,
-  Calendar
+  Calendar,
+  Code,
+  Cpu,
+  Database,
+  Layers,
+  GitBranch,
+  ShieldCheck,
+  Zap as Lightning
 } from "lucide-react";
 
 export default function Home() {
@@ -35,14 +42,14 @@ export default function Home() {
   const [demoState, setDemoState] = useState<'input' | 'generating' | 'preview'>('input');
   const [gaugeValues, setGaugeValues] = useState([0, 0, 0, 0, 0]);
 
-   // Function to get gauge colors without complex gradients
+  // Função para obter cores dos gauges sem gradientes complexos
   const getGaugeColor = (index: number) => {
     const colors = [
-       '#f59e0b', // amber
-      '#10b981', // esmeralda
-      '#0ea5e9', // azul
-      '#8b5cf6', // roxo
-      '#7c3aed'  // roxo escuro
+      '#f59e0b', // amber
+      '#10b981', // emerald
+      '#0ea5e9', // blue
+      '#8b5cf6', // purple
+      '#7c3aed'  // dark purple
     ];
     return colors[index] || '#7c3aed';
   };
@@ -99,25 +106,11 @@ export default function Home() {
     }
   };
 
-  // Remover loading para debug
-  // if (loading) {
-  //   return (
-  //     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 flex items-center justify-center">
-  //       <div className="text-center">
-  //         <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 animate-pulse">
-  //           <Sparkles className="w-8 h-8 text-white" />
-  //         </div>
-  //         <p className="text-slate-600">Preparando sua experiência...</p>
-  //       </div>
-  //     </div>
-  //   );
-  // }
-
   return (
-    <div className="min-h-screen bg-white text-slate-900">
+    <div className="min-h-screen bg-white text-slate-900 font-sans">
       {/* Header - IDÊNTICO ao original */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
-        <div className="container mx-auto px-4 py-4">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center space-x-2">
@@ -149,152 +142,152 @@ export default function Home() {
       </header>
 
       {/* Hero Section - IDENTICAL to original */}
-      <section className="py-20 md:py-32">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
+      <section className="pt-32 pb-16 md:pt-40 md:pb-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-3xl">
             {/* Hero Content - IDENTICAL to original */}
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-100 to-blue-100 rounded-full mb-6">
+            <div className="mb-16">
+              <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-100 to-blue-100 rounded-full mb-6 animate-gentle-pulse">
                 <span className="text-sm font-medium text-purple-700">Currently in Beta</span>
               </div>
               
-              <h1 className="text-5xl md:text-7xl font-bold mb-6">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
                 <span className="text-slate-900">The talent ecosystem</span>
                 <br />
-                <span className="bg-gradient-to-r from-purple-600 via-blue-500 to-teal-400 bg-clip-text text-transparent">
+                <span className="gradient-text-primary">
                   that works for everyone.
                 </span>
               </h1>
               
-              <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-10">
+              <p className="text-lg md:text-xl text-slate-600 max-w-2xl mb-10 leading-relaxed">
                 We're building an AI-powered platform that connects jobseekers, recruiters, and organizations in one unified ecosystem. Currently in early access. Join us as we shape the future of talent together.
               </p>
             </div>
+          </div>
 
             {/* Interactive Demo - IDENTICAL to original */}
-            <div className="mt-32 relative">
-              <div className="absolute inset-0 -inset-x-8 -inset-y-12 bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-teal-500/20 rounded-3xl blur-3xl opacity-50"></div>
+            <div className="mt-20 md:mt-32 relative">
+              <div className="absolute inset-0 -inset-x-8 -inset-y-12 bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-teal-500/20 rounded-3xl blur-3xl opacity-50 animate-soft-float"></div>
               
-              <div className="relative bg-white/80 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl overflow-hidden">
-                <div className="p-8">
-                  <div className="text-center mb-8">
-                    <p className="text-sm font-medium text-slate-500 mb-2">Welcome to TalentFlow AI</p>
-                    <h3 className="text-2xl font-bold text-slate-900">
-                      {demoState === 'input' && 'Describe your role'}
-                      {demoState === 'generating' && 'AI is crafting your job posting...'}
-                      {demoState === 'preview' && 'Your job posting is ready.'}
-                    </h3>
-                  </div>
+              <div className="relative glass-card rounded-2xl shadow-2xl overflow-hidden animate-gentle-glow">
+              <div className="p-6 md:p-8">
+                <div className="text-center mb-8">
+                  <p className="text-sm font-medium text-slate-500 mb-2">Welcome to TalentFlow AI</p>
+                  <h3 className="text-xl md:text-2xl font-bold text-slate-900">
+                    {demoState === 'input' && 'Describe your role'}
+                    {demoState === 'generating' && 'AI is crafting your job posting...'}
+                    {demoState === 'preview' && 'Your job posting is ready.'}
+                  </h3>
+                </div>
 
-                  <div className="relative">
-                    {demoState === 'input' && (
-                      <div className="space-y-6">
-                        <div className="relative">
-                          <textarea 
-                            className="w-full h-32 p-4 border-2 border-slate-300 rounded-xl bg-white/50 backdrop-blur-sm text-slate-700 resize-none focus:outline-none focus:border-purple-500"
-                            placeholder="Senior Full Stack Developer, React/Node.js, 5+ years, remote"
-                            readOnly
-                            value="Senior Full Stack Developer, React/Node.js, 5+ years, remote"
-                          />
-                          <button className="absolute right-4 bottom-4 w-10 h-10 bg-gradient-to-r from-purple-600 to-blue-500 rounded-lg flex items-center justify-center text-white">
-                            <Send className="w-5 h-5" />
-                          </button>
+                <div className="relative">
+                  {demoState === 'input' && (
+                    <div className="space-y-6">
+                      <div className="relative">
+                        <textarea 
+                          className="w-full h-32 p-4 border-2 border-purple-200 rounded-xl bg-white/50 backdrop-blur-sm text-slate-700 resize-none focus:outline-none focus:border-purple-500 input-comfy"
+                          placeholder="Senior Full Stack Developer, React/Node.js, 5+ years, remote"
+                          readOnly
+                          value="Senior Full Stack Developer, React/Node.js, 5+ years, remote"
+                        />
+                        <button className="absolute right-4 bottom-4 w-10 h-10 bg-comfy-primary rounded-lg flex items-center justify-center text-white hover-lift">
+                          <Send className="w-5 h-5" />
+                        </button>
+                      </div>
+
+                      <div>
+                        <p className="text-sm font-medium text-slate-500 mb-3">Example Prompts</p>
+                        <div className="grid grid-cols-2 gap-3">
+                          {[
+                            "Senior Frontend Engineer with React experience",
+                            "Product Manager for B2B SaaS platform",
+                            "DevOps Engineer with AWS and Docker skills",
+                            "UX Designer for mobile applications"
+                          ].map((prompt, idx) => (
+                            <div 
+                              key={idx}
+                              className="p-3 bg-white border border-purple-100 rounded-lg text-sm text-slate-700 hover:border-purple-300 hover:bg-purple-50 cursor-pointer transition-all hover-lift"
+                            >
+                              {prompt}
+                            </div>
+                          ))}
                         </div>
+                      </div>
+                    </div>
+                  )}
 
+                  {/* Generating State */}
+                  {demoState === 'generating' && (
+                    <div className="text-center py-12">
+                      <div className="w-16 h-16 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin mx-auto mb-6"></div>
+                      <p className="text-lg font-medium text-slate-700">AI is generating your job description...</p>
+                    </div>
+                  )}
+
+                  {/* Preview State */}
+                  {demoState === 'preview' && (
+                    <div className="bg-white border border-purple-100 rounded-xl p-6 shadow-lg card-comfy">
+                      <div className="mb-6">
+                        <h4 className="text-xl font-bold text-slate-900 mb-2">Senior Full Stack Developer</h4>
+                        <div className="flex flex-wrap items-center gap-2 text-sm text-slate-600">
+                          <div className="flex items-center">
+                            <Briefcase className="w-4 h-4 mr-1" />
+                            <span>TechFlow Fintech</span>
+                          </div>
+                          <span>|</span>
+                          <div className="flex items-center">
+                            <MapPin className="w-4 h-4 mr-1" />
+                            <span>San Francisco, CA | Remote</span>
+                          </div>
+                          <span>|</span>
+                          <div className="flex items-center">
+                            <DollarSign className="w-4 h-4 mr-1" />
+                            <span>$120,000 - $160,000</span>
+                          </div>
+                          <span>|</span>
+                          <div className="flex items-center">
+                            <Calendar className="w-4 h-4 mr-1" />
+                            <span>Full-time | Permanent</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="space-y-4 mb-6">
                         <div>
-                          <p className="text-sm font-medium text-slate-500 mb-3">Example Prompts</p>
-                          <div className="grid grid-cols-2 gap-3">
-                            {[
-                              "Senior Frontend Engineer with React experience",
-                              "Product Manager for B2B SaaS platform",
-                              "DevOps Engineer with AWS and Docker skills",
-                              "UX Designer for mobile applications"
-                            ].map((prompt, idx) => (
-                              <div 
-                                key={idx}
-                                className="p-3 bg-white border border-slate-200 rounded-lg text-sm text-slate-700 hover:border-purple-300 hover:bg-purple-50 cursor-pointer transition-all"
-                              >
-                                {prompt}
-                              </div>
-                            ))}
-                          </div>
+                          <h5 className="font-semibold text-slate-900 mb-2">Job Description</h5>
+                          <p className="text-slate-600 text-sm">
+                            Join our rapidly growing fintech startup as a Senior Full Stack Developer and help build the next generation of financial technology solutions.
+                          </p>
+                        </div>
+                        <div>
+                          <h5 className="font-semibold text-slate-900 mb-2">Requirements</h5>
+                          <ul className="text-slate-600 text-sm space-y-1">
+                            <li className="flex items-center">
+                              <Check className="w-4 h-4 text-green-500 mr-2" />
+                              5+ years of professional experience with React and Node.js
+                            </li>
+                            <li className="flex items-center">
+                              <Check className="w-4 h-4 text-green-500 mr-2" />
+                              Proficiency in TypeScript and modern JavaScript
+                            </li>
+                            <li className="flex items-center">
+                              <Check className="w-4 h-4 text-green-500 mr-2" />
+                              Experience with RESTful APIs and database design
+                            </li>
+                          </ul>
                         </div>
                       </div>
-                    )}
 
-                    {/* Generating State */}
-                    {demoState === 'generating' && (
-                      <div className="text-center py-12">
-                        <div className="w-16 h-16 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin mx-auto mb-6"></div>
-                        <p className="text-lg font-medium text-slate-700">AI is generating your job description...</p>
+                      <div className="flex justify-end space-x-3">
+                        <Button variant="outline" className="border-purple-200 text-purple-700 hover:bg-purple-50">
+                          Edit Details
+                        </Button>
+                        <Button className="btn-comfy-primary">
+                          Create Job
+                        </Button>
                       </div>
-                    )}
-
-                    {/* Preview State */}
-                    {demoState === 'preview' && (
-                      <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-lg">
-                        <div className="mb-6">
-                          <h4 className="text-xl font-bold text-slate-900 mb-2">Senior Full Stack Developer</h4>
-                          <div className="flex flex-wrap items-center gap-2 text-sm text-slate-600">
-                            <div className="flex items-center">
-                              <Briefcase className="w-4 h-4 mr-1" />
-                              <span>TechFlow Fintech</span>
-                            </div>
-                            <span>|</span>
-                            <div className="flex items-center">
-                              <MapPin className="w-4 h-4 mr-1" />
-                              <span>San Francisco, CA | Remote</span>
-                            </div>
-                            <span>|</span>
-                            <div className="flex items-center">
-                              <DollarSign className="w-4 h-4 mr-1" />
-                              <span>$120,000 - $160,000</span>
-                            </div>
-                            <span>|</span>
-                            <div className="flex items-center">
-                              <Calendar className="w-4 h-4 mr-1" />
-                              <span>Full-time | Permanent</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="space-y-4 mb-6">
-                          <div>
-                            <h5 className="font-semibold text-slate-900 mb-2">Job Description</h5>
-                            <p className="text-slate-600 text-sm">
-                              Join our rapidly growing fintech startup as a Senior Full Stack Developer and help build the next generation of financial technology solutions.
-                            </p>
-                          </div>
-                          <div>
-                            <h5 className="font-semibold text-slate-900 mb-2">Requirements</h5>
-                            <ul className="text-slate-600 text-sm space-y-1">
-                              <li className="flex items-center">
-                                <Check className="w-4 h-4 text-green-500 mr-2" />
-                                5+ years of professional experience with React and Node.js
-                              </li>
-                              <li className="flex items-center">
-                                <Check className="w-4 h-4 text-green-500 mr-2" />
-                                Proficiency in TypeScript and modern JavaScript
-                              </li>
-                              <li className="flex items-center">
-                                <Check className="w-4 h-4 text-green-500 mr-2" />
-                                Experience with RESTful APIs and database design
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-
-                        <div className="flex justify-end space-x-3">
-                          <Button variant="outline" className="border-slate-300">
-                            Edit Details
-                          </Button>
-                          <Button className="bg-gradient-to-r from-purple-600 to-blue-500">
-                            Create Job
-                          </Button>
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -302,49 +295,79 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How it works Section - IDENTICAL to original */}
-      <section className="py-20 bg-white">
+      {/* Who It's For Section - IDENTICAL to original */}
+      <section className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-              How it works
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+              Who it's for
             </h2>
-            <p className="text-xl text-slate-600">
-              A simple three-step process to transform your recruitment workflow.
+            <p className="text-lg text-slate-600">
+              Built for everyone in the talent ecosystem
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                step: "1",
-                title: "Describe your role",
-                description: "Type a few words about the position you're hiring for, or use our AI-powered job description generator.",
-                icon: FileText,
+                icon: Users,
+                title: "Jobseekers",
+                description: "Find your perfect role with AI-powered matching and personalized recommendations.",
+                features: [
+                  "AI-powered job matching",
+                  "Personalized career recommendations",
+                  "Resume optimization with AI",
+                  "Interview preparation tools"
+                ],
+                buttonText: "Join as Jobseeker",
                 color: "from-purple-500 to-blue-500"
               },
               {
-                step: "2",
-                title: "AI matches candidates",
-                description: "Our AI analyzes thousands of profiles and finds the perfect matches based on skills, experience, and culture fit.",
-                icon: Target,
+                icon: Briefcase,
+                title: "Recruiters",
+                description: "Source, screen, and hire faster with AI-powered tools designed for modern recruiting.",
+                features: [
+                  "AI candidate matching",
+                  "Automated resume parsing",
+                  "Smart interview scheduling",
+                  "Pipeline analytics"
+                ],
+                buttonText: "Start Hiring",
                 color: "from-blue-500 to-cyan-500"
               },
               {
-                step: "3",
-                title: "Review & hire",
-                description: "Review AI-ranked candidates, conduct interviews, and make offers - all within one platform.",
-                icon: Check,
+                icon: Globe,
+                title: "Organizations",
+                description: "Build diverse, high-performing teams with enterprise-grade talent management.",
+                features: [
+                  "Team collaboration tools",
+                  "Advanced analytics dashboard",
+                  "Compliance & reporting",
+                  "Integration with HR systems"
+                ],
+                buttonText: "Enterprise Demo",
                 color: "from-cyan-500 to-teal-500"
               }
-            ].map((step, idx) => (
-              <div key={idx} className="text-center">
-                <div className={`w-16 h-16 bg-gradient-to-br ${step.color} rounded-2xl flex items-center justify-center mx-auto mb-6`}>
-                  <step.icon className="w-8 h-8 text-white" />
+            ].map((card, idx) => (
+              <div key={idx} className="bg-white rounded-2xl p-8 border border-slate-200 hover:border-purple-300 hover:shadow-xl transition-all">
+                <div className={`w-12 h-12 bg-gradient-to-br ${card.color} rounded-xl flex items-center justify-center mb-6`}>
+                  <card.icon className="w-6 h-6 text-white" />
                 </div>
-                <div className="text-2xl font-bold text-slate-900 mb-2">{step.step}</div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">{step.title}</h3>
-                <p className="text-slate-600">{step.description}</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">{card.title}</h3>
+                <p className="text-slate-600 mb-6">{card.description}</p>
+                
+                <ul className="space-y-3 mb-8">
+                  {card.features.map((feature, featureIdx) => (
+                    <li key={featureIdx} className="flex items-center text-slate-700">
+                      <div className="w-2 h-2 bg-slate-900 rounded-full mr-3"></div>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                <Button className={`w-full bg-gradient-to-r ${card.color}`}>
+                  {card.buttonText}
+                </Button>
               </div>
             ))}
           </div>
@@ -352,7 +375,7 @@ export default function Home() {
       </section>
 
       {/* AI Superpowers Section - IDENTICAL to original */}
-      <section id="features" className="py-20 bg-slate-50">
+      <section id="features" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           {/* Section Header - IDENTICAL to original */}
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -597,7 +620,7 @@ export default function Home() {
       </section>
 
       {/* Additional Superpowers Grid - IDENTICAL to original */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-4xl font-bold text-center text-slate-900 mb-12">
             More powerful features

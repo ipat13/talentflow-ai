@@ -1,0 +1,365 @@
+/* Comfy Purple/Blue Color Scheme for TalentFlow AI */
+
+:root {
+  /* Primary Colors - Comfy Purple/Blue Palette */
+  --color-primary-50: #f5f3ff;
+  --color-primary-100: #ede9fe;
+  --color-primary-200: #ddd6fe;
+  --color-primary-300: #c4b5fd;
+  --color-primary-400: #a78bfa;
+  --color-primary-500: #8b5cf6;
+  --color-primary-600: #7c3aed;
+  --color-primary-700: #6d28d9;
+  --color-primary-800: #5b21b6;
+  --color-primary-900: #4c1d95;
+  
+  /* Secondary Colors - Comfy Blue Palette */
+  --color-secondary-50: #eff6ff;
+  --color-secondary-100: #dbeafe;
+  --color-secondary-200: #bfdbfe;
+  --color-secondary-300: #93c5fd;
+  --color-secondary-400: #60a5fa;
+  --color-secondary-500: #3b82f6;
+  --color-secondary-600: #2563eb;
+  --color-secondary-700: #1d4ed8;
+  --color-secondary-800: #1e40af;
+  --color-secondary-900: #1e3a8a;
+  
+  /* Accent Colors - Warm Comfy Accents */
+  --color-accent-50: #fefce8;
+  --color-accent-100: #fef9c3;
+  --color-accent-200: #fef08a;
+  --color-accent-300: #fde047;
+  --color-accent-400: #facc15;
+  --color-accent-500: #eab308;
+  --color-accent-600: #ca8a04;
+  --color-accent-700: #a16207;
+  --color-accent-800: #854d0e;
+  --color-accent-900: #713f12;
+  
+  /* Neutral Colors - Soft Comfy Neutrals */
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
+  
+  /* Success Colors - Comfy Green */
+  --color-success-50: #f0fdf4;
+  --color-success-100: #dcfce7;
+  --color-success-200: #bbf7d0;
+  --color-success-300: #86efac;
+  --color-success-400: #4ade80;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+  --color-success-700: #15803d;
+  --color-success-800: #166534;
+  --color-success-900: #14532d;
+  
+  /* Warning Colors - Comfy Amber */
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-200: #fde68a;
+  --color-warning-300: #fcd34d;
+  --color-warning-400: #fbbf24;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+  --color-warning-800: #92400e;
+  --color-warning-900: #78350f;
+  
+  /* Error Colors - Comfy Rose */
+  --color-error-50: #fff1f2;
+  --color-error-100: #ffe4e6;
+  --color-error-200: #fecdd3;
+  --color-error-300: #fda4af;
+  --color-error-400: #fb7185;
+  --color-error-500: #f43f5e;
+  --color-error-600: #e11d48;
+  --color-error-700: #be123c;
+  --color-error-800: #9f1239;
+  --color-error-900: #881337;
+  
+  /* Gradient Definitions */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-secondary-600) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--color-secondary-500) 0%, var(--color-primary-500) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--color-accent-400) 0%, var(--color-warning-500) 100%);
+  --gradient-success: linear-gradient(135deg, var(--color-success-500) 0%, var(--color-success-700) 100%);
+  --gradient-warning: linear-gradient(135deg, var(--color-warning-400) 0%, var(--color-warning-600) 100%);
+  --gradient-error: linear-gradient(135deg, var(--color-error-500) 0%, var(--color-error-700) 100%);
+  
+  /* Glassmorphism Effects */
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px rgba(139, 92, 246, 0.1);
+  --glass-blur: blur(12px);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(139, 92, 246, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(139, 92, 246, 0.1), 0 2px 4px -1px rgba(139, 92, 246, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(139, 92, 246, 0.1), 0 4px 6px -2px rgba(139, 92, 246, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(139, 92, 246, 0.1), 0 10px 10px -5px rgba(139, 92, 246, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(139, 92, 246, 0.25);
+  
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+}
+
+/* Custom utility classes for the comfy color scheme */
+.bg-comfy-primary {
+  background: var(--gradient-primary);
+}
+
+.bg-comfy-secondary {
+  background: var(--gradient-secondary);
+}
+
+.bg-comfy-accent {
+  background: var(--gradient-accent);
+}
+
+.text-comfy-primary {
+  color: var(--color-primary-600);
+}
+
+.text-comfy-secondary {
+  color: var(--color-secondary-600);
+}
+
+.border-comfy-primary {
+  border-color: var(--color-primary-300);
+}
+
+.border-comfy-secondary {
+  border-color: var(--color-secondary-300);
+}
+
+/* Glassmorphism effects */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-button {
+  background: rgba(139, 92, 246, 0.1);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  transition: all 0.3s ease;
+}
+
+.glass-button:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+/* Custom animations for comfy feel */
+@keyframes gentle-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes soft-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes gentle-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+  }
+}
+
+.animate-gentle-pulse {
+  animation: gentle-pulse 3s ease-in-out infinite;
+}
+
+.animate-soft-float {
+  animation: soft-float 6s ease-in-out infinite;
+}
+
+.animate-gentle-glow {
+  animation: gentle-glow 4s ease-in-out infinite;
+}
+
+/* Custom hover effects */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.hover-glow {
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.4);
+}
+
+/* Custom gradient text */
+.gradient-text-primary {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-secondary {
+  background: var(--gradient-secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom badge styles */
+.badge-comfy-primary {
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--color-primary-700);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.badge-comfy-secondary {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--color-secondary-700);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.badge-comfy-accent {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--color-accent-700);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+/* Custom card styles */
+.card-comfy {
+  background: white;
+  border: 1px solid var(--color-primary-100);
+  border-radius: var(--radius-xl);
+  transition: all 0.3s ease;
+}
+
+.card-comfy:hover {
+  border-color: var(--color-primary-300);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Custom button styles */
+.btn-comfy-primary {
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-comfy-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-comfy-secondary {
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--color-primary-700);
+  border: 1px solid var(--color-primary-200);
+  transition: all 0.3s ease;
+}
+
+.btn-comfy-secondary:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: var(--color-primary-300);
+}
+
+/* Custom input styles */
+.input-comfy {
+  border: 2px solid var(--color-primary-200);
+  border-radius: var(--radius-lg);
+  transition: all 0.3s ease;
+}
+
+.input-comfy:focus {
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+  outline: none;
+}
+
+/* Custom gauge styles */
+.gauge-comfy-primary {
+  stroke: var(--color-primary-500);
+}
+
+.gauge-comfy-secondary {
+  stroke: var(--color-secondary-500);
+}
+
+.gauge-comfy-accent {
+  stroke: var(--color-accent-500);
+}
+
+/* Custom progress bar */
+.progress-comfy-primary {
+  background: var(--gradient-primary);
+}
+
+.progress-comfy-secondary {
+  background: var(--gradient-secondary);
+}
+
+/* Custom tag styles */
+.tag-comfy-primary {
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--color-primary-700);
+  border-radius: var(--radius-full);
+}
+
+.tag-comfy-secondary {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--color-secondary-700);
+  border-radius: var(--radius-full);
+}
+
+/* Custom divider */
+.divider-comfy {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-primary-200), transparent);
+}
+
+/* Custom background patterns */
+.bg-pattern-dots {
+  background-image: radial-gradient(var(--color-primary-200) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.bg-pattern-grid {
+  background-image: 
+    linear-gradient(var(--color-primary-100) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-primary-100) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
