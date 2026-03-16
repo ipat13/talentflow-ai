@@ -30,7 +30,9 @@ if (isConfigured) {
 
 export function getAuthInstance(): Auth | null {
   if (!auth) {
-    console.error("Firebase Auth not initialized");
+    console.warn("⚠️ Firebase Auth not initialized - Check if environment variables are configured");
+    console.warn("   This is expected if you're running locally without Firebase config");
+    console.warn("   For production, add Firebase config to Vercel environment variables");
   }
   return auth;
 }

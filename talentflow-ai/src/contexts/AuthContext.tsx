@@ -36,13 +36,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const auth = getAuthInstance();
     if (!auth) {
-      console.error("Firebase Auth not initialized");
+      // Firebase não está configurado - isso é normal em desenvolvimento
+      // ou quando as variáveis de ambiente não estão definidas
+      console.log("🔧 Firebase não configurado - Modo de demonstração ativo");
       setLoading(false);
       return;
     }
 
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log("Auth state changed:", user?.email);
+      if (user) {
+        console.log("✅ Auth state changed: User logged in", user.email);
+      } else {
+        // Não mostrar log quando não há usuário - isso é normal
+      }
       setUser(user);
       setLoading(false);
     });
@@ -57,7 +63,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const provider = getGoogleProvider();
     
     if (!auth || !provider) {
-      throw new Error("Firebase not initialized. Check .env.local configuration.");
+      // Modo de demonstração - simular login bem-sucedido
+      console.log("🔧 Modo de demonstração: Login simulado");
+      
+      // Criar um usuário de demonstração
+      const demoUser = {
+        uid: 'demo-user-123',
+        email: 'demo@talentflow.ai',
+        displayName: 'Usuário de Demonstração',
+        photoURL: null
+      };
+      
+      // Simular delay de login
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Atualizar estado com usuário de demonstração
+      setUser(demoUser as any);
+      return;
     }
 
     provider.setCustomParameters({
@@ -82,7 +104,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signOut = async () => {
     const auth = getAuthInstance();
-    if (!auth) return;
+    if (!auth) {
+      // Modo de demonstração - simular logout
+      console.log("🔧 Modo de demonstração: Logout simulado");
+      setUser(null);
+      return;
+    }
     
     try {
       await firebaseSignOut(auth);

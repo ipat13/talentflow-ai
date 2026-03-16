@@ -1,0 +1,425 @@
+/* =========================================== */
+/* NOVO ESQUEMA DE CORES PERSONALIZADO - COMFY */
+/* =========================================== */
+
+:root {
+  /* ===== CORES PRINCIPAIS ===== */
+  --color-primary: #7c3aed;           /* Roxo principal */
+  --color-primary-light: #8b5cf6;     /* Roxo claro */
+  --color-primary-dark: #5b21b6;      /* Roxo escuro */
+  
+  /* ===== CORES SECUNDÁRIAS ===== */
+  --color-secondary: #0ea5e9;         /* Azul céu */
+  --color-secondary-light: #38bdf8;   /* Azul claro */
+  --color-secondary-dark: #0284c7;    /* Azul escuro */
+  
+  /* ===== CORES DE DESTAQUE ===== */
+  --color-accent-teal: #14b8a6;       /* Verde água */
+  --color-accent-pink: #ec4899;       /* Rosa */
+  --color-accent-amber: #f59e0b;      /* Âmbar */
+  --color-accent-emerald: #10b981;    /* Esmeralda */
+  
+  /* ===== CORES NEUTRAS ===== */
+  --color-neutral-50: #fafafa;        /* Fundo mais claro */
+  --color-neutral-100: #f5f5f5;       /* Fundo claro */
+  --color-neutral-200: #e5e5e5;       /* Borda clara */
+  --color-neutral-300: #d4d4d4;       /* Borda média */
+  --color-neutral-400: #a3a3a3;       /* Texto secundário */
+  --color-neutral-500: #737373;       /* Texto principal */
+  --color-neutral-600: #525252;       /* Texto forte */
+  --color-neutral-700: #404040;       /* Texto escuro */
+  --color-neutral-800: #262626;       /* Fundo escuro */
+  --color-neutral-900: #171717;       /* Fundo mais escuro */
+  
+  /* ===== CORES DE FUNDO ===== */
+  --color-bg-primary: #ffffff;        /* Fundo principal */
+  --color-bg-secondary: #f8fafc;      /* Fundo secundário */
+  --color-bg-tertiary: #f1f5f9;       /* Fundo terciário */
+  
+  /* ===== CORES DE TEXTO ===== */
+  --color-text-primary: #1e293b;      /* Texto principal */
+  --color-text-secondary: #475569;    /* Texto secundário */
+  --color-text-tertiary: #64748b;     /* Texto terciário */
+  --color-text-inverse: #ffffff;      /* Texto invertido */
+  
+  /* ===== CORES DE BORDA ===== */
+  --color-border-light: #e2e8f0;      /* Borda clara */
+  --color-border-medium: #cbd5e1;     /* Borda média */
+  --color-border-dark: #94a3b8;       /* Borda escura */
+  
+  /* ===== CORES DE ESTADO ===== */
+  --color-success: #10b981;           /* Sucesso */
+  --color-warning: #f59e0b;           /* Aviso */
+  --color-error: #ef4444;             /* Erro */
+  --color-info: #3b82f6;              /* Informação */
+  
+  /* ===== GRADIENTES PERSONALIZADOS ===== */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--color-accent-teal) 0%, var(--color-accent-emerald) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--color-accent-pink) 0%, var(--color-primary-light) 100%);
+  --gradient-warm: linear-gradient(135deg, var(--color-accent-amber) 0%, #f97316 100%);
+  --gradient-cool: linear-gradient(135deg, var(--color-secondary) 0%, #06b6d4 100%);
+  
+  /* ===== GRADIENTE HERO (substitui o original) ===== */
+  --gradient-hero: linear-gradient(
+    90deg,
+    var(--color-primary-light) 0%,
+    var(--color-secondary-light) 25%,
+    var(--color-accent-teal) 50%,
+    var(--color-accent-pink) 75%,
+    var(--color-accent-amber) 100%
+  );
+  
+  /* ===== SOMBRAS ===== */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  
+  /* ===== BORDAS ARREDONDADAS ===== */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+  
+  /* ===== TIPOGRAFIA ===== */
+  --font-heading: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --font-body: 'Satoshi', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  /* ===== ESPAÇAMENTO ===== */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --spacing-4xl: 80px;
+  
+  /* ===== Z-INDEX ===== */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+}
+
+/* =========================================== */
+/* CLASSES UTILITÁRIAS PARA O NOVO ESQUEMA */
+/* =========================================== */
+
+/* Background Colors */
+.bg-primary { background-color: var(--color-primary); }
+.bg-primary-light { background-color: var(--color-primary-light); }
+.bg-primary-dark { background-color: var(--color-primary-dark); }
+.bg-secondary { background-color: var(--color-secondary); }
+.bg-accent-teal { background-color: var(--color-accent-teal); }
+.bg-accent-pink { background-color: var(--color-accent-pink); }
+.bg-accent-amber { background-color: var(--color-accent-amber); }
+.bg-accent-emerald { background-color: var(--color-accent-emerald); }
+
+/* Text Colors */
+.text-primary { color: var(--color-primary); }
+.text-primary-light { color: var(--color-primary-light); }
+.text-secondary { color: var(--color-secondary); }
+.text-accent-teal { color: var(--color-accent-teal); }
+.text-accent-pink { color: var(--color-accent-pink); }
+.text-accent-amber { color: var(--color-accent-amber); }
+.text-accent-emerald { color: var(--color-accent-emerald); }
+
+/* Border Colors */
+.border-primary { border-color: var(--color-primary); }
+.border-primary-light { border-color: var(--color-primary-light); }
+.border-secondary { border-color: var(--color-secondary); }
+.border-accent-teal { border-color: var(--color-accent-teal); }
+
+/* Gradient Backgrounds */
+.bg-gradient-primary { background: var(--gradient-primary); }
+.bg-gradient-secondary { background: var(--gradient-secondary); }
+.bg-gradient-accent { background: var(--gradient-accent); }
+.bg-gradient-warm { background: var(--gradient-warm); }
+.bg-gradient-cool { background: var(--gradient-cool); }
+.bg-gradient-hero { background: var(--gradient-hero); }
+
+/* Gradient Text */
+.text-gradient-primary {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-secondary {
+  background: var(--gradient-secondary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-accent {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* =========================================== */
+/* SOBRESCRITA DE ESTILOS DO SITE ORIGINAL */
+/* =========================================== */
+
+/* Botões - Nova paleta */
+.btn {
+  background: radial-gradient(
+    100% 100% at 50% 0%,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(124, 58, 237, 0.68) 100%
+  ), var(--color-primary);
+  box-shadow: 0px 0px 0px 1px rgba(124, 58, 237, 0.2);
+  color: var(--color-text-inverse);
+}
+
+.btn:hover {
+  background: radial-gradient(
+    100% 100% at 50% 0%,
+    rgba(255, 255, 255, 0.36) 0%,
+    rgba(255, 255, 255, 0) 100%
+  ), var(--color-primary-light);
+  box-shadow: 0px 0px 0px 1px rgba(124, 58, 237, 0.3);
+}
+
+.btn--secondary {
+  background: var(--color-bg-primary);
+  box-shadow: 0px 1px 1px rgba(30, 41, 59, 0.1),
+              0px 0px 0px 1px rgba(30, 41, 59, 0.07),
+              0px 1px 3px rgba(30, 41, 59, 0.1);
+  color: var(--color-text-primary);
+}
+
+.btn--secondary:hover {
+  background: var(--color-bg-secondary);
+  box-shadow: 0px 1px 1px rgba(30, 41, 59, 0.2),
+              0px 0px 0px 1px rgba(30, 41, 59, 0.1),
+              0px 1px 3px rgba(30, 41, 59, 0.1);
+}
+
+/* Header - Nova paleta */
+.header {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+/* Hero Badge - Nova paleta */
+.hero-badge {
+  background: var(--color-primary);
+  border: 1px solid var(--color-primary-light);
+  color: var(--color-text-inverse);
+}
+
+/* Hero Demo Background - Nova paleta */
+.hero-demo-bg {
+  background: var(--gradient-hero);
+}
+
+/* Gauges - Nova paleta de cores */
+.gauge-fill-0 { stroke: var(--color-accent-amber); }    /* Job Match */
+.gauge-fill-1 { stroke: var(--color-accent-emerald); }  /* Skills */
+.gauge-fill-2 { stroke: var(--color-secondary); }       /* Experience */
+.gauge-fill-3 { stroke: var(--color-primary-light); }   /* Education */
+.gauge-fill-4 { stroke: var(--color-primary); }         /* Requirements */
+
+/* Showcase Visual - Nova paleta */
+.showcase-visual {
+  background: linear-gradient(135deg, #e0f2fe 0%, #fce7f3 100%);
+}
+
+.visual-icon {
+  background: var(--gradient-primary);
+}
+
+/* Talent Pool - Nova paleta */
+.resume-progress-fill {
+  background: var(--color-secondary);
+}
+
+/* Candidate Score - Nova paleta */
+.candidate-score {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--color-accent-emerald);
+}
+
+/* Skill Tags - Nova paleta */
+.skill-tag {
+  background: rgba(124, 58, 237, 0.1);
+  color: var(--color-primary);
+}
+
+/* Pipeline Cards - Nova paleta */
+.pipeline-card {
+  background: var(--color-bg-primary);
+  box-shadow: 0 1px 3px rgba(124, 58, 237, 0.1);
+}
+
+/* =========================================== */
+/* CLASSES DE UTILIDADE ADICIONAIS */
+/* =========================================== */
+
+/* Glassmorphism com nova paleta */
+.glass-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(54px);
+  border: 12px solid rgba(255, 255, 255, 0.3);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Hover effects com nova paleta */
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-2xl);
+}
+
+/* Badge styles */
+.badge-primary {
+  background: rgba(124, 58, 237, 0.1);
+  color: var(--color-primary);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+.badge-secondary {
+  background: rgba(14, 165, 233, 0.1);
+  color: var(--color-secondary);
+  border: 1px solid rgba(14, 165, 233, 0.2);
+}
+
+.badge-accent {
+  background: rgba(236, 72, 153, 0.1);
+  color: var(--color-accent-pink);
+  border: 1px solid rgba(236, 72, 153, 0.2);
+}
+
+/* =========================================== */
+/* RESPONSIVIDADE */
+/* =========================================== */
+
+@media (max-width: 768px) {
+  :root {
+    --spacing-xl: 24px;
+    --spacing-2xl: 32px;
+    --spacing-3xl: 48px;
+  }
+}
+
+/* =========================================== */
+/* ANIMAÇÕES PERSONALIZADAS */
+/* =========================================== */
+
+@keyframes pulse-primary {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(124, 58, 237, 0);
+  }
+}
+
+@keyframes float-comfy {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-pulse-primary {
+  animation: pulse-primary 2s infinite;
+}
+
+.animate-float-comfy {
+  animation: float-comfy 3s ease-in-out infinite;
+}
+
+/* =========================================== */
+/* UTILITÁRIOS PARA COMPONENTES ESPECÍFICOS */
+/* =========================================== */
+
+/* Timeline de aplicação - Nova paleta */
+.timeline-complete {
+  background: var(--color-accent-emerald);
+  color: white;
+}
+
+.timeline-current {
+  background: var(--color-secondary);
+  color: white;
+}
+
+.timeline-pending {
+  background: var(--color-neutral-300);
+  color: var(--color-neutral-700);
+}
+
+/* Alertas - Nova paleta */
+.alert-success {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  color: var(--color-accent-emerald);
+}
+
+.alert-warning {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  color: var(--color-accent-amber);
+}
+
+.alert-info {
+  background: rgba(14, 165, 233, 0.1);
+  border: 1px solid rgba(14, 165, 233, 0.2);
+  color: var(--color-secondary);
+}
+
+/* =========================================== */
+/* ESTILOS PARA DARK MODE (opcional) */
+/* =========================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-primary: #0f172a;
+    --color-bg-secondary: #1e293b;
+    --color-bg-tertiary: #334155;
+    
+    --color-text-primary: #f1f5f9;
+    --color-text-secondary: #cbd5e1;
+    --color-text-tertiary: #94a3b8;
+    
+    --color-border-light: #334155;
+    --color-border-medium: #475569;
+    --color-border-dark: #64748b;
+  }
+  
+  .header {
+    background: rgba(15, 23, 42, 0.9);
+    border-bottom: 1px solid var(--color-border-light);
+  }
+  
+  .btn--secondary {
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+  }
+  
+  .glass-card {
+    background: rgba(30, 41, 59, 0.9);
+    border: 12px solid rgba(30, 41, 59, 0.3);
+  }
+}
