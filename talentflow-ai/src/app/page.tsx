@@ -75,187 +75,310 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="container max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-32 sm:py-48">
-          <div className="mx-auto max-w-4xl text-center">
-            <div className="mb-12">
-              <span className="inline-flex items-center rounded-full px-4 py-2 text-base font-medium" style={{ backgroundColor: '#45B7D110', color: '#45B7D1' }}>
+        <div className="container max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-40 sm:py-64">
+          <div className="mx-auto max-w-5xl text-center">
+            <div className="mb-16">
+              <span className="inline-flex items-center rounded-full px-6 py-3 text-lg font-medium" style={{ backgroundColor: '#45B7D110', color: '#45B7D1' }}>
                 🚀 Revolutionizing Tech Hiring with AI
               </span>
             </div>
             
-            <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl mb-8" style={{ color: '#2C3E50' }}>
+            <h1 className="text-6xl font-bold tracking-tight sm:text-7xl md:text-8xl mb-12" style={{ color: '#2C3E50' }}>
               Streamline Your Tech Hiring Process
             </h1>
             
-            <p className="mx-auto mt-8 max-w-3xl text-xl leading-9 mb-12" style={{ color: '#95A5A6' }}>
-              Empower your HR team with AI-driven interviews. Evaluate candidates efficiently, reduce bias, and make data-driven hiring decisions.
+            <p className="mx-auto mt-12 max-w-4xl text-2xl leading-10 mb-16" style={{ color: '#95A5A6' }}>
+              Empower your HR team with AI-driven interviews. Evaluate candidates efficiently, reduce bias, and make data-driven hiring decisions. Transform your recruitment workflow with cutting-edge artificial intelligence technology designed specifically for technical hiring.
             </p>
             
-            <div className="mt-12 flex flex-col sm:flex-row gap-6 justify-center">
+            <div className="mt-16 flex flex-col sm:flex-row gap-8 justify-center">
               <button 
                 onClick={() => window.open('https://www.linkedin.com/in/ruofei-du/', '_blank')}
-                className="inline-flex items-center justify-center rounded-xl px-10 py-4 text-lg font-medium transition-colors hover:scale-105 transform duration-200"
+                className="inline-flex items-center justify-center rounded-2xl px-14 py-5 text-xl font-medium transition-colors hover:scale-105 transform duration-200 shadow-lg"
                 style={{ backgroundColor: '#006EB8', color: '#F7FFF7' }}
               >
                 Request Demo
               </button>
               <button 
                 onClick={() => window.open('https://www.linkedin.com/in/ruofei-du/', '_blank')}
-                className="inline-flex items-center justify-center rounded-xl px-10 py-4 text-lg font-medium transition-colors border hover:scale-105 transform duration-200"
+                className="inline-flex items-center justify-center rounded-2xl px-14 py-5 text-xl font-medium transition-colors border-2 hover:scale-105 transform duration-200"
                 style={{ borderColor: '#E2E8F0', color: '#2C3E50' }}
               >
                 Learn More
               </button>
+            </div>
+            
+            <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="text-4xl font-bold mb-4" style={{ color: '#006EB8' }}>95%</div>
+                <p className="text-lg" style={{ color: '#95A5A6' }}>Interview Consistency</p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold mb-4" style={{ color: '#45B7D1' }}>70%</div>
+                <p className="text-lg" style={{ color: '#95A5A6' }}>Time Saved</p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold mb-4" style={{ color: '#4ECDC4' }}>$15k+</div>
+                <p className="text-lg" style={{ color: '#95A5A6' }}>Cost Reduction</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="container max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-        <div className="mx-auto max-w-4xl text-center mb-24">
-          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl mb-8" style={{ color: '#2C3E50' }}>
+      <section id="features" className="container max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-40">
+        <div className="mx-auto max-w-5xl text-center mb-32">
+          <h2 className="text-5xl font-bold tracking-tight sm:text-6xl mb-12" style={{ color: '#2C3E50' }}>
             Why HR Teams Choose TalentsFlow.ai
           </h2>
-          <p className="mt-6 text-xl" style={{ color: '#95A5A6' }}>
-            Revolutionize your tech hiring process with our AI-powered platform
+          <p className="mt-8 text-2xl" style={{ color: '#95A5A6' }}>
+            Revolutionize your tech hiring process with our AI-powered platform designed specifically for technical recruitment
           </p>
         </div>
 
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-16 md:grid-cols-2 lg:grid-cols-3">
           {/* Feature 1 */}
-          <div className="rounded-2xl border p-10 hover:shadow-xl transition-all duration-300 hover:-translate-y-2" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
-            <div className="mb-8">
-              <div className="flex h-16 w-16 items-center justify-center rounded-xl" style={{ backgroundColor: '#006EB820' }}>
-                <span className="text-3xl">🤖</span>
+          <div className="rounded-3xl border p-12 hover:shadow-2xl transition-all duration-300 hover:-translate-y-3" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
+            <div className="mb-10">
+              <div className="flex h-20 w-20 items-center justify-center rounded-2xl" style={{ backgroundColor: '#006EB820' }}>
+                <span className="text-4xl">🤖</span>
               </div>
             </div>
-            <h3 className="text-2xl font-semibold mb-4" style={{ color: '#2C3E50' }}>AI-Powered Interviews</h3>
-            <p className="text-lg" style={{ color: '#95A5A6' }}>
-              Conduct consistent and unbiased technical interviews with our advanced AI interviewer.
+            <h3 className="text-3xl font-semibold mb-6" style={{ color: '#2C3E50' }}>AI-Powered Interviews</h3>
+            <p className="text-xl" style={{ color: '#95A5A6' }}>
+              Conduct consistent and unbiased technical interviews with our advanced AI interviewer that adapts to each candidate's skill level.
             </p>
           </div>
 
           {/* Feature 2 */}
-          <div className="rounded-2xl border p-10 hover:shadow-xl transition-all duration-300 hover:-translate-y-2" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
-            <div className="mb-8">
-              <div className="flex h-16 w-16 items-center justify-center rounded-xl" style={{ backgroundColor: '#45B7D120' }}>
-                <span className="text-3xl">📊</span>
+          <div className="rounded-3xl border p-12 hover:shadow-2xl transition-all duration-300 hover:-translate-y-3" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
+            <div className="mb-10">
+              <div className="flex h-20 w-20 items-center justify-center rounded-2xl" style={{ backgroundColor: '#45B7D120' }}>
+                <span className="text-4xl">📊</span>
               </div>
             </div>
-            <h3 className="text-2xl font-semibold mb-4" style={{ color: '#2C3E50' }}>Comprehensive Evaluation</h3>
-            <p className="text-lg" style={{ color: '#95A5A6' }}>
-              Get detailed reports on candidates' technical skills, problem-solving abilities, and communication.
+            <h3 className="text-3xl font-semibold mb-6" style={{ color: '#2C3E50' }}>Comprehensive Evaluation</h3>
+            <p className="text-xl" style={{ color: '#95A5A6' }}>
+              Get detailed reports on candidates' technical skills, problem-solving abilities, communication, and cultural fit.
             </p>
           </div>
 
           {/* Feature 3 */}
-          <div className="rounded-2xl border p-10 hover:shadow-xl transition-all duration-300 hover:-translate-y-2" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
-            <div className="mb-8">
-              <div className="flex h-16 w-16 items-center justify-center rounded-xl" style={{ backgroundColor: '#4ECDC420' }}>
-                <span className="text-3xl">⚡</span>
+          <div className="rounded-3xl border p-12 hover:shadow-2xl transition-all duration-300 hover:-translate-y-3" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
+            <div className="mb-10">
+              <div className="flex h-20 w-20 items-center justify-center rounded-2xl" style={{ backgroundColor: '#4ECDC420' }}>
+                <span className="text-4xl">⚡</span>
               </div>
             </div>
-            <h3 className="text-2xl font-semibold mb-4" style={{ color: '#2C3E50' }}>Time-Saving Efficiency</h3>
-            <p className="text-lg" style={{ color: '#95A5A6' }}>
-              Reduce screening time and schedule interviews 24/7, streamlining your hiring pipeline.
+            <h3 className="text-3xl font-semibold mb-6" style={{ color: '#2C3E50' }}>Time-Saving Efficiency</h3>
+            <p className="text-xl" style={{ color: '#95A5A6' }}>
+              Reduce screening time by 95% and schedule interviews 24/7, streamlining your entire hiring pipeline from start to finish.
             </p>
           </div>
 
           {/* Feature 4 */}
-          <div className="rounded-2xl border p-10 hover:shadow-xl transition-all duration-300 hover:-translate-y-2" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
-            <div className="mb-8">
-              <div className="flex h-16 w-16 items-center justify-center rounded-xl" style={{ backgroundColor: '#006EB820' }}>
-                <span className="text-3xl">📈</span>
+          <div className="rounded-3xl border p-12 hover:shadow-2xl transition-all duration-300 hover:-translate-y-3" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
+            <div className="mb-10">
+              <div className="flex h-20 w-20 items-center justify-center rounded-2xl" style={{ backgroundColor: '#006EB820' }}>
+                <span className="text-4xl">📈</span>
               </div>
             </div>
-            <h3 className="text-2xl font-semibold mb-4" style={{ color: '#2C3E50' }}>Data-Driven Insights</h3>
-            <p className="text-lg" style={{ color: '#95A5A6' }}>
-              Make informed decisions with comprehensive analytics and benchmarking tools.
+            <h3 className="text-3xl font-semibold mb-6" style={{ color: '#2C3E50' }}>Data-Driven Insights</h3>
+            <p className="text-xl" style={{ color: '#95A5A6' }}>
+              Make informed decisions with comprehensive analytics, benchmarking tools, and predictive hiring metrics.
             </p>
           </div>
 
           {/* Feature 5 */}
-          <div className="rounded-2xl border p-10 hover:shadow-xl transition-all duration-300 hover:-translate-y-2" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
-            <div className="mb-8">
-              <div className="flex h-16 w-16 items-center justify-center rounded-xl" style={{ backgroundColor: '#45B7D120' }}>
-                <span className="text-3xl">🎯</span>
+          <div className="rounded-3xl border p-12 hover:shadow-2xl transition-all duration-300 hover:-translate-y-3" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
+            <div className="mb-10">
+              <div className="flex h-20 w-20 items-center justify-center rounded-2xl" style={{ backgroundColor: '#45B7D120' }}>
+                <span className="text-4xl">🎯</span>
               </div>
             </div>
-            <h3 className="text-2xl font-semibold mb-4" style={{ color: '#2C3E50' }}>Customizable Assessments</h3>
-            <p className="text-lg" style={{ color: '#95A5A6' }}>
-              Tailor interview questions and coding challenges to your company's specific needs.
+            <h3 className="text-3xl font-semibold mb-6" style={{ color: '#2C3E50' }}>Customizable Assessments</h3>
+            <p className="text-xl" style={{ color: '#95A5A6' }}>
+              Tailor interview questions, coding challenges, and evaluation criteria to your company's specific tech stack and requirements.
             </p>
           </div>
 
           {/* Feature 6 */}
-          <div className="rounded-2xl border p-10 hover:shadow-xl transition-all duration-300 hover:-translate-y-2" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
-            <div className="mb-8">
-              <div className="flex h-16 w-16 items-center justify-center rounded-xl" style={{ backgroundColor: '#4ECDC420' }}>
-                <span className="text-3xl">👥</span>
+          <div className="rounded-3xl border p-12 hover:shadow-2xl transition-all duration-300 hover:-translate-y-3" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
+            <div className="mb-10">
+              <div className="flex h-20 w-20 items-center justify-center rounded-2xl" style={{ backgroundColor: '#4ECDC420' }}>
+                <span className="text-4xl">👥</span>
               </div>
             </div>
-            <h3 className="text-2xl font-semibold mb-4" style={{ color: '#2C3E50' }}>Collaborative Hiring</h3>
-            <p className="text-lg" style={{ color: '#95A5A6' }}>
-              Easily share candidate reports and collaborate with your hiring team.
+            <h3 className="text-3xl font-semibold mb-6" style={{ color: '#2C3E50' }}>Collaborative Hiring</h3>
+            <p className="text-xl" style={{ color: '#95A5A6' }}>
+              Easily share candidate reports, provide feedback, and collaborate with your entire hiring team in real-time.
             </p>
+          </div>
+        </div>
+        
+        <div className="mt-32 text-center">
+          <p className="text-2xl" style={{ color: '#95A5A6' }}>
+            Join over 500+ companies that have transformed their tech hiring with TalentsFlow.ai
+          </p>
+        </div>
+      </section>
+
+      {/* New Extended Section - Benefits */}
+      <section className="border-t" style={{ backgroundColor: '#F7FFF7' }}>
+        <div className="container max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-40">
+          <div className="mx-auto max-w-5xl text-center mb-32">
+            <h2 className="text-5xl font-bold tracking-tight sm:text-6xl mb-12" style={{ color: '#2C3E50' }}>
+              Transform Your Hiring Workflow
+            </h2>
+            <p className="mt-8 text-2xl" style={{ color: '#95A5A6' }}>
+              From initial screening to final offer, our platform streamlines every step of the technical hiring process
+            </p>
+          </div>
+          
+          <div className="grid gap-20">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              <div>
+                <div className="mb-10">
+                  <span className="text-6xl">📋</span>
+                </div>
+                <h3 className="text-4xl font-bold mb-8" style={{ color: '#2C3E50' }}>Automated Candidate Screening</h3>
+                <p className="text-xl mb-10" style={{ color: '#95A5A6' }}>
+                  Our AI analyzes hundreds of resumes in minutes, identifying top candidates based on technical skills, experience, and cultural fit. No more manual resume screening.
+                </p>
+                <ul className="space-y-6">
+                  <li className="flex items-start">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full mr-4 mt-1" style={{ backgroundColor: '#45B7D110' }}>
+                      <span className="text-lg" style={{ color: '#45B7D1' }}>✓</span>
+                    </div>
+                    <span className="text-xl" style={{ color: '#95A5A6' }}>Automatic resume parsing and analysis</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full mr-4 mt-1" style={{ backgroundColor: '#45B7D110' }}>
+                      <span className="text-lg" style={{ color: '#45B7D1' }}>✓</span>
+                    </div>
+                    <span className="text-xl" style={{ color: '#95A5A6' }}>Skill matching against job requirements</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full mr-4 mt-1" style={{ backgroundColor: '#45B7D110' }}>
+                      <span className="text-lg" style={{ color: '#45B7D1' }}>✓</span>
+                    </div>
+                    <span className="text-xl" style={{ color: '#95A5A6' }}>Experience level verification</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="rounded-3xl border p-12" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
+                <div className="text-center">
+                  <div className="text-7xl font-bold mb-6" style={{ color: '#006EB8' }}>95%</div>
+                  <p className="text-2xl mb-10" style={{ color: '#95A5A6' }}>Reduction in screening time</p>
+                  <div className="text-7xl font-bold mb-6" style={{ color: '#45B7D1' }}>500+</div>
+                  <p className="text-2xl" style={{ color: '#95A5A6' }}>Resumes analyzed per hour</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              <div className="rounded-3xl border p-12" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
+                <div className="text-center">
+                  <div className="text-7xl font-bold mb-6" style={{ color: '#4ECDC4' }}>24/7</div>
+                  <p className="text-2xl mb-10" style={{ color: '#95A5A6' }}>Interview scheduling availability</p>
+                  <div className="text-7xl font-bold mb-6" style={{ color: '#006EB8' }}>100%</div>
+                  <p className="text-2xl" style={{ color: '#95A5A6' }}>Consistent evaluation standards</p>
+                </div>
+              </div>
+              <div>
+                <div className="mb-10">
+                  <span className="text-6xl">🎯</span>
+                </div>
+                <h3 className="text-4xl font-bold mb-8" style={{ color: '#2C3E50' }}>Standardized Technical Interviews</h3>
+                <p className="text-xl mb-10" style={{ color: '#95A5A6' }}>
+                  Every candidate receives the same fair evaluation with our AI-powered interview platform, eliminating bias and ensuring consistent assessment.
+                </p>
+                <ul className="space-y-6">
+                  <li className="flex items-start">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full mr-4 mt-1" style={{ backgroundColor: '#45B7D110' }}>
+                      <span className="text-lg" style={{ color: '#45B7D1' }}>✓</span>
+                    </div>
+                    <span className="text-xl" style={{ color: '#95A5A6' }}>Customizable interview scripts</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full mr-4 mt-1" style={{ backgroundColor: '#45B7D110' }}>
+                      <span className="text-lg" style={{ color: '#45B7D1' }}>✓</span>
+                    </div>
+                    <span className="text-xl" style={{ color: '#95A5A6' }}>Real-time code evaluation</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full mr-4 mt-1" style={{ backgroundColor: '#45B7D110' }}>
+                      <span className="text-lg" style={{ color: '#45B7D1' }}>✓</span>
+                    </div>
+                    <span className="text-xl" style={{ color: '#95A5A6' }}>Adaptive questioning based on responses</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Time & Cost Savings */}
       <section className="border-t">
-        <div className="container max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-          <div className="grid gap-16 lg:grid-cols-2 lg:gap-24 items-center">
+        <div className="container max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-40">
+          <div className="grid gap-20 lg:grid-cols-2 lg:gap-32 items-center">
             <div>
-              <div className="mb-12">
-                <span className="text-5xl">⏱️</span>
+              <div className="mb-16">
+                <span className="text-6xl">⏱️</span>
               </div>
-              <h2 className="text-4xl font-bold tracking-tight sm:text-5xl mb-8" style={{ color: '#2C3E50' }}>
+              <h2 className="text-5xl font-bold tracking-tight sm:text-6xl mb-12" style={{ color: '#2C3E50' }}>
                 Cut Your Hiring Cost and Timespan
               </h2>
-              <p className="text-xl mb-10" style={{ color: '#95A5A6' }}>
-                With Talentsflow, you can slash the time spent on scheduling, screening, and ranking candidates—saving weeks of effort and thousands of dollars in direct costs.
+              <p className="text-2xl mb-12" style={{ color: '#95A5A6' }}>
+                With Talentsflow, you can slash the time spent on scheduling, screening, and ranking candidates—saving weeks of effort and thousands of dollars in direct costs while improving hiring quality.
               </p>
               
-              <ul className="space-y-6">
+              <ul className="space-y-8">
                 <li className="flex items-start">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full mr-4 mt-1" style={{ backgroundColor: '#45B7D110' }}>
-                    <span className="text-base" style={{ color: '#45B7D1' }}>✓</span>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full mr-5 mt-1" style={{ backgroundColor: '#45B7D110' }}>
+                    <span className="text-xl" style={{ color: '#45B7D1' }}>✓</span>
                   </div>
-                  <span className="text-lg" style={{ color: '#95A5A6' }}>Save scheduling overhead</span>
+                  <span className="text-2xl" style={{ color: '#95A5A6' }}>Save scheduling overhead and administrative time</span>
                 </li>
                 <li className="flex items-start">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full mr-4 mt-1" style={{ backgroundColor: '#45B7D110' }}>
-                    <span className="text-base" style={{ color: '#45B7D1' }}>✓</span>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full mr-5 mt-1" style={{ backgroundColor: '#45B7D110' }}>
+                    <span className="text-xl" style={{ color: '#45B7D1' }}>✓</span>
                   </div>
-                  <span className="text-lg" style={{ color: '#95A5A6' }}>Eliminate 100% of manual screening/tech interviews</span>
+                  <span className="text-2xl" style={{ color: '#95A5A6' }}>Eliminate 100% of manual screening and technical interviews</span>
                 </li>
                 <li className="flex items-start">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full mr-4 mt-1" style={{ backgroundColor: '#45B7D110' }}>
-                    <span className="text-base" style={{ color: '#45B7D1' }}>✓</span>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full mr-5 mt-1" style={{ backgroundColor: '#45B7D110' }}>
+                    <span className="text-xl" style={{ color: '#45B7D1' }}>✓</span>
                   </div>
-                  <span className="text-lg" style={{ color: '#95A5A6' }}>Accelerate hiring from 4 weeks to just 2-4 days</span>
+                  <span className="text-2xl" style={{ color: '#95A5A6' }}>Accelerate hiring from 4 weeks to just 2-4 days</span>
                 </li>
                 <li className="flex items-start">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full mr-4 mt-1" style={{ backgroundColor: '#45B7D110' }}>
-                    <span className="text-base" style={{ color: '#45B7D1' }}>✓</span>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full mr-5 mt-1" style={{ backgroundColor: '#45B7D110' }}>
+                    <span className="text-xl" style={{ color: '#45B7D1' }}>✓</span>
                   </div>
-                  <span className="text-lg" style={{ color: '#95A5A6' }}>Achieve an dramatic reduction in direct costs</span>
+                  <span className="text-2xl" style={{ color: '#95A5A6' }}>Achieve dramatic reduction in direct hiring costs</span>
+                </li>
+                <li className="flex items-start">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full mr-5 mt-1" style={{ backgroundColor: '#45B7D110' }}>
+                    <span className="text-xl" style={{ color: '#45B7D1' }}>✓</span>
+                  </div>
+                  <span className="text-2xl" style={{ color: '#95A5A6' }}>Improve candidate experience and employer brand</span>
                 </li>
               </ul>
             </div>
             
-            <div className="rounded-2xl border p-12 hover:shadow-xl transition-all duration-300" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
+            <div className="rounded-3xl border p-16 hover:shadow-2xl transition-all duration-300" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
               <div className="text-center">
-                <div className="text-6xl font-bold mb-4" style={{ color: '#006EB8' }}>70%</div>
-                <p className="text-xl mb-10" style={{ color: '#95A5A6' }}>Faster hiring process</p>
+                <div className="text-8xl font-bold mb-8" style={{ color: '#006EB8' }}>70%</div>
+                <p className="text-2xl mb-12" style={{ color: '#95A5A6' }}>Faster hiring process completion</p>
                 
-                <div className="text-6xl font-bold mb-4" style={{ color: '#45B7D1' }}>$15k+</div>
-                <p className="text-xl mb-10" style={{ color: '#95A5A6' }}>Average cost savings per hire</p>
+                <div className="text-8xl font-bold mb-8" style={{ color: '#45B7D1' }}>$15k+</div>
+                <p className="text-2xl mb-12" style={{ color: '#95A5A6' }}>Average cost savings per technical hire</p>
                 
-                <div className="text-6xl font-bold mb-4" style={{ color: '#4ECDC4' }}>95%</div>
-                <p className="text-xl" style={{ color: '#95A5A6' }}>Reduction in screening time</p>
+                <div className="text-8xl font-bold mb-8" style={{ color: '#4ECDC4' }}>95%</div>
+                <p className="text-2xl" style={{ color: '#95A5A6' }}>Reduction in manual screening time</p>
               </div>
             </div>
           </div>
@@ -264,17 +387,17 @@ export default function Home() {
 
       {/* AI Interview Experience */}
       <section className="border-t">
-        <div className="container max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-          <div className="grid gap-16 lg:grid-cols-2 lg:gap-24 items-center">
-            <div className="rounded-2xl border p-12 hover:shadow-xl transition-all duration-300" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
-              <div className="mb-12">
-                <span className="text-5xl">🎯</span>
+        <div className="container max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-40">
+          <div className="grid gap-20 lg:grid-cols-2 lg:gap-32 items-center">
+            <div className="rounded-3xl border p-16 hover:shadow-2xl transition-all duration-300" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
+              <div className="mb-16">
+                <span className="text-6xl">🎯</span>
               </div>
-              <h2 className="text-4xl font-bold tracking-tight sm:text-5xl mb-8" style={{ color: '#2C3E50' }}>
+              <h2 className="text-5xl font-bold tracking-tight sm:text-6xl mb-12" style={{ color: '#2C3E50' }}>
                 Conduct Fair and Consistent Technical Interviews
               </h2>
-              <p className="text-xl mb-10" style={{ color: '#95A5A6' }}>
-                Our AI interviewer ensures a standardized evaluation process for all candidates, eliminating human bias and providing consistent results.
+              <p className="text-2xl mb-12" style={{ color: '#95A5A6' }}>
+                Our AI interviewer ensures a standardized evaluation process for all candidates, eliminating human bias and providing consistent results across your entire hiring pipeline.
               </p>
               
               <div className="space-y-8">
