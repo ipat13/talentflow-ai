@@ -212,10 +212,7 @@ export default function Home() {
                 <li>Achieve an dramatic reduction in direct costs</li>
               </ul>
             </div>
-            <div>{/* Imagem placeholder */}</div>
-           </div>
-            
-
+             <div>{/* Imagem placeholder */}</div>
           </div>
         </div>
       </section>
