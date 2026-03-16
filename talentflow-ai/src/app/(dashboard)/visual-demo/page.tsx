@@ -452,7 +452,7 @@ export default function VisualDemoPage() {
                           João Silva
                         </h3>
                         <p className="text-slate-600 dark:text-slate-400 mb-2">
-                          Senior Frontend Developer • 8 anos de experiência
+                           Senior Frontend Developer | 8 years of experience
                         </p>
                         <div className="flex flex-wrap gap-2 mb-4">
                           <SkillBadge skill="React" />
@@ -471,19 +471,19 @@ export default function VisualDemoPage() {
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <p className="text-sm text-slate-500 dark:text-slate-400 mb-1">Última Empresa</p>
+                         <p className="text-sm text-slate-500 dark:text-slate-400 mb-1">Last Company</p>
                         <p className="text-slate-900 dark:text-white">TechCorp Solutions</p>
                       </div>
                       <div>
-                        <p className="text-sm text-slate-500 dark:text-slate-400 mb-1">Educação</p>
-                        <p className="text-slate-900 dark:text-white">MSc Ciência da Computação</p>
+                         <p className="text-sm text-slate-500 dark:text-slate-400 mb-1">Education</p>
+                         <p className="text-slate-900 dark:text-white">MSc Computer Science</p>
                       </div>
                       <div>
-                        <p className="text-sm text-slate-500 dark:text-slate-400 mb-1">Localização</p>
+                         <p className="text-sm text-slate-500 dark:text-slate-400 mb-1">Location</p>
                         <p className="text-slate-900 dark:text-white">Lisboa, Portugal</p>
                       </div>
                       <div>
-                        <p className="text-sm text-slate-500 dark:text-slate-400 mb-1">Fonte</p>
+                         <p className="text-sm text-slate-500 dark:text-slate-400 mb-1">Source</p>
                         <EnhancedBadge variant="primary" icon={Linkedin} iconPosition="left">
                           LinkedIn
                         </EnhancedBadge>
@@ -492,10 +492,10 @@ export default function VisualDemoPage() {
                     
                     <div className="flex gap-3 mt-6">
                       <EnhancedButton variant="primary" fullWidth>
-                        Ver Perfil Completo
+                         View Full Profile
                       </EnhancedButton>
                       <EnhancedButton variant="outline" fullWidth>
-                        Agendar Entrevista
+                         Schedule Interview
                       </EnhancedButton>
                     </div>
                   </div>

@@ -158,21 +158,21 @@ export default function DashboardPage() {
     {
       title: "Candidatos",
       value: stats.totalCandidates.toString(),
-      change: `${stats.inInterview} em entrevista`,
+      change: `${stats.inInterview} in interview`,
       icon: Users,
       color: "from-emerald-500 to-emerald-600",
     },
     {
-      title: "Match Score Médio",
+      title: "Average Match Score",
       value: `${stats.avgMatchScore}%`,
-      change: stats.avgMatchScore >= 80 ? "Excelente" : "Bom",
+      change: stats.avgMatchScore >= 80 ? "Excellent" : "Good",
       icon: TrendingUp,
       color: "from-purple-500 to-purple-600",
     },
     {
-      title: "Em Entrevista",
+      title: "In Interview",
       value: stats.inInterview.toString(),
-      change: "Candidatos avançados",
+      change: "Advanced candidates",
       icon: Clock,
       color: "from-orange-500 to-orange-600",
     },
@@ -180,16 +180,16 @@ export default function DashboardPage() {
 
   const getStatusBadge = (status: string) => {
     switch (status) {
-      case "interview":
-        return <Badge variant="success">Entrevista</Badge>;
+       case "interview":
+        return <Badge variant="success">Interview</Badge>;
       case "reviewing":
-        return <Badge variant="warning">Em Análise</Badge>;
+        return <Badge variant="warning">In Review</Badge>;
       case "offer":
-        return <Badge variant="info">Proposta</Badge>;
+        return <Badge variant="info">Offer</Badge>;
       case "rejected":
-        return <Badge variant="danger">Rejeitado</Badge>;
+        return <Badge variant="danger">Rejected</Badge>;
       default:
-        return <Badge variant="default">Novo</Badge>;
+        return <Badge variant="default">New</Badge>;
     }
   };
 
@@ -199,7 +199,7 @@ export default function DashboardPage() {
         <div>
           <h1 className="text-2xl md:text-3xl font-bold text-white">Dashboard</h1>
           <p className="text-slate-300 text-sm md:text-base">
-            Visão geral do teu processo de recrutamento
+             Overview of your recruitment process
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3">
@@ -301,7 +301,7 @@ export default function DashboardPage() {
                                 {job.title}
                               </p>
                               <p className="text-xs md:text-sm text-slate-300 truncate">
-                                {job.company} • {job._count?.candidates || 0} candidatos
+                                {job.company} | {job._count?.candidates || 0} candidates
                               </p>
                             </div>
                           </div>

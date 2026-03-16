@@ -31,7 +31,7 @@ export default function LoginPage() {
           <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 animate-pulse">
             <Brain className="w-8 h-8 text-white" />
           </div>
-          <p className="text-slate-600">Preparando sua experiência...</p>
+           <p className="text-slate-600">Preparing your experience...</p>
         </div>
       </div>
     );
@@ -60,7 +60,7 @@ export default function LoginPage() {
               </div>
             </div>
             
-            <h2 className="text-xl text-slate-900 mb-2">Iniciar Sessão</h2>
+             <h2 className="text-xl text-slate-900 mb-2">Sign In</h2>
             <p className="text-slate-600 text-sm">Usa a tua conta Google para continuar</p>
           </div>
 
@@ -106,7 +106,7 @@ export default function LoginPage() {
               <input
                 type="password"
                 className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-                placeholder="••••••••"
+                placeholder="********"
               />
             </div>
 
@@ -133,15 +133,15 @@ export default function LoginPage() {
             <p className="text-center text-sm text-slate-500">
               Ao entrar, concordas com os nossos{" "}
               <a href="#" className="text-indigo-600 hover:text-indigo-700 font-medium">
-                termos de serviço
+                 terms of service
               </a>
               .
             </p>
             
             <p className="text-center text-sm text-slate-500 mt-4">
-              Não tem uma conta?{" "}
+               Don't have an account?{" "}
               <a href="#" className="text-indigo-600 hover:text-indigo-700 font-medium">
-                Solicite uma demonstração
+                 Request a demo
               </a>
             </p>
           </div>

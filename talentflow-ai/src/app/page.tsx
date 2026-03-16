@@ -35,10 +35,10 @@ export default function Home() {
   const [demoState, setDemoState] = useState<'input' | 'generating' | 'preview'>('input');
   const [gaugeValues, setGaugeValues] = useState([0, 0, 0, 0, 0]);
 
-  // Função para obter cores dos gauges sem gradientes complexos
+   // Function to get gauge colors without complex gradients
   const getGaugeColor = (index: number) => {
     const colors = [
-      '#f59e0b', // âmbar
+       '#f59e0b', // amber
       '#10b981', // esmeralda
       '#0ea5e9', // azul
       '#8b5cf6', // roxo
@@ -333,7 +333,7 @@ export default function Home() {
               {
                 step: "3",
                 title: "Review & hire",
-                description: "Review AI-ranked candidates, conduct interviews, and make offers—all within one platform.",
+                description: "Review AI-ranked candidates, conduct interviews, and make offers - all within one platform.",
                 icon: Check,
                 color: "from-cyan-500 to-teal-500"
               }

@@ -36,10 +36,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const auth = getAuthInstance();
     if (!auth) {
-      // Firebase não está configurado - isso é normal em desenvolvimento
-      // ou quando as variáveis de ambiente não estão definidas
+      // Firebase is not configured - this is normal in development
+      // or when environment variables are not defined
       if (process.env.NODE_ENV === 'development') {
-        console.log("🔧 Firebase não configurado - Modo de demonstração ativo");
+        console.log("🔧 Firebase not configured - Demo mode active");
       }
       // Timeout para garantir que saia do loading mesmo sem Firebase
       setTimeout(() => {
@@ -74,16 +74,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const provider = getGoogleProvider();
     
     if (!auth || !provider) {
-      // Modo de demonstração - simular login bem-sucedido
-      console.log("🔧 Modo de demonstração: Login simulado");
-      
-      // Criar um usuário de demonstração
-      const demoUser = {
-        uid: 'demo-user-123',
-        email: 'demo@talentflow.ai',
-        displayName: 'Usuário de Demonstração',
-        photoURL: null
-      };
+        // Demo mode - simulate successful login
+        console.log("🔧 Demo mode: Simulated login");
+        
+        // Create a demo user
+        const demoUser = {
+          uid: 'demo-user-123',
+          email: 'demo@talentflow.ai',
+          displayName: 'Demo User',
+          photoURL: null
+        };
       
       // Simular delay de login
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -116,8 +116,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signOut = async () => {
     const auth = getAuthInstance();
     if (!auth) {
-      // Modo de demonstração - simular logout
-      console.log("🔧 Modo de demonstração: Logout simulado");
+        // Demo mode - simulate logout
+        console.log("🔧 Demo mode: Simulated logout");
       setUser(null);
       return;
     }
