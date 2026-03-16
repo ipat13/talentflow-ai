@@ -27,7 +27,7 @@ export default function Home() {
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b" style={{ backgroundColor: '#F7FFF795', backdropFilter: 'blur(10px)' }}>
         <div className="container max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex h-20 items-center justify-between">
+          <div className="flex h-16 items-center justify-between">
             <div className="flex items-center">
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: '#006EB8' }}>
@@ -40,20 +40,20 @@ export default function Home() {
             </div>
 
             <nav className="hidden md:flex items-center space-x-8">
-              <a href="#features" className="text-sm font-medium hover:underline" style={{ color: '#2C3E50' }}>
+              <a href="#features" className="text-sm font-medium hover:text-primary transition-colors" style={{ color: '#2C3E50' }}>
                 Features
               </a>
-              <a href="#how-it-works" className="text-sm font-medium hover:underline" style={{ color: '#2C3E50' }}>
+              <a href="#how-it-works" className="text-sm font-medium hover:text-primary transition-colors" style={{ color: '#2C3E50' }}>
                 How it Works
               </a>
-              <a href="#pricing" className="text-sm font-medium hover:underline" style={{ color: '#2C3E50' }}>
+              <a href="#pricing" className="text-sm font-medium hover:text-primary transition-colors" style={{ color: '#2C3E50' }}>
                 Pricing
               </a>
               <a 
                 href="https://www.linkedin.com/in/ruofei-du/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-sm font-medium hover:underline" 
+                className="text-sm font-medium hover:text-primary transition-colors" 
                 style={{ color: '#2C3E50' }}
               >
                 Get Started
@@ -84,7 +84,7 @@ export default function Home() {
             </div>
             
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl mb-8" style={{ color: '#2C3E50' }}>
-              Streamline Your<br />Tech Hiring Process
+              Streamline YourTech Hiring Process
             </h1>
             
             <p className="mx-auto mt-6 max-w-[700px] md:text-xl mb-10" style={{ color: '#95A5A6' }}>
@@ -126,9 +126,7 @@ export default function Home() {
           {/* Feature 1 */}
           <div className="rounded-xl border p-8" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
             <div className="mb-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg" style={{ backgroundColor: '#006EB820' }}>
-                <span className="text-2xl">🤖</span>
-              </div>
+              <span className="text-4xl">🤖</span>
             </div>
             <h3 className="mt-4 text-xl font-bold" style={{ color: '#2C3E50' }}>AI-Powered Interviews</h3>
             <p className="mt-2" style={{ color: '#95A5A6' }}>
@@ -139,9 +137,7 @@ export default function Home() {
           {/* Feature 2 */}
           <div className="rounded-xl border p-8" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
             <div className="mb-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg" style={{ backgroundColor: '#45B7D120' }}>
-                <span className="text-2xl">📊</span>
-              </div>
+              <span className="text-4xl">📊</span>
             </div>
             <h3 className="mt-4 text-xl font-bold" style={{ color: '#2C3E50' }}>Comprehensive Evaluation</h3>
             <p className="mt-2" style={{ color: '#95A5A6' }}>
@@ -152,9 +148,7 @@ export default function Home() {
           {/* Feature 3 */}
           <div className="rounded-xl border p-8" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
             <div className="mb-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg" style={{ backgroundColor: '#4ECDC420' }}>
-                <span className="text-2xl">⚡</span>
-              </div>
+              <span className="text-4xl">⚡</span>
             </div>
             <h3 className="mt-4 text-xl font-bold" style={{ color: '#2C3E50' }}>Time-Saving Efficiency</h3>
             <p className="mt-2" style={{ color: '#95A5A6' }}>
@@ -165,9 +159,7 @@ export default function Home() {
           {/* Feature 4 */}
           <div className="rounded-xl border p-8" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
             <div className="mb-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg" style={{ backgroundColor: '#006EB820' }}>
-                <span className="text-2xl">📈</span>
-              </div>
+              <span className="text-4xl">📈</span>
             </div>
             <h3 className="mt-4 text-xl font-bold" style={{ color: '#2C3E50' }}>Data-Driven Insights</h3>
             <p className="mt-2" style={{ color: '#95A5A6' }}>
@@ -178,9 +170,7 @@ export default function Home() {
           {/* Feature 5 */}
           <div className="rounded-xl border p-8" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
             <div className="mb-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg" style={{ backgroundColor: '#45B7D120' }}>
-                <span className="text-2xl">🎯</span>
-              </div>
+              <span className="text-4xl">🎯</span>
             </div>
             <h3 className="mt-4 text-xl font-bold" style={{ color: '#2C3E50' }}>Customizable Assessments</h3>
             <p className="mt-2" style={{ color: '#95A5A6' }}>
@@ -191,9 +181,7 @@ export default function Home() {
           {/* Feature 6 */}
           <div className="rounded-xl border p-8" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
             <div className="mb-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg" style={{ backgroundColor: '#4ECDC420' }}>
-                <span className="text-2xl">👥</span>
-              </div>
+              <span className="text-4xl">👥</span>
             </div>
             <h3 className="mt-4 text-xl font-bold" style={{ color: '#2C3E50' }}>Collaborative Hiring</h3>
             <p className="mt-2" style={{ color: '#95A5A6' }}>
@@ -217,32 +205,29 @@ export default function Home() {
               <p className="text-lg mb-8" style={{ color: '#95A5A6' }}>
                 With Talentsflow, you can slash the time spent on scheduling, screening, and ranking candidates—saving weeks of effort and thousands of dollars in direct costs.
               </p>
+              <ul className="space-y-4" style={{ color: '#95A5A6' }}>
+                <li>Save scheduling overhead</li>
+                <li>Eliminate 100% of manual screening/tech interviews</li>
+                <li>Accelerate hiring from 4 weeks to just 2-4 days</li>
+                <li>Achieve an dramatic reduction in direct costs</li>
+              </ul>
+            </div>
+            <div>
+              {/* Esta div vazia representa a imagem que está no site original */}
+            </div>
+          </div>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-6" style={{ color: '#2C3E50' }}>
+                Cut Your Hiring Cost and Timespan
+              </h2>
+              <p className="text-lg mb-8" style={{ color: '#95A5A6' }}>
+                With Talentsflow, you can slash the time spent on scheduling, screening, and ranking candidates—saving weeks of effort and thousands of dollars in direct costs.
+              </p>
               
-              <ul className="space-y-4">
-                <li className="flex items-start">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full mr-3" style={{ backgroundColor: '#45B7D110' }}>
-                    <span className="text-sm" style={{ color: '#45B7D1' }}>✓</span>
-                  </div>
-                  <span style={{ color: '#95A5A6' }}>Save scheduling overhead</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full mr-3" style={{ backgroundColor: '#45B7D110' }}>
-                    <span className="text-sm" style={{ color: '#45B7D1' }}>✓</span>
-                  </div>
-                  <span style={{ color: '#95A5A6' }}>Eliminate 100% of manual screening/tech interviews</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full mr-3" style={{ backgroundColor: '#45B7D110' }}>
-                    <span className="text-sm" style={{ color: '#45B7D1' }}>✓</span>
-                  </div>
-                  <span style={{ color: '#95A5A6' }}>Accelerate hiring from 4 weeks to just 2-4 days</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full mr-3" style={{ backgroundColor: '#45B7D110' }}>
-                    <span className="text-sm" style={{ color: '#45B7D1' }}>✓</span>
-                  </div>
-                  <span style={{ color: '#95A5A6' }}>Achieve an dramatic reduction in direct costs</span>
-                </li>
+              <ul className="space-y-4" style={{ color: '#95A5A6' }}>
+                <li>Save scheduling overhead</li>
+                <li>Eliminate 100% of manual screening/tech interviews</li>
+                <li>Accelerate hiring from 4 weeks to just 2-4 days</li>
+                <li>Achieve an dramatic reduction in direct costs</li>
               </ul>
             </div>
             
@@ -255,7 +240,7 @@ export default function Home() {
       <section className="border-t">
         <div className="container max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-            <div className="rounded-xl border p-8" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
+            <div>
               <div className="mb-8">
                 <span className="text-4xl">🎯</span>
               </div>
@@ -265,24 +250,15 @@ export default function Home() {
               <p className="text-lg mb-8" style={{ color: '#95A5A6' }}>
                 Our AI interviewer ensures a standardized evaluation process for all candidates, eliminating human bias and providing consistent results.
               </p>
-              
-              <div className="space-y-6">
-                <div>
-                  <h3 className="font-semibold mb-2" style={{ color: '#2C3E50' }}>Customizable interview scripts</h3>
-                  <p style={{ color: '#95A5A6' }}>Tailor questions to your specific tech stack and requirements.</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2" style={{ color: '#2C3E50' }}>Real-time code evaluation</h3>
-                  <p style={{ color: '#95A5A6' }}>AI analyzes code quality and problem-solving approach as candidates code.</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2" style={{ color: '#2C3E50' }}>Adaptive questioning</h3>
-                  <p style={{ color: '#95A5A6' }}>Questions adapt based on candidate responses for optimal assessment.</p>
-                </div>
-              </div>
+              <ul className="space-y-4" style={{ color: '#95A5A6' }}>
+                <li>Customizable interview scripts</li>
+                <li>Real-time code evaluation</li>
+                <li>Adaptive questioning based on candidate responses</li>
+              </ul>
             </div>
-            
-
+            <div>
+              {/* Esta div vazia representa a imagem que está no site original */}
+            </div>
           </div>
         </div>
       </section>
@@ -290,32 +266,25 @@ export default function Home() {
       {/* Performance Analytics */}
       <section className="border-t">
         <div className="container max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <div className="mx-auto max-w-3xl text-center mb-16">
-            <div className="mb-8">
-              <span className="text-4xl">📊</span>
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+            <div>
+              <div className="mb-8">
+                <span className="text-4xl">📊</span>
+              </div>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-6" style={{ color: '#2C3E50' }}>
+                Make Data-Driven Hiring Decisions
+              </h2>
+              <p className="text-lg mb-8" style={{ color: '#95A5A6' }}>
+                Gain valuable insights into candidate performance with our comprehensive analytics dashboard. Compare candidates objectively and identify top talent efficiently.
+              </p>
+              <ul className="space-y-4" style={{ color: '#95A5A6' }}>
+                <li>Detailed performance metrics</li>
+                <li>Skill gap analysis</li>
+                <li>Candidate comparison tools</li>
+              </ul>
             </div>
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-6" style={{ color: '#2C3E50' }}>
-              Make Data-Driven Hiring Decisions
-            </h2>
-            <p className="text-lg" style={{ color: '#95A5A6' }}>
-              Gain valuable insights into candidate performance with our comprehensive analytics dashboard. Compare candidates objectively and identify top talent efficiently.
-            </p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-3">
-            <div className="text-center">
-              <h3 className="font-semibold mb-2" style={{ color: '#2C3E50' }}>Detailed performance metrics</h3>
-              <p style={{ color: '#95A5A6' }}>Track coding speed, problem-solving efficiency, and technical knowledge</p>
-            </div>
-            
-            <div className="text-center">
-              <h3 className="font-semibold mb-2" style={{ color: '#2C3E50' }}>Skill gap analysis</h3>
-              <p style={{ color: '#95A5A6' }}>Identify areas where candidates need improvement or additional training</p>
-            </div>
-            
-            <div className="text-center">
-              <h3 className="font-semibold mb-2" style={{ color: '#2C3E50' }}>Candidate comparison tools</h3>
-              <p style={{ color: '#95A5A6' }}>Side-by-side comparison of multiple candidates across key metrics</p>
+            <div>
+              {/* Esta div vazia representa a imagem que está no site original */}
             </div>
           </div>
         </div>
@@ -331,18 +300,14 @@ export default function Home() {
             <p className="text-lg mb-10" style={{ color: '#95A5A6' }}>
               Watch how our AI-powered platform helps HR teams conduct efficient technical interviews and make data-driven hiring decisions.
             </p>
-            
-            <div className="rounded-xl border p-12 text-center" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
-              <div className="text-6xl mb-6">🎥</div>
-              <p className="text-lg mb-8" style={{ color: '#95A5A6' }}>Video demonstration of our AI interview platform</p>
-              <button 
-                onClick={() => window.open('https://www.linkedin.com/in/ruofei-du/', '_blank')}
-                className="inline-flex items-center justify-center rounded-lg px-8 py-3 text-base font-medium transition-colors"
-                style={{ backgroundColor: '#006EB8', color: '#F7FFF7' }}
-              >
-                Request a Demo
-              </button>
-            </div>
+            <p className="text-lg mb-8" style={{ color: '#95A5A6' }}>Video demonstration of our AI interview platform</p>
+            <button 
+              onClick={() => window.open('https://www.linkedin.com/in/ruofei-du/', '_blank')}
+              className="inline-flex items-center justify-center rounded-lg px-8 py-3 text-base font-medium transition-colors"
+              style={{ backgroundColor: '#006EB8', color: '#F7FFF7' }}
+            >
+              Request a Demo
+            </button>
           </div>
         </div>
       </section>
@@ -362,7 +327,7 @@ export default function Home() {
           <div className="mx-auto max-w-md">
             <div className="rounded-xl border p-8" style={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0' }}>
               <div className="text-center mb-8">
-                <div className="text-4xl font-bold mb-2" style={{ color: '#2C3E50' }}>CA$599<span className="text-lg" style={{ color: '#95A5A6' }}>/month</span></div>
+                <div className="text-4xl font-bold mb-2" style={{ color: '#2C3E50' }}>CA$599 / month</div>
                 <p style={{ color: '#95A5A6' }}>Perfect for growing tech teams</p>
               </div>
 
@@ -370,31 +335,11 @@ export default function Home() {
                 <div className="text-center mb-4">
                   <p className="text-sm" style={{ color: '#95A5A6' }}>2-week free trial for 1 account and 10 interviews</p>
                 </div>
-                <ul className="space-y-4">
-                  <li className="flex items-center">
-                    <div className="flex h-5 w-5 items-center justify-center rounded-full mr-3" style={{ backgroundColor: '#45B7D110' }}>
-                      <span className="text-sm" style={{ color: '#45B7D1' }}>✓</span>
-                    </div>
-                    <span style={{ color: '#95A5A6' }}>100 Interviews Included</span>
-                  </li>
-                  <li className="flex items-center">
-                    <div className="flex h-5 w-5 items-center justify-center rounded-full mr-3" style={{ backgroundColor: '#45B7D110' }}>
-                      <span className="text-sm" style={{ color: '#45B7D1' }}>✓</span>
-                    </div>
-                    <span style={{ color: '#95A5A6' }}>Unlimited usage of the question bank</span>
-                  </li>
-                  <li className="flex items-center">
-                    <div className="flex h-5 w-5 items-center justify-center rounded-full mr-3" style={{ backgroundColor: '#45B7D110' }}>
-                      <span className="text-sm" style={{ color: '#45B7D1' }}>✓</span>
-                    </div>
-                    <span style={{ color: '#95A5A6' }}>On Demand Training Sessions</span>
-                  </li>
-                  <li className="flex items-center">
-                    <div className="flex h-5 w-5 items-center justify-center rounded-full mr-3" style={{ backgroundColor: '#45B7D110' }}>
-                      <span className="text-sm" style={{ color: '#45B7D1' }}>✓</span>
-                    </div>
-                    <span style={{ color: '#95A5A6' }}>Platform Tech support</span>
-                  </li>
+                <ul className="space-y-4" style={{ color: '#95A5A6' }}>
+                  <li>• 100 Interviews Included</li>
+                  <li>• Unlimited usage of the question bank</li>
+                  <li>• On Demand Training Sessions</li>
+                  <li>• Platform Tech support</li>
                 </ul>
               </div>
 
@@ -458,28 +403,28 @@ export default function Home() {
 
             <div>
               <h4 className="font-semibold mb-4" style={{ color: '#2C3E50' }}>Product</h4>
-              <ul className="space-y-2">
-                <li><a href="#features" className="hover:underline" style={{ color: '#95A5A6' }}>Features</a></li>
-                <li><a href="#pricing" className="hover:underline" style={{ color: '#95A5A6' }}>Pricing</a></li>
-                <li><a href="#" className="hover:underline" style={{ color: '#95A5A6' }}>FAQ</a></li>
+              <ul className="space-y-2" style={{ color: '#95A5A6' }}>
+                <li>Features</li>
+                <li>Pricing</li>
+                <li>FAQ</li>
               </ul>
             </div>
 
             <div>
               <h4 className="font-semibold mb-4" style={{ color: '#2C3E50' }}>Company</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:underline" style={{ color: '#95A5A6' }}>About</a></li>
-                <li><a href="#" className="hover:underline" style={{ color: '#95A5A6' }}>Blog</a></li>
-                <li><a href="#" className="hover:underline" style={{ color: '#95A5A6' }}>Careers</a></li>
+              <ul className="space-y-2" style={{ color: '#95A5A6' }}>
+                <li>About</li>
+                <li>Blog</li>
+                <li>Careers</li>
               </ul>
             </div>
 
             <div>
               <h4 className="font-semibold mb-4" style={{ color: '#2C3E50' }}>Resources</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:underline" style={{ color: '#95A5A6' }}>Support</a></li>
-                <li><a href="#" className="hover:underline" style={{ color: '#95A5A6' }}>Documentation</a></li>
-                <li><a href="#" className="hover:underline" style={{ color: '#95A5A6' }}>Case Studies</a></li>
+              <ul className="space-y-2" style={{ color: '#95A5A6' }}>
+                <li>Support</li>
+                <li>Documentation</li>
+                <li>Case Studies</li>
               </ul>
             </div>
           </div>
@@ -487,10 +432,10 @@ export default function Home() {
           <div className="border-t pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p style={{ color: '#95A5A6' }}>© 2025 TalentsFlow.ai. All rights reserved.</p>
-              <div className="flex space-x-6 mt-4 md:mt-0">
-                <a href="#" className="hover:underline" style={{ color: '#95A5A6' }}>Privacy</a>
-                <a href="#" className="hover:underline" style={{ color: '#95A5A6' }}>Terms</a>
-                <a href="#" className="hover:underline" style={{ color: '#95A5A6' }}>Cookie Policy</a>
+              <div className="flex space-x-6 mt-4 md:mt-0" style={{ color: '#95A5A6' }}>
+                <span>Privacy</span>
+                <span>Terms</span>
+                <span>Cookie Policy</span>
               </div>
             </div>
           </div>
