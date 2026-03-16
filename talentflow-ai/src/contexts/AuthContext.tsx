@@ -39,7 +39,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       // Firebase não está configurado - isso é normal em desenvolvimento
       // ou quando as variáveis de ambiente não estão definidas
       console.log("🔧 Firebase não configurado - Modo de demonstração ativo");
-      setLoading(false);
+      // Timeout para garantir que saia do loading mesmo sem Firebase
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
       return;
     }
 
@@ -53,8 +56,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(false);
     });
 
+    // Timeout de segurança para garantir que saia do loading
+    const timeoutId = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+
     return () => {
       unsubscribe();
+      clearTimeout(timeoutId);
     };
   }, []);
 
