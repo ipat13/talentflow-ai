@@ -213,21 +213,7 @@ export default function Home() {
               </ul>
             </div>
             <div>{/* Imagem placeholder */}</div>
-          </div>
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-6" style={{ color: '#2C3E50' }}>
-                Cut Your Hiring Cost and Timespan
-              </h2>
-              <p className="text-lg mb-8" style={{ color: '#95A5A6' }}>
-                With Talentsflow, you can slash the time spent on scheduling, screening, and ranking candidates—saving weeks of effort and thousands of dollars in direct costs.
-              </p>
-              
-              <ul className="space-y-4" style={{ color: '#95A5A6' }}>
-                <li>Save scheduling overhead</li>
-                <li>Eliminate 100% of manual screening/tech interviews</li>
-                <li>Accelerate hiring from 4 weeks to just 2-4 days</li>
-                <li>Achieve an dramatic reduction in direct costs</li>
-              </ul>
-            </div>
+           </div>
             
 
           </div>
