@@ -23,6 +23,7 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col" style={{ backgroundColor: '#F7FFF7', color: '#2C3E50', fontFamily: 'Inter, sans-serif' }}>
+      {/* SITE ATUALIZADO - VERSÃO EXTENSA COM MAIS ESPAÇAMENTO */}
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b" style={{ backgroundColor: '#F7FFF795', backdropFilter: 'blur(10px)' }}>
         <div className="container max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
