@@ -1,14 +1,61 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satoshi:wght@400;500;600;700&display=swap');
 
 @import "tailwindcss";
 
 :root {
-  --font-sans: "Inter", system-ui, sans-serif;
+  --font-inter: 'Inter', system-ui, sans-serif;
+  --font-plus-jakarta: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --font-satoshi: 'Satoshi', -apple-system, sans-serif;
+  
+  /* Cores principais do site exemplo */
+  --color-bg-primary: #F7FFF7;
+  --color-text-primary: #2C3E50;
+  --color-black: #09090b;
+  --color-dark-gray: #18181b;
+  --color-shadow: #121212;
+  --color-border-dark: #27272a;
+  --color-text-secondary: #52525b;
+  --color-white: #ffffff;
+  --color-off-white: #fafafa;
+  --color-light-gray: #f4f4f5;
+  
+  /* Gradientes */
+  --gradient-primary: linear-gradient(90deg, #3b82f6 0%, #6366f1 25%, #8b5cf6 50%, #d946ef 75%, #f472b6 100%);
+  --gradient-button: radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgb(0 0 0 / 68%) 100%), #09090b;
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-inter);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
 }
+
+/* Classes utilitárias para cores */
+.text-primary { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.bg-primary { background-color: var(--color-bg-primary); }
+.bg-black { background-color: var(--color-black); }
+.bg-dark-gray { background-color: var(--color-dark-gray); }
+.border-dark { border-color: var(--color-border-dark); }
+
+/* Classes para fontes */
+.font-plus-jakarta { font-family: var(--font-plus-jakarta); }
+.font-satoshi { font-family: var(--font-satoshi); }
+
+/* Efeitos de blur */
+.backdrop-blur-12 { backdrop-filter: blur(12px); }
+.backdrop-blur-54 { backdrop-filter: blur(54px); }
+
+/* Sombras */
+.shadow-thin-dark { box-shadow: 0px 0px 0px 1px var(--color-shadow); }
+.shadow-multi {
+  box-shadow: 0px 1px 1px rgba(18, 18, 18, 0.1),
+              0px 0px 0px 1px rgba(18, 18, 18, 0.07),
+              0px 1px 3px rgba(18, 18, 18, 0.1);
+}
+.shadow-soft { box-shadow: rgba(0, 0, 0, 0.08) 0px 8px 32px 0px; }
 
 :root.dark {
   --color-primary: #818cf8;

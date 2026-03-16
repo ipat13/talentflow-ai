@@ -9,40 +9,28 @@ module.exports = {
     extend: {
       fontFamily: {
         'satoshi': ['Satoshi', 'sans-serif'],
-        'jakarta': ['Plus Jakarta Sans', 'sans-serif'],
+        'plus-jakarta': ['Plus Jakarta Sans', 'sans-serif'],
+        'inter': ['Inter', 'sans-serif'],
       },
       colors: {
-        // Nova paleta de cores personalizada
-        primary: {
-          50: '#f5f3ff',
-          100: '#ede9fe',
-          200: '#ddd6fe',
-          300: '#c4b5fd',
-          400: '#a78bfa',
-          500: '#8b5cf6',
-          600: '#7c3aed',
-          700: '#6d28d9',
-          800: '#5b21b6',
-          900: '#4c1d95',
-        },
-        secondary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
-        },
-        accent: {
-          teal: '#14b8a6',
-          pink: '#ec4899',
-          amber: '#f59e0b',
-          emerald: '#10b981',
-        }
+        // Cores exatas do site exemplo TalentsFlow.ai
+        'talents-bg': '#F7FFF7',
+        'talents-text': '#2C3E50',
+        'talents-black': '#09090b',
+        'talents-dark-gray': '#18181b',
+        'talents-shadow': '#121212',
+        'talents-border-dark': '#27272a',
+        'talents-text-secondary': '#52525b',
+        'talents-white': '#ffffff',
+        'talents-off-white': '#fafafa',
+        'talents-light-gray': '#f4f4f5',
+        
+        // Cores do gradiente
+        'talents-blue': '#3b82f6',
+        'talents-indigo': '#6366f1',
+        'talents-purple': '#8b5cf6',
+        'talents-pink': '#d946ef',
+        'talents-rose': '#f472b6',
       },
       animation: {
         'float': 'float 3s ease-in-out infinite',
@@ -86,12 +74,8 @@ module.exports = {
         },
       },
       backgroundImage: {
-        'gradient-primary': 'linear-gradient(135deg, #7c3aed 0%, #0ea5e9 100%)',
-        'gradient-secondary': 'linear-gradient(135deg, #14b8a6 0%, #10b981 100%)',
-        'gradient-accent': 'linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%)',
-        'gradient-warm': 'linear-gradient(135deg, #f59e0b 0%, #f97316 100%)',
-        'gradient-cool': 'linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)',
-        'gradient-hero': 'linear-gradient(90deg, #8b5cf6 0%, #38bdf8 25%, #14b8a6 50%, #ec4899 75%, #f59e0b 100%)',
+        'gradient-talents': 'linear-gradient(90deg, #3b82f6 0%, #6366f1 25%, #8b5cf6 50%, #d946ef 75%, #f472b6 100%)',
+        'gradient-talents-button': 'radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgb(0 0 0 / 68%) 100%), #09090b',
       },
     },
   },
