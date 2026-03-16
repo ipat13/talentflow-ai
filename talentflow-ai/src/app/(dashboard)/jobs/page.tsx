@@ -3,7 +3,51 @@
 import { useState, useEffect } from "react";
 import { Button, Card, CardContent, CardHeader, CardTitle, Badge, Input, Textarea } from "@/components/ui";
 import { Job, JobType, JobStatus, JOB_TYPE_LABELS, JOB_STATUS_LABELS } from "@/types";
-import { Plus, Search, MapPin, DollarSign, Users, X, Loader2, Edit, Trash2 } from "lucide-react";
+import { Plus, Search, MapPin, DollarSign, Users, X, Loader2, Edit, Trash2, Briefcase } from "lucide-react";
+
+function JobSkeleton() {
+  return (
+    <div className="bg-slate-800/80 border border-slate-700 rounded-xl p-6 animate-pulse">
+      <div className="flex items-start justify-between">
+        <div className="flex-1">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="h-6 w-48 bg-slate-700 rounded"></div>
+            <div className="h-5 w-16 bg-slate-700 rounded"></div>
+          </div>
+          <div className="h-4 w-32 bg-slate-700 rounded mb-3"></div>
+          <div className="flex gap-4">
+            <div className="h-4 w-24 bg-slate-700 rounded"></div>
+            <div className="h-4 w-20 bg-slate-700 rounded"></div>
+          </div>
+        </div>
+        <div className="flex gap-2">
+          <div className="h-8 w-8 bg-slate-700 rounded"></div>
+          <div className="h-8 w-8 bg-slate-700 rounded"></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function EmptyState({ onCreate }: { onCreate: () => void }) {
+  return (
+    <div className="flex flex-col items-center justify-center py-16 text-center">
+      <div className="w-32 h-32 mb-6 relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-full"></div>
+        <div className="absolute inset-4 bg-gradient-to-br from-indigo-500/30 to-purple-500/30 rounded-full"></div>
+        <Briefcase className="absolute inset-0 m-auto w-12 h-12 text-indigo-400" />
+      </div>
+      <h3 className="text-xl font-semibold text-white mb-2">Nenhuma vaga ainda</h3>
+      <p className="text-slate-400 mb-6 max-w-md">
+        Cria a tua primeira vaga de emprego para começar a receber candidatos e utilizar as funcionalidades de IA.
+      </p>
+      <Button onClick={onCreate} className="bg-indigo-600 hover:bg-indigo-700">
+        <Plus className="w-4 h-4 mr-2" />
+        Criar Primeira Vaga
+      </Button>
+    </div>
+  );
+}
 
 export default function JobsPage() {
   const [jobs, setJobs] = useState<Job[]>([]);
@@ -124,8 +168,26 @@ export default function JobsPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <Loader2 className="w-8 h-8 animate-spin text-slate-400" />
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800/50 to-slate-900 p-8 space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="h-8 w-24 bg-slate-700 rounded animate-pulse mb-2"></div>
+            <div className="h-4 w-48 bg-slate-700 rounded animate-pulse"></div>
+          </div>
+          <div className="h-10 w-32 bg-slate-700 rounded animate-pulse"></div>
+        </div>
+
+        <div className="flex gap-4">
+          <div className="h-10 w-64 bg-slate-700 rounded animate-pulse"></div>
+          <div className="h-10 w-20 bg-slate-700 rounded animate-pulse"></div>
+          <div className="h-10 w-20 bg-slate-700 rounded animate-pulse"></div>
+        </div>
+
+        <div className="space-y-4">
+          <JobSkeleton />
+          <JobSkeleton />
+          <JobSkeleton />
+        </div>
       </div>
     );
   }
@@ -147,6 +209,8 @@ export default function JobsPage() {
         <div className="flex items-center gap-2 flex-1 min-w-[200px]">
           <Search className="w-4 h-4 text-slate-400" />
           <Input
+            id="search"
+            name="search"
             placeholder="Pesquisar vagas..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -172,15 +236,16 @@ export default function JobsPage() {
 
       {filteredJobs.length === 0 ? (
         <Card className="bg-slate-800/80 border-slate-700">
-          <CardContent className="py-12 text-center">
-            <p className="text-slate-300 mb-4">
-              {jobs.length === 0 ? "Nenhuma vaga ainda." : "Nenhuma vaga corresponde à pesquisa."}
-            </p>
-            {jobs.length === 0 && (
-              <Button onClick={() => setShowModal(true)} className="bg-indigo-600 hover:bg-indigo-700">
-                <Plus className="w-4 h-4 mr-2" />
-                Criar Primeira Vaga
-              </Button>
+          <CardContent className="p-6">
+            {jobs.length === 0 ? (
+              <EmptyState onCreate={() => setShowModal(true)} />
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-slate-300 mb-4">Nenhuma vaga corresponde à pesquisa.</p>
+                <Button onClick={() => { setSearchQuery(""); setStatusFilter("all"); }} variant="outline">
+                  Limpar Filtros
+                </Button>
+              </div>
             )}
           </CardContent>
         </Card>
@@ -235,8 +300,8 @@ export default function JobsPage() {
         </div>
       )}
 
-      {showModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+       {showModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[110]">
           <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-lg border border-slate-700">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-xl font-bold text-white">
@@ -248,8 +313,10 @@ export default function JobsPage() {
             </div>
             <div className="space-y-4">
               <div>
-                <label className="text-slate-200 text-sm mb-2 block">Título *</label>
+                <label htmlFor="title" className="text-slate-200 text-sm mb-2 block">Título *</label>
                 <Input
+                  id="title"
+                  name="title"
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                   className="bg-slate-700 border-slate-600 text-white"
@@ -257,8 +324,10 @@ export default function JobsPage() {
                 />
               </div>
               <div>
-                <label className="text-slate-200 text-sm mb-2 block">Empresa *</label>
+                <label htmlFor="company" className="text-slate-200 text-sm mb-2 block">Empresa *</label>
                 <Input
+                  id="company"
+                  name="company"
                   value={formData.company}
                   onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                   className="bg-slate-700 border-slate-600 text-white"
@@ -267,8 +336,10 @@ export default function JobsPage() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-slate-200 text-sm mb-2 block">Localização</label>
+                  <label htmlFor="location" className="text-slate-200 text-sm mb-2 block">Localização</label>
                   <Input
+                    id="location"
+                    name="location"
                     value={formData.location}
                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                     className="bg-slate-700 border-slate-600 text-white"
@@ -276,8 +347,10 @@ export default function JobsPage() {
                   />
                 </div>
                 <div>
-                  <label className="text-slate-200 text-sm mb-2 block">Tipo</label>
+                  <label htmlFor="type" className="text-slate-200 text-sm mb-2 block">Tipo</label>
                   <select
+                    id="type"
+                    name="type"
                     value={formData.type}
                     onChange={(e) => setFormData({ ...formData, type: e.target.value as any })}
                     className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white"
@@ -289,8 +362,10 @@ export default function JobsPage() {
                 </div>
               </div>
               <div>
-                <label className="text-slate-200 text-sm mb-2 block">Salário</label>
+                <label htmlFor="salary" className="text-slate-200 text-sm mb-2 block">Salário</label>
                 <Input
+                  id="salary"
+                  name="salary"
                   value={formData.salary}
                   onChange={(e) => setFormData({ ...formData, salary: e.target.value })}
                   className="bg-slate-700 border-slate-600 text-white"
@@ -298,8 +373,10 @@ export default function JobsPage() {
                 />
               </div>
               <div>
-                <label className="text-slate-200 text-sm mb-2 block">Descrição</label>
+                <label htmlFor="description" className="text-slate-200 text-sm mb-2 block">Descrição</label>
                 <Textarea
+                  id="description"
+                  name="description"
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   className="bg-slate-700 border-slate-600 text-white h-32"
@@ -307,8 +384,10 @@ export default function JobsPage() {
                 />
               </div>
               <div>
-                <label className="text-slate-200 text-sm mb-2 block">Estado</label>
+                <label htmlFor="status" className="text-slate-200 text-sm mb-2 block">Estado</label>
                 <select
+                  id="status"
+                  name="status"
                   value={formData.status}
                   onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
                   className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white"

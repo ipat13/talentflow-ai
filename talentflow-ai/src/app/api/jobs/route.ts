@@ -1,72 +1,54 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Job, JobInput } from "@/types/job";
+import { getAdminDb } from "@/lib/firebase-admin";
 
-const jobs: Job[] = [
-  {
-    id: "1",
-    title: "Senior Frontend Engineer",
-    department: "Engineering",
-    company: "Tech Corp",
-    location: "Remote",
-    type: "full-time",
-    salary: "€60k - €80k",
-    description: "We are looking for a Senior Frontend Engineer...",
-    requirements: ["React", "TypeScript", "Node.js"],
-    competencies: ["Leadership", "Communication"],
-    status: "active",
-    createdBy: "user@example.com",
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    _count: { candidates: 12 },
-  },
-  {
-    id: "2",
-    title: "Data Scientist",
-    department: "Data",
-    company: "DataTech",
-    location: "Lisbon, PT",
-    type: "full-time",
-    salary: "€50k - €70k",
-    description: "Join our data science team...",
-    requirements: ["Python", "Machine Learning", "SQL"],
-    competencies: ["Analytics", "Problem Solving"],
-    status: "active",
-    createdBy: "user@example.com",
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    _count: { candidates: 8 },
-  },
-  {
-    id: "3",
-    title: "Product Designer",
-    department: "Design",
-    company: "DesignStudio",
-    location: "Remote",
-    type: "contract",
-    salary: "€40k - €60k",
-    description: "Create amazing user experiences...",
-    requirements: ["Figma", "UI/UX", "Prototyping"],
-    competencies: ["Creativity", "User Research"],
-    status: "draft",
-    createdBy: "user@example.com",
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    _count: { candidates: 5 },
-  },
-];
+export async function GET(request: NextRequest) {
+  try {
+    const searchParams = request.nextUrl.searchParams;
+    const status = searchParams.get("status");
 
-let jobIdCounter = 4;
+    const db = getAdminDb();
+    let jobsQuery: any = db.collection("jobs").orderBy("createdAt", "desc");
 
-export async function GET() {
-  return NextResponse.json({ jobs });
+    if (status && status !== "all") {
+      jobsQuery = jobsQuery.where("status", "==", status);
+    }
+
+    const snapshot = await jobsQuery.get();
+    const jobs = await Promise.all(snapshot.docs.map(async (doc: any) => {
+      const jobData = doc.data();
+      
+      const candidatesSnapshot = await db.collection("candidates")
+        .where("jobId", "==", doc.id)
+        .get();
+      
+      return {
+        id: doc.id,
+        ...jobData,
+        _count: {
+          candidates: candidatesSnapshot.size
+        }
+      };
+    }));
+
+    return NextResponse.json({ jobs });
+  } catch (error) {
+    console.error("Error fetching jobs:", error);
+    return NextResponse.json({ error: "Failed to fetch jobs" }, { status: 500 });
+  }
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const body: JobInput = await request.json();
-    
-    const newJob: Job = {
-      id: (jobIdCounter++).toString(),
+    const body = await request.json();
+
+    if (!body.title || !body.company) {
+      return NextResponse.json({ error: "Title and company are required" }, { status: 400 });
+    }
+
+    const db = getAdminDb();
+    const jobsRef = db.collection("jobs");
+
+    const jobData = {
       title: body.title,
       department: body.department || "",
       company: body.company,
@@ -76,16 +58,24 @@ export async function POST(request: NextRequest) {
       description: body.description || "",
       requirements: body.requirements || [],
       competencies: body.competencies || [],
-      status: body.status || "active",
-      createdBy: "user@example.com",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      _count: { candidates: 0 },
+      skills: body.skills || [],
+      status: body.status || "draft",
+      createdBy: body.createdBy || "system",
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     };
 
-    jobs.push(newJob);
-    return NextResponse.json({ job: newJob }, { status: 201 });
+    const docRef = await jobsRef.add(jobData);
+
+    return NextResponse.json({ 
+      job: {
+        id: docRef.id,
+        ...jobData,
+        _count: { candidates: 0 }
+      }
+    }, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+    console.error("Error creating job:", error);
+    return NextResponse.json({ error: "Failed to create job" }, { status: 500 });
   }
 }

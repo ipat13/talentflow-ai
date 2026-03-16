@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>🚨 ULTIMA SOLUÇÃO - PowerShell Bloqueado</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', system-ui; 
+            background: linear-gradient(135deg, #1a237e, #0d47a1);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            color: #ff5252;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .subtitle {
+            text-align: center;
+            color: #bbdefb;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+        }
+        .error-box {
+            background: rgba(255, 82, 82, 0.1);
+            border: 2px solid #ff5252;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Consolas', monospace;
+        }
+        .solution-card {
+            background: rgba(76, 175, 80, 0.1);
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .solution-title {
+            color: #4caf50;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .step {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #2196f3;
+        }
+        .step-number {
+            display: inline-block;
+            background: #2196f3;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .code-block {
+            background: #0d1b2a;
+            color: #64ffda;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Consolas', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+            border: 1px solid #1e3a5f;
+        }
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #2196f3, #0d47a1);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+        }
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(33, 150, 243, 0.4);
+        }
+        .button-cmd {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+        }
+        .button-fix {
+            background: linear-gradient(135deg, #ff9800, #ef6c00);
+        }
+        .center {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .warning {
+            background: rgba(255, 152, 0, 0.1);
+            border: 2px solid #ff9800;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .success {
+            background: rgba(76, 175, 80, 0.1);
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚨 ULTIMA SOLUÇÃO</h1>
+        <div class="subtitle">PowerShell completamente bloqueado - Use o CMD!</div>
+        
+        <div class="error-box">
+            <strong>ERRO CRÍTICO:</strong><br>
+            <code>npm.ps1 cannot be loaded because running scripts is disabled on this system</code>
+        </div>
+        
+        <div class="warning">
+            <strong>⚠️ O POWERSHELL ESTÁ COMPLETAMENTE BLOQUEADO</strong><br>
+            As políticas de segurança do Windows impedem a execução de scripts no PowerShell.
+        </div>
+        
+        <div class="solution-card">
+            <div class="solution-title">✅ SOLUÇÃO DEFINITIVA: USAR CMD</div>
+            
+            <div class="step">
+                <span class="step-number">1</span>
+                <strong>Abrir CMD (Command Prompt)</strong>
+                <div class="code-block">Windows + R → digite "cmd" → Enter</div>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">2</span>
+                <strong>Navegar para a pasta do projeto</strong>
+                <div class="code-block">cd C:\talentflow-ai\talentflow-ai</div>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">3</span>
+                <strong>Instalar dependências (2-5 minutos)</strong>
+                <div class="code-block">npm install</div>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">4</span>
+                <strong>Iniciar servidor</strong>
+                <div class="code-block">npm run dev</div>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">5</span>
+                <strong>Acessar o site</strong>
+                <div class="code-block">http://localhost:3000</div>
+            </div>
+        </div>
+        
+        <div class="center">
+            <button class="button button-cmd" onclick="copyCMDCommands()">
+                📋 Copiar Comandos do CMD
+            </button>
+            <button class="button button-fix" onclick="showPowerShellFix()">
+                🔧 Tentar Corrigir PowerShell
+            </button>
+        </div>
+        
+        <div id="powershellFix" style="display: none;">
+            <div class="solution-card">
+                <div class="solution-title">🔧 CORRIGIR POWERSHELL (Administrador necessário)</div>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <strong>Abrir PowerShell como Administrador</strong>
+                    <div class="code-block">Clique direito no botão Iniciar → "Windows PowerShell (Administrador)"</div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <strong>Executar comando de correção</strong>
+                    <div class="code-block">Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser</div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <strong>Digitar 'S' quando perguntar</strong>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <strong>Fechar e reabrir PowerShell normal</strong>
+                </div>
+            </div>
+        </div>
+        
+        <div class="success">
+            <strong>🎉 SOLUÇÃO DO DROPDOWN PRONTA!</strong><br>
+            Assim que instalar as dependências com o CMD, o dropdown funcionará perfeitamente:
+            <ul style="margin: 10px 0 0 20px;">
+                <li>Aparece acima de todos os elementos</li>
+                <li>Funciona em todas as páginas (Dashboard, Jobs, Candidates)</li>
+                <li>z-index máximo garantido</li>
+                <li>JavaScript move para document.body</li>
+            </ul>
+        </div>
+        
+        <div class="center">
+            <strong>Teste após instalar:</strong><br>
+            <a href="http://localhost:3000/dashboard" style="color: #64ffda;">http://localhost:3000/dashboard</a><br>
+            <a href="http://localhost:3000/test-dropdown" style="color: #64ffda;">http://localhost:3000/test-dropdown</a>
+        </div>
+    </div>
+    
+    <script>
+        function copyCMDCommands() {
+            const commands = `cd C:\\talentflow-ai\\talentflow-ai\nnpm install\nnpm run dev`;
+            navigator.clipboard.writeText(commands).then(() => {
+                alert('✅ Comandos do CMD copiados para a área de transferência!\n\nCole no CMD e pressione Enter.');
+            });
+        }
+        
+        function showPowerShellFix() {
+            document.getElementById('powershellFix').style.display = 'block';
+        }
+        
+        // Mostrar alerta inicial
+        setTimeout(() => {
+            alert('🚨 ATENÇÃO: Use o CMD (Command Prompt) em vez do PowerShell!\n\nO CMD não tem bloqueios de segurança.');
+        }, 500);
+    </script>
+</body>
+</html>

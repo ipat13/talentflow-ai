@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const MOCK_MODE = true;
+const MOCK_MODE = false;
 
 export async function POST(request: NextRequest) {
   try {

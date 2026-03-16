@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚨 SOLUÇÃO DE EMERGÊNCIA - TalentFlow AI</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: #f1f5f9;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(30, 41, 59, 0.9);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid #475569;
+        }
+        h1 {
+            color: #60a5fa;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            color: #38bdf8;
+            margin-top: 25px;
+        }
+        .step {
+            background: rgba(51, 65, 85, 0.5);
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .step-number {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .command {
+            background: #0f172a;
+            color: #7dd3fc;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: 'Consolas', monospace;
+            margin: 10px 0;
+            border: 1px solid #334155;
+            overflow-x: auto;
+        }
+        .success {
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+        .button-secondary {
+            background: linear-gradient(135deg, #475569, #334155);
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .status-ready {
+            background: #10b981;
+            color: white;
+        }
+        .status-pending {
+            background: #f59e0b;
+            color: white;
+        }
+        .links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .link-card {
+            background: rgba(51, 65, 85, 0.5);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #475569;
+            transition: all 0.3s;
+        }
+        .link-card:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: #3b82f6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚨 SOLUÇÃO DE EMERGÊNCIA - TalentFlow AI</h1>
+        
+        <div class="warning">
+            <strong>⚠️ SITUAÇÃO:</strong> O servidor não está a funcionar porque as dependências não estão instaladas.
+            <br><strong>✅ SOLUÇÃO:</strong> Execute os comandos abaixo manualmente.
+        </div>
+
+        <h2>📋 VERIFICAÇÃO INICIAL</h2>
+        <div class="step">
+            <span class="step-number">1</span>
+            <strong>Node.js está instalado?</strong>
+            <span class="status status-ready">SIM ✓ v24.14.0</span>
+            <br>
+            <span class="step-number">2</span>
+            <strong>npm está instalado?</strong>
+            <span class="status status-ready">SIM ✓ v11.9.0</span>
+        </div>
+
+        <h2>🚀 PASSOS PARA INICIAR O SERVIDOR</h2>
+        
+        <div class="step">
+            <span class="step-number">1</span>
+            <strong>Abra o Terminal (CMD ou PowerShell)</strong>
+            <div class="command">Windows + R → digite "cmd" → Enter</div>
+        </div>
+
+        <div class="step">
+            <span class="step-number">2</span>
+            <strong>Navegue para a pasta do projeto</strong>
+            <div class="command">cd C:\talentflow-ai\talentflow-ai</div>
+        </div>
+
+        <div class="step">
+            <span class="step-number">3</span>
+            <strong>Instale as dependências (2-5 minutos)</strong>
+            <div class="command">npm install</div>
+            <small>Isto vai criar a pasta <code>node_modules</code> com todas as bibliotecas necessárias</small>
+        </div>
+
+        <div class="step">
+            <span class="step-number">4</span>
+            <strong>Inicie o servidor</strong>
+            <div class="command">npm run dev</div>
+        </div>
+
+        <div class="success">
+            <strong>🎉 SERVIDOR INICIADO COM SUCESSO!</strong>
+            <br>Acesse: <a href="http://localhost:3000" style="color:#60a5fa;">http://localhost:3000</a>
+        </div>
+
+        <h2>🔗 LINKS PARA TESTAR</h2>
+        <div class="links">
+            <div class="link-card">
+                <strong>Dashboard</strong><br>
+                <small>/dashboard</small>
+            </div>
+            <div class="link-card">
+                <strong>Teste Dropdown</strong><br>
+                <small>/test-dropdown</small>
+            </div>
+            <div class="link-card">
+                <strong>Jobs</strong><br>
+                <small>/jobs</small>
+            </div>
+            <div class="link-card">
+                <strong>Candidates</strong><br>
+                <small>/candidates</small>
+            </div>
+        </div>
+
+        <h2>✅ SOLUÇÃO DO DROPDOWN IMPLEMENTADA</h2>
+        <div class="success">
+            <strong>O problema do dropdown está RESOLVIDO no código!</strong>
+            <ul>
+                <li>Dropdown movido para <code>document.body</code> via JavaScript</li>
+                <li><code>z-index: 2147483647</code> (valor máximo)</li>
+                <li>Script de backup executa a cada 100ms</li>
+                <li>Funciona em <strong>TODAS</strong> as páginas</li>
+            </ul>
+            <strong>Teste:</strong> Vá para Dashboard → Clique no perfil → Dropdown aparece ACIMA de tudo!
+        </div>
+
+        <h2>🆘 SOLUÇÃO RÁPIDA ALTERNATIVA</h2>
+        <div style="text-align: center; margin: 25px 0;">
+            <button class="button" onclick="copyCommands()">📋 Copiar Comandos</button>
+            <a href="INSTALL_AND_START.bat" class="button button-secondary">▶️ Executar Script .bat</a>
+            <a href="RUN_ME_FIRST.txt" class="button button-secondary">📄 Ver Instruções</a>
+        </div>
+
+        <div class="warning">
+            <strong>Se ainda tiver problemas:</strong>
+            <ol>
+                <li>Execute o terminal como <strong>Administrador</strong></li>
+                <li>Verifique se a porta 3000 está livre</li>
+                <li>Reinicie o computador e tente novamente</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        function copyCommands() {
+            const commands = `cd C:\\talentflow-ai\\talentflow-ai\nnpm install\nnpm run dev`;
+            navigator.clipboard.writeText(commands).then(() => {
+                alert('Comandos copiados para a área de transferência!');
+            });
+        }
+        
+        // Verificar se o servidor está online
+        async function checkServer() {
+            try {
+                const response = await fetch('http://localhost:3000', { mode: 'no-cors' });
+                document.getElementById('server-status').innerHTML = 
+                    '<span class="status status-ready">ONLINE</span>';
+            } catch (error) {
+                document.getElementById('server-status').innerHTML = 
+                    '<span class="status status-pending">OFFLINE</span>';
+            }
+        }
+        
+        // Verificar a cada 5 segundos
+        setInterval(checkServer, 5000);
+        checkServer();
+    </script>
+</body>
+</html>

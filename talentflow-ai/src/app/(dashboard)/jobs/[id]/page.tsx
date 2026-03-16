@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Button, Card, CardContent, CardHeader, CardTitle, Badge, Input, Textarea } from "@/components/ui";
+import { Button, Card, CardContent, CardHeader, CardTitle, Badge, Input, Textarea, ConfirmModal } from "@/components/ui";
 import { Job, JobType, JobStatus, JOB_TYPE_LABELS, JOB_STATUS_LABELS } from "@/types";
 import { CandidateCard } from "@/components/candidates/CandidateCard";
 import { ArrowLeft, Loader2, Sparkles, Trash2, MapPin, Users, DollarSign, Briefcase, Linkedin, Upload } from "lucide-react";
@@ -17,6 +17,7 @@ function JobDetailContent() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [generating, setGenerating] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [analyzingId, setAnalyzingId] = useState<string | null>(null);
@@ -103,8 +104,6 @@ function JobDetailContent() {
   };
 
   const handleDelete = async () => {
-    if (!confirm("Tens a certeza que queres eliminar esta vaga? Esta ação não pode ser desfeita.")) return;
-
     setDeleting(true);
     try {
       const response = await fetch(`/api/jobs/${jobId}`, { method: "DELETE" });
@@ -115,6 +114,7 @@ function JobDetailContent() {
       console.error("Error deleting job:", error);
     } finally {
       setDeleting(false);
+      setShowDeleteModal(false);
     }
   };
 
@@ -260,7 +260,7 @@ function JobDetailContent() {
                       </Button>
                       <Button
                         variant="ghost"
-                        onClick={handleDelete}
+                        onClick={() => setShowDeleteModal(true)}
                         disabled={deleting}
                         className="text-red-400 hover:text-red-300"
                       >
@@ -505,6 +505,18 @@ function JobDetailContent() {
             </Card>
           </div>
         </div>
+
+        <ConfirmModal
+          isOpen={showDeleteModal}
+          onClose={() => setShowDeleteModal(false)}
+          onConfirm={handleDelete}
+          title="Eliminar Vaga"
+          message={`Tens a certeza que queres eliminar a vaga "${job?.title}"? Esta ação não pode ser desfeita e todos os candidatos associados serão eliminados.`}
+          confirmText="Eliminar"
+          cancelText="Cancelar"
+          variant="danger"
+          loading={deleting}
+        />
       </div>
     </div>
   );

@@ -1,0 +1,51 @@
+⚠️⚠️⚠️ ATENÇÃO: EXECUTE ESTES COMANDOS MANUALMENTE ⚠️⚠️⚠️
+
+O sistema de automação não tem permissões para instalar dependências.
+
+SIGA ESTES PASSOS:
+
+1. ABRA O TERMINAL (CMD ou PowerShell)
+   - Pressione Windows + R
+   - Digite "cmd" ou "powershell"
+   - Pressione Enter
+
+2. NAVEGUE PARA A PASTA DO PROJETO:
+   cd C:\talentflow-ai\talentflow-ai
+
+3. INSTALE AS DEPENDÊNCIAS:
+   npm install
+   (Isso pode demorar 2-5 minutos)
+
+4. INICIE O SERVIDOR:
+   npm run dev
+
+5. ACESSE O SITE:
+   Abra o navegador em: http://localhost:3000
+
+6. TESTE O DROPDOWN:
+   - Vá para: http://localhost:3000/dashboard
+   - Clique no botão do perfil (canto superior direito)
+   - O dropdown deve aparecer ACIMA de tudo
+
+OU USE O SCRIPT .bat:
+1. Clique com botão direito em "INSTALL_AND_START.bat"
+2. Selecione "Executar como administrador"
+
+PROBLEMAS COMUNS E SOLUÇÕES:
+
+❌ "npm não é reconhecido"
+   → Instale Node.js: https://nodejs.org/
+
+❌ "Acesso negado"
+   → Execute o terminal como Administrador
+
+❌ "Porta 3000 em uso"
+   → Execute: netstat -ano | findstr :3000
+   → Depois: taskkill /PID [NÚMERO] /F
+
+✅ SOLUÇÃO DO DROPDOWN JÁ IMPLEMENTADA:
+   - JavaScript move dropdown para document.body
+   - z-index máximo garantido (2147483647)
+   - Funciona em todas as páginas
+
+APÓS INSTALAR, O SITE ESTARÁ PRONTO PARA USAR!

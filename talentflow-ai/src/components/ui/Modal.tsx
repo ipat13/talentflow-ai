@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useId } from "react";
 import { X } from "lucide-react";
 
 interface ModalProps {
@@ -12,6 +12,8 @@ interface ModalProps {
 }
 
 export function Modal({ isOpen, onClose, title, children, size = "md" }: ModalProps) {
+  const modalId = useId();
+  
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -45,7 +47,7 @@ export function Modal({ isOpen, onClose, title, children, size = "md" }: ModalPr
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-[110] flex items-center justify-center">
       <div 
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
@@ -54,12 +56,12 @@ export function Modal({ isOpen, onClose, title, children, size = "md" }: ModalPr
       <div
         role="dialog"
         aria-modal="true"
-        aria-labelledby={title ? "modal-title" : undefined}
+         aria-labelledby={title ? `modal-title-${modalId}` : undefined}
         className={`relative bg-slate-800 rounded-2xl p-6 w-full ${sizes[size]} border border-slate-700 shadow-2xl mx-4`}
       >
         {title && (
           <div className="flex items-center justify-between mb-4">
-            <h2 id="modal-title" className="text-xl font-bold text-white">
+             <h2 id={`modal-title-${modalId}`} className="text-xl font-bold text-white">
               {title}
             </h2>
             <button

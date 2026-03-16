@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>🚀 SOLUÇÃO RÁPIDA - PowerShell Bloqueado</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f0f0f0; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+        h1 { color: #d32f2f; }
+        .solution { background: #e8f5e9; padding: 15px; border-left: 4px solid #4caf50; margin: 20px 0; }
+        .code { background: #263238; color: #fff; padding: 15px; border-radius: 5px; font-family: monospace; margin: 10px 0; }
+        .step { margin: 15px 0; padding: 10px; background: #f5f5f5; border-radius: 5px; }
+        .important { background: #fff3e0; padding: 15px; border-left: 4px solid #ff9800; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 SOLUÇÃO RÁPIDA - PowerShell Bloqueado</h1>
+        
+        <div class="important">
+            <strong>ERRO ENCONTRADO:</strong><br>
+            <em>"File C:\Program Files\nodejs\npm.ps1 cannot be loaded because running scripts is disabled on this system"</em>
+        </div>
+        
+        <h2>📋 SOLUÇÃO 1: USAR CMD (MAIS FÁCIL)</h2>
+        <div class="step">
+            <strong>Passo 1:</strong> Pressione <kbd>Windows</kbd> + <kbd>R</kbd>
+        </div>
+        <div class="step">
+            <strong>Passo 2:</strong> Digite <code>cmd</code> e pressione <kbd>Enter</kbd>
+        </div>
+        <div class="step">
+            <strong>Passo 3:</strong> No CMD, execute:
+            <div class="code">
+                cd C:\talentflow-ai\talentflow-ai<br>
+                npm install<br>
+                npm run dev
+            </div>
+        </div>
+        
+        <h2>🔧 SOLUÇÃO 2: CORRIGIR POWERSHELL</h2>
+        <div class="step">
+            <strong>Passo 1:</strong> Abra PowerShell como <strong>Administrador</strong><br>
+            (Clique direito → Executar como administrador)
+        </div>
+        <div class="step">
+            <strong>Passo 2:</strong> Execute:
+            <div class="code">Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</div>
+        </div>
+        <div class="step">
+            <strong>Passo 3:</strong> Digite <code>S</code> quando perguntar
+        </div>
+        <div class="step">
+            <strong>Passo 4:</strong> Feche e reabra o PowerShell
+        </div>
+        
+        <h2>⚡ SOLUÇÃO 3: SCRIPT AUTOMÁTICO</h2>
+        <div class="step">
+            <strong>Passo 1:</strong> Clique direito em <code>INSTALL_AND_START.bat</code>
+        </div>
+        <div class="step">
+            <strong>Passo 2:</strong> Selecione <strong>"Executar como administrador"</strong>
+        </div>
+        <div class="step">
+            <strong>Passo 3:</strong> Digite <code>S</code> se pedir permissão
+        </div>
+        
+        <div class="solution">
+            <strong>✅ APÓS RESOLVER:</strong><br>
+            1. As dependências serão instaladas (2-5 minutos)<br>
+            2. O servidor iniciará em <a href="http://localhost:3000">http://localhost:3000</a><br>
+            3. Teste o dropdown em: <a href="http://localhost:3000/dashboard">/dashboard</a>
+        </div>
+        
+        <div class="important">
+            <strong>💡 DICA:</strong> Use o <strong>CMD</strong> (Solução 1) - é mais rápido e não tem bloqueios!
+        </div>
+    </div>
+</body>
+</html>
