@@ -57,6 +57,24 @@ body {
 }
 .shadow-soft { box-shadow: rgba(0, 0, 0, 0.08) 0px 8px 32px 0px; }
 
+/* Classes utilitárias para organização */
+.section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+@media (min-width: 768px) {
+  .section-padding { padding-top: 6rem; padding-bottom: 6rem; }
+}
+
+.container-narrow { max-width: 48rem; }
+.container-wide { max-width: 80rem; }
+
+.text-balance { text-wrap: balance; }
+
+/* Transições suaves */
+.transition-smooth { transition: all 0.3s ease-in-out; }
+
+/* Gradientes consistentes */
+.bg-gradient-talents { background: linear-gradient(90deg, #3b82f6 0%, #6366f1 25%, #8b5cf6 50%, #d946ef 75%, #f472b6 100%); }
+.bg-gradient-subtle { background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); }
+
 :root.dark {
   --color-primary: #818cf8;
   --color-primary-hover: #a5b4fc;
