@@ -23,9 +23,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-talents-bg text-talents-text">
+    <div className="min-h-screen" style={{ backgroundColor: '#F7FFF7', color: '#2C3E50', fontFamily: 'Inter, sans-serif' }}>
       {/* Header - EXATAMENTE igual ao exemplo */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-talents-bg/95 backdrop-blur-md border-b border-talents-border-dark/10">
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-[#27272a]/10" style={{ backgroundColor: '#F7FFF795' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
