@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
+import HeroSection from "./components/HeroSection";
+import FeaturesSection from "./components/FeaturesSection";
+import ContactForm from "./components/ContactForm";
+import Footer from "./components/Footer";
 
 export default function Home() {
   useEffect(() => {
@@ -22,34 +26,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#F7FFF7] text-[#2C3E50] font-inter">
-      {/* Header - VERSÃO CORRIGIDA: Espaçamento, cores e fontes IDÊNTICAS */}
-      <header className="sticky top-0 z-50 w-full border-b border-[#E2E8F0] bg-[#F7FFF795] backdrop-blur-md">
-        <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            <div className="flex items-center">
-              <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 rounded-full bg-[#006EB8] flex items-center justify-center">
-                  <span className="text-white font-bold">T</span>
-                </div>
-                <span className="text-xl font-bold text-[#2C3E50] font-poppins">TalentsFlow.ai</span>
-              </div>
-            </div>
-
-            <nav className="hidden md:flex items-center space-x-8">
-              <a href="#features" className="text-sm font-medium text-[#2C3E50] hover:text-[#006EB8] transition-colors">Features</a>
-              <a href="#how-it-works" className="text-sm font-medium text-[#2C3E50] hover:text-[#006EB8] transition-colors">How it Works</a>
-              <a href="#pricing" className="text-sm font-medium text-[#2C3E50] hover:text-[#006EB8] transition-colors">Pricing</a>
-              <a href="#" className="text-sm font-medium text-[#2C3E50] hover:text-[#006EB8] transition-colors">Get Started</a>
-            </nav>
-
-            <div className="flex items-center">
-              <button className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-[#006EB8] text-white hover:bg-[#005A9C] transition-colors">
-                Request Demo
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
+      <HeroSection />
 
       {/* Hero Section */}
       <section className="relative overflow-hidden py-24 md:py-32">
@@ -81,85 +58,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-24">
-        <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-4xl text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl mb-6 font-poppins">Why HR Teams Choose TalentsFlow.ai</h2>
-            <p className="mt-4 text-lg md:text-xl text-[#95A5A6]">
-              Revolutionize your tech hiring process with our AI-powered platform
-            </p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {/* Feature 1 */}
-            <div className="rounded-xl border border-[#E2E8F0] bg-white p-8 shadow-sm hover:shadow-md transition-shadow">
-              <div className="mb-6">
-                <span className="text-4xl">🤖</span>
-              </div>
-              <h3 className="mt-4 text-xl font-bold font-poppins">AI-Powered Interviews</h3>
-              <p className="mt-2 text-[#95A5A6]">
-                Conduct consistent and unbiased technical interviews with our advanced AI interviewer
-              </p>
-            </div>
-
-            {/* Feature 2 */}
-            <div className="rounded-xl border border-[#E2E8F0] bg-white p-8 shadow-sm hover:shadow-md transition-shadow">
-              <div className="mb-6">
-                <span className="text-4xl">📊</span>
-              </div>
-              <h3 className="mt-4 text-xl font-bold font-poppins">Comprehensive Evaluation</h3>
-              <p className="mt-2 text-[#95A5A6]">
-                Get detailed reports on candidates' technical skills, problem-solving abilities, and communication
-              </p>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="rounded-xl border border-[#E2E8F0] bg-white p-8 shadow-sm hover:shadow-md transition-shadow">
-              <div className="mb-6">
-                <span className="text-4xl">⚡</span>
-              </div>
-              <h3 className="mt-4 text-xl font-bold font-poppins">Time-Saving Efficiency</h3>
-              <p className="mt-2 text-[#95A5A6]">
-                Reduce screening time and schedule interviews 24/7, streamlining your hiring pipeline
-              </p>
-            </div>
-
-            {/* Feature 4 */}
-            <div className="rounded-xl border border-[#E2E8F0] bg-white p-8 shadow-sm hover:shadow-md transition-shadow">
-              <div className="mb-6">
-                <span className="text-4xl">📈</span>
-              </div>
-              <h3 className="mt-4 text-xl font-bold font-poppins">Data-Driven Insights</h3>
-              <p className="mt-2 text-[#95A5A6]">
-                Make informed decisions with comprehensive analytics and benchmarking tools
-              </p>
-            </div>
-
-            {/* Feature 5 */}
-            <div className="rounded-xl border border-[#E2E8F0] bg-white p-8 shadow-sm hover:shadow-md transition-shadow">
-              <div className="mb-6">
-                <span className="text-4xl">🎯</span>
-              </div>
-              <h3 className="mt-4 text-xl font-bold font-poppins">Customizable Assessments</h3>
-              <p className="mt-2 text-[#95A5A6]">
-                Tailor interview questions and coding challenges to your company's specific needs
-              </p>
-            </div>
-
-            {/* Feature 6 */}
-            <div className="rounded-xl border border-[#E2E8F0] bg-white p-8 shadow-sm hover:shadow-md transition-shadow">
-              <div className="mb-6">
-                <span className="text-4xl">👥</span>
-              </div>
-              <h3 className="mt-4 text-xl font-bold font-poppins">Collaborative Hiring</h3>
-              <p className="mt-2 text-[#95A5A6]">
-                Easily share candidate reports and collaborate with your hiring team
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <FeaturesSection />
 
       {/* Time & Cost Savings */}
       <section className="py-24 border-t border-[#E2E8F0]">
@@ -381,59 +280,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 border-t border-[#E2E8F0] bg-[#F7FFF7]">
+      {/* Contact Form Section */}
+      <section id="contact" className="py-24 border-t border-[#E2E8F0]">
         <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 rounded-full bg-[#006EB8] flex items-center justify-center">
-                  <span className="text-white font-bold">T</span>
-                </div>
-                <span className="text-xl font-bold text-[#2C3E50] font-poppins">TalentsFlow.ai</span>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4 text-[#2C3E50] font-poppins">Product</h4>
-              <ul className="space-y-2 text-[#95A5A6]">
-                <li>Features</li>
-                <li>Pricing</li>
-                <li>FAQ</li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4 text-[#2C3E50] font-poppins">Company</h4>
-              <ul className="space-y-2 text-[#95A5A6]">
-                <li>About</li>
-                <li>Blog</li>
-                <li>Careers</li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4 text-[#2C3E50] font-poppins">Resources</h4>
-              <ul className="space-y-2 text-[#95A5A6]">
-                <li>Support</li>
-                <li>Documentation</li>
-                <li>Case Studies</li>
-              </ul>
-            </div>
+          <div className="mx-auto max-w-3xl text-center mb-16">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl mb-6 font-poppins">Get in Touch</h2>
+            <p className="text-lg text-[#95A5A6]">
+              Ready to transform your tech hiring process? Contact us to schedule a demo or learn more about our AI-powered platform.
+            </p>
           </div>
-
-          <div className="border-t border-[#95A5A630] pt-8">
-            <div className="flex flex-col md:flex-row justify-between items-center">
-              <p className="text-[#95A5A6]">© 2025 TalentsFlow.ai. All rights reserved.</p>
-              <div className="flex space-x-6 mt-4 md:mt-0 text-[#95A5A6]">
-                <span>Privacy</span>
-                <span>Terms</span>
-                <span>Cookie Policy</span>
-              </div>
-            </div>
-          </div>
+          <ContactForm />
         </div>
-      </footer>
+      </section>
+
+      <Footer />
     </div>
   );
 }
