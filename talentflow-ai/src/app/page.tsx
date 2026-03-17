@@ -193,7 +193,7 @@ export default function Home() {
               </ul>
             </div>
             <div className="relative">
-              <div className="aspect-video rounded-xl border shadow-2xl bg-gradient-to-br from-[#006EB820] to-[#4ECDC420] flex items-center justify-center">
+              <div className="aspect-video rounded-xl border-2 border-white/10 shadow-2xl bg-gradient-to-br from-[#006EB8]/10 to-[#4ECDC4]/10 backdrop-blur-sm flex items-center justify-center">
                 <div className="text-center">
                   <div className="text-4xl mb-4">📊</div>
                   <p className="text-[#95A5A6]">Time & Cost Savings Dashboard</p>
@@ -210,12 +210,12 @@ export default function Home() {
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
             <div className="order-2 lg:order-1">
               <div className="relative">
-                <div className="aspect-video rounded-xl border shadow-2xl bg-gradient-to-br from-[#006EB820] to-[#4ECDC420] flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-4xl mb-4">🎯</div>
-                    <p className="text-[#95A5A6]">AI Interview Interface</p>
-                  </div>
+              <div className="aspect-video rounded-xl border-2 border-white/10 shadow-2xl bg-gradient-to-br from-[#006EB8]/10 to-[#4ECDC4]/10 backdrop-blur-sm flex items-center justify-center">
+                <div className="text-center">
+                  <div className="text-4xl mb-4">🎯</div>
+                  <p className="text-[#95A5A6]">AI Interview Interface</p>
                 </div>
+              </div>
               </div>
             </div>
             <div className="order-1 lg:order-2">
@@ -277,7 +277,7 @@ export default function Home() {
               </ul>
             </div>
             <div className="relative">
-              <div className="aspect-video rounded-xl border shadow-2xl bg-gradient-to-br from-[#006EB820] to-[#4ECDC420] flex items-center justify-center">
+              <div className="aspect-video rounded-xl border-2 border-white/10 shadow-2xl bg-gradient-to-br from-[#006EB8]/10 to-[#4ECDC4]/10 backdrop-blur-sm flex items-center justify-center">
                 <div className="text-center">
                   <div className="text-4xl mb-4">📈</div>
                   <p className="text-[#95A5A6]">Performance Analytics Dashboard</p>
@@ -296,7 +296,7 @@ export default function Home() {
             <p className="text-lg text-[#95A5A6] mb-10">
               Watch how our AI-powered platform helps HR teams conduct efficient technical interviews and make data-driven hiring decisions.
             </p>
-            <div className="aspect-video rounded-xl border shadow-2xl bg-gradient-to-br from-[#006EB820] to-[#4ECDC420] flex items-center justify-center mb-8">
+            <div className="aspect-video rounded-xl border-2 border-white/10 shadow-2xl bg-gradient-to-br from-[#006EB8]/10 to-[#4ECDC4]/10 backdrop-blur-sm flex items-center justify-center mb-8">
               <div className="text-center">
                 <div className="text-4xl mb-4">▶️</div>
                 <p className="text-[#95A5A6]">Video demonstration of our AI interview platform</p>
