@@ -22,7 +22,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#F7FFF7] text-[#2C3E50] font-sans">
-      {/* Header */}
+      {/* Header - Site IDÊNTICO a https://talentsflow.ai/ */}
       <header className="sticky top-0 z-50 w-full border-b bg-[#F7FFF795] backdrop-blur-md">
         <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
