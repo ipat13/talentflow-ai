@@ -21,7 +21,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F7FFF7] text-[#2C3E50] font-sans">
+    <div className="min-h-screen bg-[#F7FFF7] text-[#2C3E50] font-sans font-inter">
       {/* Header - Site IDÊNTICO a https://talentsflow.ai/ */}
       <header className="sticky top-0 z-50 w-full border-b bg-[#F7FFF795] backdrop-blur-md">
         <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
@@ -61,7 +61,7 @@ export default function Home() {
               </span>
             </div>
             
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl mb-8">
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl mb-8 font-poppins">
               Streamline Your <span className="text-[#006EB8]">Tech Hiring Process</span>
             </h1>
             
@@ -84,7 +84,7 @@ export default function Home() {
       {/* Features Section */}
       <section id="features" className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-24">
         <div className="mx-auto max-w-4xl text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-6">Why HR Teams Choose TalentsFlow.ai</h2>
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-6 font-poppins">Why HR Teams Choose TalentsFlow.ai</h2>
           <p className="mt-4 text-lg md:text-xl text-[#95A5A6]">
             Revolutionize your tech hiring process with our AI-powered platform
           </p>
