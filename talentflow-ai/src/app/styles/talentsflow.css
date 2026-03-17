@@ -59,10 +59,11 @@ a {
    VARIÁVEIS DE CORES - SISTEMA EXATO DO TALENTSFLOW.AI
    ========================================================================== */
 :root {
-  /* Cores Principais (encontradas no HTML inline) */
-  --color-bg-primary: #F7FFF7;           /* Verde muito claro - fundo principal */
-  --color-text-primary: #2C3E50;         /* Azul escuro/grafite - texto principal */
-  --color-header-bg: #F7FFF795;          /* Header com 95% de opacidade */
+  /* Cores Principais - EXATAS do talentsflow.ai */
+  --color-bg-primary: #0A192F;           /* Azul escuro profundo - fundo principal */
+  --color-text-primary: #FFFFFF;         /* Branco - texto principal */
+  --color-text-secondary: #8892B0;       /* Azul acinzentado - texto secundário */
+  --color-header-bg: #0A192F95;          /* Header com 95% de opacidade */
   
   /* Sistema HSL (variáveis CSS originais) */
   --background: 0 0% 100%;               /* Branco puro */
@@ -82,32 +83,36 @@ a {
   --ring: 0 0% 3.9%;                     /* Quase preto */
   
   /* Cores Utilitárias */
-  --ring-color: rgba(59, 130, 246, 0.5); /* Azul com 50% de opacidade */
-  --ring-offset-color: #fff;             /* Branco */
+  --ring-color: rgba(0, 210, 255, 0.5);  /* Azul ciano com 50% de opacidade */
+  --ring-offset-color: #0A192F;          /* Azul escuro */
   
-  /* Tons de Azul (para botões e destaques) */
-  --color-blue-primary: #006EB8;         /* Azul principal - botões */
-  --color-blue-hover: #005A9C;           /* Azul hover */
-  --color-blue-light: #45B7D1;           /* Azul claro - badges */
-  --color-blue-light-bg: #45B7D110;      /* Azul claro com 10% opacidade */
-  --color-blue-border: #006EB830;        /* Azul com 30% opacidade - bordas */
+  /* Tons de Azul Ciano (para botões e destaques) */
+  --color-accent-primary: #00D2FF;       /* Azul ciano brilhante - destaques */
+  --color-accent-hover: #00B8E6;         /* Azul ciano hover */
+  --color-accent-light: #64DFFF;         /* Azul ciano claro */
+  --color-accent-bg: #00D2FF10;          /* Azul ciano com 10% opacidade */
+  --color-accent-border: #00D2FF30;      /* Azul ciano com 30% opacidade - bordas */
   
-  /* Tons de Verde/Ciano */
-  --color-cyan: #4ECDC4;                 /* Ciano/verde água */
-  --color-cyan-bg: #4ECDC410;            /* Ciano com 10% opacidade */
+  /* Tons de Azul Escuro */
+  --color-dark-blue: #112240;            /* Azul escuro médio - cards */
+  --color-darker-blue: #0A192F;          /* Azul escuro profundo - fundo */
+  --color-darkest-blue: #020C1B;         /* Azul quase preto */
   
   /* Tons de Cinza (textos secundários) */
-  --color-gray-text: #95A5A6;            /* Cinza azulado - texto secundário */
-  --color-gray-light: #E2E8F0;           /* Cinza muito claro - bordas */
-  --color-gray-border: #95A5A630;        /* Cinza com 30% opacidade */
+  --color-gray-text: #8892B0;            /* Azul acinzentado - texto secundário */
+  --color-gray-light: #233554;           /* Azul escuro claro - bordas */
+  --color-gray-border: #8892B030;        /* Cinza com 30% de opacidade */
   
   /* Gradientes */
-  --gradient-blue-cyan: linear-gradient(135deg, 
-    rgba(0, 110, 184, 0.1) 0%, 
-    rgba(78, 205, 196, 0.1) 100%);
-  --gradient-blue-cyan-strong: linear-gradient(135deg, 
-    rgba(0, 110, 184, 0.2) 0%, 
-    rgba(78, 205, 196, 0.2) 100%);
+  --gradient-accent: linear-gradient(135deg, 
+    rgba(0, 210, 255, 0.1) 0%, 
+    rgba(0, 210, 255, 0.05) 100%);
+  --gradient-accent-strong: linear-gradient(135deg, 
+    rgba(0, 210, 255, 0.2) 0%, 
+    rgba(0, 210, 255, 0.1) 100%);
+  --gradient-text: linear-gradient(135deg, 
+    #00D2FF 0%, 
+    #64DFFF 100%);
   
   /* Sombras */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -136,21 +141,18 @@ a {
   --spacing-xl: 2rem;      /* 32px */
   --spacing-2xl: 3rem;     /* 48px */
   --spacing-3xl: 4rem;     /* 64px */
-  --spacing-4xl: 6rem;     /* 96px */
+  --spacing-4xl: 6.25rem;  /* 100px */
 }
 
 /* ==========================================================================
    TIPOGRAFIA - FONTES EXATAS DO TALENTSFLOW.AI
    ========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
 :root {
-  /* Fontes Personalizadas (Geist) - Fallback para Inter/Poppins */
+  /* Fontes Personalizadas - Apenas Inter com pesos 400 e 700 */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
                'Helvetica Neue', Arial, sans-serif;
-  --font-poppins: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-                  'Helvetica Neue', Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 
                'Liberation Mono', 'Courier New', monospace;
 }
@@ -165,7 +167,7 @@ body {
 
 /* Hierarquia de Títulos */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-poppins);
+  font-family: var(--font-sans);
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.025em;
@@ -252,7 +254,7 @@ h6 {
 }
 
 .glass-gradient {
-  background: var(--gradient-blue-cyan);
+  background: var(--gradient-accent);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -278,24 +280,26 @@ h6 {
 }
 
 .btn-primary {
-  background-color: var(--color-blue-primary);
-  color: white;
+  background-color: var(--color-accent-primary);
+  color: var(--color-darker-blue);
+  font-weight: 700;
 }
 
 .btn-primary:hover {
-  background-color: var(--color-blue-hover);
+  background-color: var(--color-accent-hover);
   transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 20px rgba(0, 210, 255, 0.3);
 }
 
 .btn-secondary {
-  background-color: white;
+  background-color: transparent;
   color: var(--color-text-primary);
   border: 1px solid var(--color-gray-light);
 }
 
 .btn-secondary:hover {
-  border-color: var(--color-blue-primary);
+  border-color: var(--color-accent-primary);
+  color: var(--color-accent-primary);
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
 }
@@ -307,7 +311,7 @@ h6 {
 
 /* Cards */
 .card {
-  background-color: white;
+  background-color: var(--color-dark-blue);
   border: 1px solid var(--color-gray-light);
   border-radius: var(--radius-lg);
   padding: var(--spacing-xl);
@@ -316,12 +320,13 @@ h6 {
 }
 
 .card:hover {
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 10px 30px rgba(0, 210, 255, 0.1);
   transform: translateY(-2px);
+  border-color: var(--color-accent-border);
 }
 
 .card-border-blue {
-  border-color: var(--color-blue-border);
+  border-color: var(--color-accent-border);
 }
 
 /* Badges */
@@ -332,8 +337,8 @@ h6 {
   font-size: 0.75rem;
   font-weight: 500;
   border-radius: var(--radius-full);
-  background-color: var(--color-blue-light-bg);
-  color: var(--color-blue-light);
+  background-color: var(--color-accent-bg);
+  color: var(--color-accent-primary);
 }
 
 /* ==========================================================================
@@ -389,8 +394,8 @@ h6 {
 
 @media (min-width: 768px) {
   .section-lg {
-    padding-top: 8rem;
-    padding-bottom: 8rem;
+    padding-top: 7rem;
+    padding-bottom: 7rem;
   }
 }
 
@@ -430,22 +435,22 @@ h6 {
 
 /* Cores de Texto */
 .text-primary { color: var(--color-text-primary); }
-.text-blue { color: var(--color-blue-primary); }
-.text-blue-light { color: var(--color-blue-light); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-accent { color: var(--color-accent-primary); }
+.text-accent-light { color: var(--color-accent-light); }
 .text-gray { color: var(--color-gray-text); }
-.text-white { color: white; }
 
 /* Cores de Fundo */
 .bg-primary { background-color: var(--color-bg-primary); }
-.bg-blue { background-color: var(--color-blue-primary); }
-.bg-blue-light { background-color: var(--color-blue-light-bg); }
-.bg-cyan { background-color: var(--color-cyan-bg); }
-.bg-white { background-color: white; }
-.bg-gradient-blue-cyan { background: var(--gradient-blue-cyan); }
+.bg-dark-blue { background-color: var(--color-dark-blue); }
+.bg-darker-blue { background-color: var(--color-darker-blue); }
+.bg-accent { background-color: var(--color-accent-primary); }
+.bg-accent-light { background-color: var(--color-accent-bg); }
+.bg-gradient-accent { background: var(--gradient-accent); }
 
 /* Bordas */
 .border-gray { border-color: var(--color-gray-light); }
-.border-blue { border-color: var(--color-blue-border); }
+.border-accent { border-color: var(--color-accent-border); }
 .border-white-20 { border-color: rgba(255, 255, 255, 0.2); }
 
 /* Sombras */
@@ -574,7 +579,7 @@ h6 {
   aspect-ratio: 16/9;
   border-radius: var(--radius-xl);
   border: 2px solid rgba(255, 255, 255, 0.2);
-  background: var(--gradient-blue-cyan-strong);
+  background: var(--gradient-accent-strong);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -598,7 +603,7 @@ h6 {
   content: "•";
   margin-right: var(--spacing-sm);
   margin-top: 0.125rem;
-  color: var(--color-blue-light);
+  color: var(--color-accent-primary);
 }
 
 /* Footer */
@@ -621,7 +626,7 @@ h6 {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-blue-primary);
+  outline: 2px solid var(--color-accent-primary);
   outline-offset: 2px;
 }
 

@@ -120,24 +120,24 @@ export default function ContactForm() {
   if (isSubmitted) {
     return (
       <div className="max-w-2xl mx-auto">
-        <div className="bg-gradient-to-br from-white to-[#F7FFF7] rounded-2xl p-8 md:p-12 border border-[#E2E8F0] shadow-lg">
+        <div className="bg-gradient-to-br from-[#112240] to-[#0A192F] rounded-2xl p-8 md:p-12 border border-[#233554] shadow-lg">
           <div className="text-center">
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#006EB8]/10 to-[#4ECDC4]/10 flex items-center justify-center mx-auto mb-6">
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#00D2FF]/10 to-[#64DFFF]/10 flex items-center justify-center mx-auto mb-6">
               <span className="text-3xl">✅</span>
             </div>
             
-            <h3 className="text-2xl font-bold text-[#2C3E50] mb-4 font-poppins">
+            <h3 className="text-2xl font-bold text-white mb-4">
               Thank You for Reaching Out!
             </h3>
             
-            <p className="text-[#95A5A6] mb-8 leading-relaxed">
+            <p className="text-[#8892B0] mb-8 leading-relaxed">
               We've received your message and our team will get back to you within 24 hours. 
               In the meantime, feel free to explore our platform features.
             </p>
             
             <button
               onClick={resetForm}
-              className="inline-flex items-center justify-center rounded-full px-8 py-3 text-base font-medium border-2 border-[#E2E8F0] text-[#2C3E50] hover:border-[#006EB8] hover:text-[#006EB8] transition-all duration-300"
+              className="inline-flex items-center justify-center rounded-full px-8 py-3 text-base font-medium border-2 border-[#233554] text-white hover:border-[#00D2FF] hover:text-[#00D2FF] transition-all duration-300"
             >
               Send Another Message
             </button>
@@ -151,16 +151,16 @@ export default function ContactForm() {
     <div className="max-w-4xl mx-auto">
       {/* Header do Formulário */}
       <div className="text-center mb-12">
-        <div className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium bg-gradient-to-r from-[#006EB8]/10 to-[#4ECDC4]/10 text-[#006EB8] mb-6">
+        <div className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium bg-gradient-to-r from-[#00D2FF]/10 to-[#64DFFF]/10 text-[#00D2FF] mb-6">
           <span className="mr-2">📧</span>
           Get in Touch
         </div>
         
-        <h2 className="text-3xl sm:text-4xl font-bold text-[#2C3E50] mb-6 font-poppins">
+        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
           Ready to Transform Your Hiring?
         </h2>
         
-        <p className="text-lg text-[#95A5A6] max-w-2xl mx-auto">
+        <p className="text-lg text-[#8892B0] max-w-2xl mx-auto">
           Schedule a personalized demo or ask our team any questions about 
           how TalentsFlow.ai can streamline your tech hiring process.
         </p>
@@ -175,8 +175,8 @@ export default function ContactForm() {
               htmlFor="name" 
               className={`text-sm font-medium transition-all duration-300 ${
                 focusedField === 'name' || formData.name 
-                  ? 'text-[#006EB8]' 
-                  : 'text-[#95A5A6]'
+                  ? 'text-[#00D2FF]' 
+                  : 'text-[#8892B0]'
               }`}
             >
               Full Name *
@@ -193,12 +193,12 @@ export default function ContactForm() {
                 className={`
                   w-full bg-transparent pb-3
                   border-b-2 transition-all duration-300
-                  focus:outline-none
+                  focus:outline-none text-white
                   ${errors.name 
-                    ? 'border-red-400 text-red-600' 
+                    ? 'border-red-400 text-red-400' 
                     : focusedField === 'name' || formData.name
-                      ? 'border-[#006EB8] text-[#2C3E50]'
-                      : 'border-[#E2E8F0] text-[#95A5A6] hover:border-[#95A5A6]'
+                      ? 'border-[#00D2FF] text-white'
+                      : 'border-[#233554] text-[#8892B0] hover:border-[#8892B0]'
                   }
                 `}
                 placeholder="Enter your full name"
@@ -206,7 +206,7 @@ export default function ContactForm() {
               {/* Linha Animada */}
               <div className={`
                 absolute bottom-0 left-0 right-0 h-0.5
-                bg-gradient-to-r from-[#006EB8] to-[#4ECDC4]
+                bg-gradient-to-r from-[#00D2FF] to-[#64DFFF]
                 transition-transform duration-300
                 ${focusedField === 'name' ? 'scale-x-100' : 'scale-x-0'}
               `} />

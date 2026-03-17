@@ -8,54 +8,54 @@ const features = [
     icon: "🤖",
     title: "AI-Powered Interviews",
     description: "Conduct consistent and unbiased technical interviews with our advanced AI interviewer that adapts to each candidate's skill level.",
-    color: "from-[#006EB8]/10 to-[#45B7D1]/10",
-    borderColor: "border-[#006EB8]/30",
-    iconColor: "text-[#006EB8]"
+    color: "from-[#00D2FF]/10 to-[#64DFFF]/10",
+    borderColor: "border-[#00D2FF]/30",
+    iconColor: "text-[#00D2FF]"
   },
   {
     id: 2,
     icon: "📊",
     title: "Comprehensive Evaluation",
     description: "Get detailed reports on candidates' technical skills, problem-solving abilities, and communication with actionable insights.",
-    color: "from-[#45B7D1]/10 to-[#4ECDC4]/10",
-    borderColor: "border-[#45B7D1]/30",
-    iconColor: "text-[#45B7D1]"
+    color: "from-[#00D2FF]/10 to-[#64DFFF]/10",
+    borderColor: "border-[#00D2FF]/30",
+    iconColor: "text-[#00D2FF]"
   },
   {
     id: 3,
     icon: "⚡",
     title: "Time-Saving Efficiency",
     description: "Reduce screening time and schedule interviews 24/7, streamlining your hiring pipeline from weeks to just days.",
-    color: "from-[#4ECDC4]/10 to-[#006EB8]/10",
-    borderColor: "border-[#4ECDC4]/30",
-    iconColor: "text-[#4ECDC4]"
+    color: "from-[#00D2FF]/10 to-[#64DFFF]/10",
+    borderColor: "border-[#00D2FF]/30",
+    iconColor: "text-[#00D2FF]"
   },
   {
     id: 4,
     icon: "📈",
     title: "Data-Driven Insights",
     description: "Make informed decisions with comprehensive analytics and benchmarking tools that identify top talent efficiently.",
-    color: "from-[#006EB8]/10 to-[#4ECDC4]/10",
-    borderColor: "border-[#006EB8]/30",
-    iconColor: "text-[#006EB8]"
+    color: "from-[#00D2FF]/10 to-[#64DFFF]/10",
+    borderColor: "border-[#00D2FF]/30",
+    iconColor: "text-[#00D2FF]"
   },
   {
     id: 5,
     icon: "🎯",
     title: "Customizable Assessments",
     description: "Tailor interview questions and coding challenges to your company's specific needs and technical requirements.",
-    color: "from-[#45B7D1]/10 to-[#006EB8]/10",
-    borderColor: "border-[#45B7D1]/30",
-    iconColor: "text-[#45B7D1]"
+    color: "from-[#00D2FF]/10 to-[#64DFFF]/10",
+    borderColor: "border-[#00D2FF]/30",
+    iconColor: "text-[#00D2FF]"
   },
   {
     id: 6,
     icon: "👥",
     title: "Collaborative Hiring",
     description: "Easily share candidate reports and collaborate with your hiring team through our integrated platform.",
-    color: "from-[#4ECDC4]/10 to-[#45B7D1]/10",
-    borderColor: "border-[#4ECDC4]/30",
-    iconColor: "text-[#4ECDC4]"
+    color: "from-[#00D2FF]/10 to-[#64DFFF]/10",
+    borderColor: "border-[#00D2FF]/30",
+    iconColor: "text-[#00D2FF]"
   }
 ];
 
@@ -63,20 +63,20 @@ export default function FeaturesSection() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   return (
-    <section id="features" className="py-24 bg-[#F7FFF7]">
+    <section id="features" className="py-24 bg-[#0A192F]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Cabeçalho da Seção */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium bg-[#45B7D110] text-[#45B7D1] mb-6">
+          <div className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium bg-[#00D2FF10] text-[#00D2FF] mb-6">
             <span className="mr-2">✨</span>
             Why HR Teams Choose TalentsFlow.ai
           </div>
           
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2C3E50] mb-6 font-poppins">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
             Revolutionize Your Tech Hiring Process
           </h2>
           
-          <p className="text-lg md:text-xl text-[#95A5A6] leading-relaxed">
+          <p className="text-lg md:text-xl text-[#8892B0] leading-relaxed">
             Our AI-powered platform combines cutting-edge technology with human expertise 
             to deliver the most efficient and effective hiring experience.
           </p>
@@ -93,7 +93,7 @@ export default function FeaturesSection() {
             >
               {/* Card Principal */}
               <div className={`
-                relative h-full bg-white rounded-2xl p-8 border border-[#E2E8F0]
+                relative h-full bg-[#112240] rounded-2xl p-8 border border-[#233554]
                 transition-all duration-300 ease-out
                 ${hoveredCard === feature.id 
                   ? `shadow-xl transform -translate-y-2 border-[${feature.borderColor.split('/')[0]}]/50` 
@@ -114,12 +114,12 @@ export default function FeaturesSection() {
                 </div>
 
                 {/* Título Curto */}
-                <h3 className="text-xl font-bold text-[#2C3E50] mb-4 font-poppins">
+                <h3 className="text-xl font-bold text-white mb-4">
                   {feature.title}
                 </h3>
 
                 {/* Descrição Pequena */}
-                <p className="text-[#95A5A6] leading-relaxed text-base">
+                <p className="text-[#8892B0] leading-relaxed text-base">
                   {feature.description}
                 </p>
 
