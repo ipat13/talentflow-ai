@@ -5,6 +5,7 @@ import HeroSection from "./components/HeroSection";
 import FeaturesSection from "./components/FeaturesSection";
 import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
+import SectionImage from "./components/SectionImage";
 
 export default function Home() {
   useEffect(() => {
@@ -63,12 +64,12 @@ export default function Home() {
               </ul>
             </div>
             <div className="relative">
-              <div className="aspect-video rounded-xl border-2 border-white/20 shadow-2xl bg-gradient-to-br from-[#00D2FF]/10 to-[#64DFFF]/10 backdrop-blur-sm flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-4xl mb-4">📊</div>
-                  <p className="text-[#8892B0]">Time & Cost Savings Dashboard</p>
-                </div>
-              </div>
+              <SectionImage 
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80"
+                alt="Time & Cost Savings Dashboard"
+                className="aspect-[4/3]"
+                icon="📊"
+              />
             </div>
           </div>
         </div>
@@ -80,12 +81,12 @@ export default function Home() {
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
             <div className="order-2 lg:order-1">
               <div className="relative">
-                <div className="aspect-video rounded-xl border-2 border-white/20 shadow-2xl bg-gradient-to-br from-[#00D2FF]/10 to-[#64DFFF]/10 backdrop-blur-sm flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-4xl mb-4">🎯</div>
-                    <p className="text-[#8892B0]">AI Interview Interface</p>
-                  </div>
-                </div>
+                <SectionImage 
+                  src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&q=80"
+                  alt="AI Interview Interface"
+                  className="aspect-[4/3]"
+                  icon="🤖"
+                />
               </div>
             </div>
             <div className="order-1 lg:order-2">
@@ -147,12 +148,12 @@ export default function Home() {
               </ul>
             </div>
             <div className="relative">
-              <div className="aspect-video rounded-xl border-2 border-white/20 shadow-2xl bg-gradient-to-br from-[#00D2FF]/10 to-[#64DFFF]/10 backdrop-blur-sm flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-4xl mb-4">📈</div>
-                  <p className="text-[#8892B0]">Performance Analytics Dashboard</p>
-                </div>
-              </div>
+              <SectionImage 
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
+                alt="Performance Analytics Dashboard"
+                className="aspect-[4/3]"
+                icon="📈"
+              />
             </div>
           </div>
         </div>
@@ -166,8 +167,14 @@ export default function Home() {
             <p className="text-lg text-[#8892B0] mb-10">
               Watch how our AI-powered platform helps HR teams conduct efficient technical interviews and make data-driven hiring decisions.
             </p>
-            <div className="aspect-video rounded-xl border-2 border-white/20 shadow-2xl bg-gradient-to-br from-[#00D2FF]/10 to-[#64DFFF]/10 backdrop-blur-sm flex items-center justify-center mb-8">
-              <div className="text-center">
+            <div className="aspect-video rounded-xl border-2 border-white/20 shadow-2xl bg-gradient-to-br from-[#00D2FF]/10 to-[#64DFFF]/10 backdrop-blur-sm flex items-center justify-center mb-8 overflow-hidden">
+              <SectionImage 
+                src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=80"
+                alt="AI Interview Platform Demo"
+                className="absolute inset-0 w-full h-full"
+                icon="🎬"
+              />
+              <div className="relative z-10 text-center">
                 <div className="text-4xl mb-4">▶️</div>
                 <p className="text-[#8892B0]">Video demonstration of our AI interview platform</p>
               </div>
