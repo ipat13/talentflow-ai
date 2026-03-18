@@ -66,7 +66,7 @@ export default function HeroSection() {
       </header>
 
       {/* Hero Section with Image */}
-      <section className="relative min-h-screen pt-24 md:pt-32 pb-16 md:pb-24 overflow-hidden">
+      <section className="relative min-h-screen pt-32 md:pt-40 pb-24 md:pb-32 overflow-hidden">
         {/* Background Gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#F7FFF7] via-white to-[#F7FFF7] opacity-90" />
         
