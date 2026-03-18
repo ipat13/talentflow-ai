@@ -30,7 +30,7 @@ export default function Home() {
       <FeaturesSection />
 
       {/* Time & Cost Savings */}
-      <section className="mt-32 py-32 border-t border-[#E2E8F0]">
+      <section className="mt-48 py-32 border-t border-[#E2E8F0]">
         <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
             <div>
@@ -78,7 +78,7 @@ export default function Home() {
       </section>
 
       {/* AI Interview Experience */}
-      <section className="mt-32 py-32 border-t border-[#E2E8F0]">
+      <section className="mt-48 py-32 border-t border-[#E2E8F0]">
         <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
             <div className="order-2 lg:order-1">
@@ -124,7 +124,7 @@ export default function Home() {
       </section>
 
       {/* Performance Analytics */}
-      <section className="mt-32 py-32 border-t border-[#E2E8F0]">
+      <section className="mt-48 py-32 border-t border-[#E2E8F0]">
         <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
             <div>
@@ -168,7 +168,7 @@ export default function Home() {
       </section>
 
       {/* How It Works */}
-      <section id="how-it-works" className="mt-32 py-32 border-t border-[#E2E8F0]">
+      <section id="how-it-works" className="mt-48 py-32 border-t border-[#E2E8F0]">
         <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl mb-6">
@@ -177,16 +177,21 @@ export default function Home() {
             <p className="text-lg text-[#95A5A6] mb-10">
               Watch how our AI-powered platform helps HR teams conduct efficient technical interviews and make data-driven hiring decisions.
             </p>
-            <div className="aspect-video rounded-xl border border-[#E2E8F0] bg-gradient-to-br from-[#F7FFF7] to-[#F0FFF0] flex items-center justify-center mb-8 overflow-hidden relative">
-              <img 
-                src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=80"
-                alt="AI Interview Platform Demo"
-                className="w-full h-full object-cover absolute inset-0"
-              />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/20 z-10">
+            <div className="aspect-video rounded-xl border border-[#E2E8F0] bg-gradient-to-br from-[#F7FFF7] to-[#F0FFF0] mb-8 overflow-hidden relative">
+              <video
+                className="w-full h-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                poster="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&q=80"
+              >
+                <source src="https://assets.mixkit.co/videos/45220/45220-720.mp4" type="video/mp4" />
+              </video>
+              <div className="absolute inset-0 flex items-center justify-center bg-black/20 z-10 pointer-events-none">
                 <div className="text-center text-white z-20">
                   <div className="text-6xl mb-4">▶️</div>
-                  <p className="text-lg">Video demonstration</p>
+                  <p className="text-lg font-medium">Watch Demo</p>
                 </div>
               </div>
             </div>
@@ -198,7 +203,7 @@ export default function Home() {
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="mt-32 py-32 border-t border-[#E2E8F0]">
+      <section id="pricing" className="mt-48 py-32 border-t border-[#E2E8F0]">
         <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center mb-16">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl mb-6">
@@ -249,7 +254,7 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="mt-32 py-32 border-t border-[#E2E8F0]">
+      <section className="mt-48 py-32 border-t border-[#E2E8F0]">
         <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl mb-6">
@@ -272,7 +277,7 @@ export default function Home() {
       </section>
 
       {/* Contact Form Section */}
-      <section id="contact" className="mt-32 py-32 border-t border-[#E2E8F0]">
+      <section id="contact" className="mt-48 py-32 border-t border-[#E2E8F0]">
         <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center mb-16">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl mb-6">
