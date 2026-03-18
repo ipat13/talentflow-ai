@@ -29,6 +29,7 @@ export default function VideoBackground({
         muted
         loop
         playsInline
+        preload="auto"
         onLoadedData={() => setVideoLoaded(true)}
         className={`
           absolute inset-0 w-full h-full object-cover z-0
