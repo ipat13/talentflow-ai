@@ -179,7 +179,7 @@ export default function HeroSection() {
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 backdrop-blur-sm">
                 {/* Placeholder para Imagem/Video */}
                 <ImagePlaceholder 
-                  src="/images/hero-dashboard.png" // Substituir por imagem real
+                  src="/images/hero-dashboard.jpg"
                   alt="AI Interview Dashboard Preview"
                   className="aspect-[4/3]"
                   icon="🎯"
