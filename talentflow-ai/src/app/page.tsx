@@ -30,7 +30,7 @@ export default function Home() {
       <FeaturesSection />
 
       {/* Time & Cost Savings */}
-      <section className="mt-48 py-32 border-t border-[#E2E8F0]">
+      <section className="mt-64 py-32 border-t border-[#E2E8F0]">
         <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
             <div>
@@ -78,7 +78,7 @@ export default function Home() {
       </section>
 
       {/* AI Interview Experience */}
-      <section className="mt-48 py-32 border-t border-[#E2E8F0]">
+      <section className="mt-64 py-32 border-t border-[#E2E8F0]">
         <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
             <div className="order-2 lg:order-1">
@@ -124,7 +124,7 @@ export default function Home() {
       </section>
 
       {/* Performance Analytics */}
-      <section className="mt-48 py-32 border-t border-[#E2E8F0]">
+      <section className="mt-64 py-32 border-t border-[#E2E8F0]">
         <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
             <div>
@@ -168,7 +168,7 @@ export default function Home() {
       </section>
 
       {/* How It Works */}
-      <section id="how-it-works" className="mt-48 py-32 border-t border-[#E2E8F0]">
+      <section id="how-it-works" className="mt-64 py-32 border-t border-[#E2E8F0]">
         <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl mb-6">
@@ -203,7 +203,7 @@ export default function Home() {
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="mt-48 py-32 border-t border-[#E2E8F0]">
+      <section id="pricing" className="mt-64 py-32 border-t border-[#E2E8F0]">
         <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center mb-16">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl mb-6">
@@ -254,7 +254,7 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="mt-48 py-32 border-t border-[#E2E8F0]">
+      <section className="mt-64 py-32 border-t border-[#E2E8F0]">
         <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl mb-6">
@@ -277,7 +277,7 @@ export default function Home() {
       </section>
 
       {/* Contact Form Section */}
-      <section id="contact" className="mt-48 py-32 border-t border-[#E2E8F0]">
+      <section id="contact" className="mt-64 py-32 border-t border-[#E2E8F0]">
         <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center mb-16">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl mb-6">
