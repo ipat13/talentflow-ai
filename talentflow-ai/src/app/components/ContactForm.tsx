@@ -11,7 +11,7 @@ type FormData = {
   hiringNeeds: string;
 };
 
-type FormErrors = Partial<Record<keyof FormData, string>>;
+type FormErrors = Partial<Record<keyof FormData | "submit", string>>;
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
