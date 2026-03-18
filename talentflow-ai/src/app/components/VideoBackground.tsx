@@ -8,8 +8,8 @@ interface VideoBackgroundProps {
 }
 
 export default function VideoBackground({ 
-  src = "/videos/hero-bg.mp4",
-  fallbackGradient = "linear-gradient(135deg, #0A192F 0%, #112240 50%, #0A192F 100%)"
+  src = "https://cdn.pixabay.com/video/2020/05/25/40130-424930032_large.mp4",
+  fallbackGradient = "linear-gradient(135deg, #030712 0%, #0A192F 50%, #030712 100%)"
 }: VideoBackgroundProps) {
   const [videoLoaded, setVideoLoaded] = useState(false);
 
@@ -37,8 +37,6 @@ export default function VideoBackground({
         `}
       >
         <source src={src} type="video/mp4" />
-        {/* Fallback para browsers antigos */}
-        <source src={src.replace(".mp4", ".webm")} type="video/webm" />
       </video>
 
       {/* Overlay para melhor legibilidade do texto */}
