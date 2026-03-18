@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import VideoBackground from "./VideoBackground";
+import ImagePlaceholder from "./ImagePlaceholder";
 
 export default function HeroSection() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -87,13 +89,28 @@ export default function HeroSection() {
       </header>
 
       {/* Seção Hero Principal */}
-      <section className="relative min-h-screen pt-24 md:pt-32 pb-16 md:pb-24 overflow-hidden bg-[#0A192F]">
-        {/* Background Gradiente Sutil */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0A192F] via-[#112240] to-[#0A192F] opacity-90" />
+      <section className="relative min-h-screen pt-24 md:pt-32 pb-16 md:pb-24 overflow-hidden bg-[#030712]">
+        {/* Vídeo de Fundo */}
+        <VideoBackground 
+          src="/videos/hero-bg.mp4"
+          fallbackGradient="linear-gradient(135deg, #030712 0%, #0A192F 50%, #030712 100%)"
+        />
         
-        {/* Elementos Decorativos */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-[#00D2FF]/5 to-[#64DFFF]/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-[#00D2FF]/5 to-[#64DFFF]/5 rounded-full blur-3xl" />
+        {/* Glow Effects */}
+        <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-[#22d3ee] rounded-full blur-[120px] opacity-[0.15] -translate-x-1/2 -translate-y-1/4" />
+        <div className="absolute top-1/3 right-0 w-[700px] h-[700px] bg-[#7c3aed] rounded-full blur-[120px] opacity-[0.15] translate-x-1/4" />
+        
+        {/* Grid Pattern */}
+        <div 
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px'
+          }}
+        />
 
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -159,47 +176,40 @@ export default function HeroSection() {
             {/* Ilustração/Imagem - Lado Direito */}
             <div className="relative animate-slide-in-right">
               {/* Container Principal da Ilustração */}
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-white/20 bg-gradient-to-br from-[#112240]/90 to-[#0A192F]/90 backdrop-blur-sm">
-                {/* Mockup de Dashboard */}
-                <div className="p-6">
-                  {/* Header do Dashboard */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                      <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                      <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                    </div>
-                    <div className="text-sm font-medium text-white">AI Interview Dashboard</div>
-                    <div className="w-8 h-8 rounded-full bg-[#00D2FF]/10 flex items-center justify-center">
-                      <span className="text-[#00D2FF] text-sm">👤</span>
-                    </div>
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 backdrop-blur-sm">
+                {/* Placeholder para Imagem/Video */}
+                <ImagePlaceholder 
+                  src="/images/hero-dashboard.png" // Substituir por imagem real
+                  alt="AI Interview Dashboard Preview"
+                  className="aspect-[4/3]"
+                  icon="🎯"
+                />
+              </div>
+              
+              {/* Floating Cards */}
+              <div className="absolute -top-4 -right-4 glass rounded-xl p-4 animate-float">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-[#00D2FF]/20 flex items-center justify-center">
+                    <span>📊</span>
                   </div>
-
-                  {/* Conteúdo do Dashboard */}
-                  <div className="space-y-4">
-                    {/* Gráfico */}
-                    <div className="h-32 rounded-xl bg-gradient-to-r from-[#00D2FF]/10 to-[#64DFFF]/10 p-4">
-                      <div className="flex items-end h-full space-x-2">
-                        {[30, 60, 45, 80, 65, 90, 75].map((height, index) => (
-                          <div 
-                            key={index}
-                            className="flex-1 rounded-t-lg bg-gradient-to-t from-[#00D2FF] to-[#64DFFF]"
-                            style={{ height: `${height}%` }}
-                          />
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Cards de Métricas */}
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="rounded-xl bg-[#0A192F] p-4 border border-[#233554]">
-                        <div className="text-xs text-[#8892B0] mb-1">Interviews Today</div>
-                        <div className="text-xl font-bold text-white">24</div>
-                        <div className="text-xs text-green-400">+12%</div>
-                      </div>
-                      <div className="rounded-xl bg-white p-4 border border-[#E2E8F0]">
-                        <div className="text-xs text-[#95A5A6] mb-1">Avg. Score</div>
-                        <div className="text-xl font-bold text-[#2C3E50]">8.7</div>
+                  <div>
+                    <p className="text-xs text-[#94a3b8]">Analytics</p>
+                    <p className="text-sm font-semibold text-white">Live</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="absolute -bottom-4 -left-4 glass rounded-xl p-4 animate-float" style={{ animationDelay: "2s" }}>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-[#7c3aed]/20 flex items-center justify-center">
+                    <span>🤖</span>
+                  </div>
+                  <div>
+                    <p className="text-xs text-[#94a3b8]">AI Powered</p>
+                    <p className="text-sm font-semibold text-white">Active</p>
+                  </div>
+                </div>
+              </div>
                         <div className="text-xs text-green-500">+0.3</div>
                       </div>
                     </div>
@@ -237,24 +247,41 @@ export default function HeroSection() {
               {/* Elementos Flutuantes Decorativos */}
               <div className="absolute -top-4 -right-4 w-24 h-24 rounded-2xl bg-gradient-to-br from-[#45B7D1]/20 to-[#4ECDC4]/20 backdrop-blur-sm border border-white/30 shadow-lg flex items-center justify-center">
                 <span className="text-2xl">🤖</span>
-              </div>
-              <div className="absolute -bottom-4 -left-4 w-20 h-20 rounded-2xl bg-gradient-to-br from-[#006EB8]/20 to-[#45B7D1]/20 backdrop-blur-sm border border-white/30 shadow-lg flex items-center justify-center">
-                <span className="text-2xl">📊</span>
-              </div>
             </div>
           </div>
         </div>
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 rounded-full border-2 border-[#95A5A6]/30 flex justify-center">
-            <div className="w-1 h-3 rounded-full bg-[#95A5A6]/50 mt-2"></div>
+          <div className="w-6 h-10 rounded-full border-2 border-[#94a3b8]/30 flex justify-center">
+            <div className="w-1 h-3 rounded-full bg-[#94a3b8]/50 mt-2"></div>
           </div>
         </div>
       </section>
 
       {/* Estilos de Animações Inline */}
       <style jsx>{`
+        .glass {
+          background: rgba(255, 255, 255, 0.03);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
+        }
+
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+
         @keyframes fadeIn {
           from {
             opacity: 0;

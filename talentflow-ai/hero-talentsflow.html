@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TalentsFlow.ai - Hero Section</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============================================
+       CSS GLOBAL - TALENTSFLOW.AI CLONE
+       ============================================ */
+    
+    /* Reset Completo */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Variáveis de Cores - Sistema Exato */
+    :root {
+      --bg-darkest: #030712;
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      
+      --cyan: #22d3ee;
+      --cyan-glow: rgba(34, 211, 238, 0.15);
+      --violet: #7c3aed;
+      --violet-glow: rgba(124, 58, 237, 0.15);
+      
+      --white: #ffffff;
+      --white-muted: #94a3b8;
+      --white-dim: rgba(255, 255, 255, 0.1);
+      --white-subtle: rgba(255, 255, 255, 0.03);
+      
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      
+      --gradient-primary: linear-gradient(135deg, #22d3ee 0%, #7c3aed 100%);
+      --gradient-text: linear-gradient(to right, #ffffff 20%, #94a3b8 100%);
+      
+      --glass-bg: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+      --glass-blur: blur(12px);
+      
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      
+      --radius-sm: 0.5rem;
+      --radius-md: 1rem;
+      --radius-lg: 1.5rem;
+      --radius-xl: 2rem;
+      --radius-full: 9999px;
+    }
+
+    /* Base */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-darkest);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ============================================
+       FUNDO DE CAMADAS - LAYERED BACKGROUND
+       ============================================ */
+    .layered-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .layered-bg__base {
+      position: absolute;
+      inset: 0;
+      background-color: var(--bg-darkest);
+    }
+
+    .layered-bg__glow {
+      position: absolute;
+      filter: blur(120px);
+      opacity: 0.15;
+    }
+
+    .layered-bg__glow--cyan {
+      top: -10%;
+      left: -10%;
+      width: 600px;
+      height: 600px;
+      background: var(--cyan);
+    }
+
+    .layered-bg__glow--violet {
+      top: 30%;
+      right: -20%;
+      width: 700px;
+      height: 700px;
+      background: var(--violet);
+    }
+
+    /* Grid Pattern Sutil */
+    .layered-bg__grid {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* ============================================
+       TIPOGRAFIA PREMIUM
+       ============================================ */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-family);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.05em;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.05em;
+    }
+
+    .text-gradient {
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .text-muted {
+      color: var(--text-secondary);
+    }
+
+    .text-sm {
+      font-size: 0.875rem;
+    }
+
+    .text-lg {
+      font-size: 1.125rem;
+    }
+
+    .font-medium {
+      font-weight: 500;
+    }
+
+    .font-semibold {
+      font-weight: 600;
+    }
+
+    .font-bold {
+      font-weight: 700;
+    }
+
+    /* ============================================
+       GLASSMORPHISM REAL
+       ============================================ */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+    }
+
+    /* ============================================
+       HEADER / NAVIGATION
+       ============================================ */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .header.scrolled {
+      background: rgba(3, 7, 18, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .header__container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .header__logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--gradient-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--bg-darkest);
+    }
+
+    .header__logo-text {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .header__nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .header__nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .header__nav-link:hover {
+      color: var(--cyan);
+    }
+
+    .header__cta {
+      padding: 0.625rem 1.25rem;
+      background: var(--gradient-primary);
+      color: var(--bg-darkest);
+      font-weight: 600;
+      font-size: 0.875rem;
+      border: none;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .header__cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(34, 211, 238, 0.4);
+    }
+
+    /* ============================================
+       HERO SECTION
+       ============================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 2rem 6rem;
+    }
+
+    .hero__container {
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero__content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    /* Hero Text */
+    .hero__text {
+      max-width: 640px;
+    }
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(34, 211, 238, 0.1);
+      border: 1px solid rgba(34, 211, 238, 0.2);
+      border-radius: var(--radius-full);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--cyan);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero__title {
+      margin-bottom: 1.5rem;
+      line-height: 1.05;
+    }
+
+    .hero__subtitle {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin-bottom: 2.5rem;
+      max-width: 540px;
+      line-height: 1.7;
+    }
+
+    /* ============================================
+       BOTÕES COM GRADIENTE ANIMADO
+       ============================================ */
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn--primary {
+      background: var(--gradient-primary);
+      color: var(--bg-darkest);
+      border: none;
+      box-shadow: 0 4px 24px rgba(34, 211, 238, 0.3);
+    }
+
+    .btn--primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transition: left 0.5s ease;
+    }
+
+    .btn--primary:hover::before {
+      left: 100%;
+    }
+
+    .btn--primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(34, 211, 238, 0.5);
+    }
+
+    .btn--secondary {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid var(--glass-border);
+    }
+
+    .btn--secondary:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
+    }
+
+    /* ============================================
+       ESTATÍSTICAS
+       ============================================ */
+    .hero__stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    .hero__stat-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .hero__stat-label {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    /* ============================================
+       HERO VISUAL / PLACEHOLDER
+       ============================================ */
+    .hero__visual {
+      position: relative;
+    }
+
+    .hero__card {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+
+    .hero__placeholder {
+      aspect-ratio: 4/3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      position: relative;
+    }
+
+    .hero__placeholder-icon {
+      font-size: 5rem;
+    }
+
+    .hero__placeholder-text {
+      font-size: 1rem;
+      color: var(--text-secondary);
+    }
+
+    /* Floating Cards */
+    .floating-card {
+      position: absolute;
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-card__icon {
+      font-size: 1.5rem;
+    }
+
+    .floating-card__text {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    .floating-card--1 {
+      top: 5%;
+      right: -5%;
+      animation-delay: 0s;
+    }
+
+    .floating-card--2 {
+      bottom: 15%;
+      left: -8%;
+      animation-delay: 2s;
+    }
+
+    .floating-card--3 {
+      bottom: 5%;
+      right: 10%;
+      animation-delay: 4s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (max-width: 1024px) {
+      .hero__content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .hero__text {
+        text-align: center;
+        max-width: 100%;
+      }
+
+      .hero__subtitle {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .btn-group {
+        justify-content: center;
+      }
+
+      .hero__stats {
+        justify-content: center;
+      }
+
+      .hero__visual {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header__nav {
+        display: none;
+      }
+
+      .hero {
+        padding: 7rem 1rem 4rem;
+      }
+
+      .hero__title {
+        font-size: 2.25rem;
+      }
+
+      .hero__subtitle {
+        font-size: 1rem;
+      }
+
+      .hero__stats {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+      }
+
+      .floating-card {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero__badge {
+        font-size: 0.75rem;
+      }
+
+      .btn {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.875rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================
+       FUNDO DE CAMADAS
+       ============================================ -->
+  <div class="layered-bg">
+    <div class="layered-bg__base"></div>
+    <div class="layered-bg__glow layered-bg__glow--cyan"></div>
+    <div class="layered-bg__glow layered-bg__glow--violet"></div>
+    <div class="layered-bg__grid"></div>
+  </div>
+
+  <!-- ============================================
+       HEADER / NAVIGATION
+       ============================================ -->
+  <header class="header glass">
+    <div class="header__container">
+      <a href="#" class="header__logo">
+        <div class="header__logo-icon">T</div>
+        <span class="header__logo-text">TalentsFlow.ai</span>
+      </a>
+      
+      <nav class="header__nav">
+        <a href="#features" class="header__nav-link">Features</a>
+        <a href="#how-it-works" class="header__nav-link">How it Works</a>
+        <a href="#pricing" class="header__nav-link">Pricing</a>
+      </nav>
+      
+      <button class="header__cta">Request Demo</button>
+    </div>
+  </header>
+
+  <!-- ============================================
+       HERO SECTION
+       ============================================ -->
+  <section class="hero">
+    <div class="hero__container">
+      <div class="hero__content">
+        
+        <!-- Texto -->
+        <div class="hero__text">
+          <!-- Badge -->
+          <div class="hero__badge">
+            <span>🚀</span>
+            <span>Revolutionizing Tech Hiring with AI</span>
+          </div>
+          
+          <!-- Título -->
+          <h1 class="hero__title">
+            <span class="text-gradient">Streamline Your<br>Tech Hiring Process</span>
+          </h1>
+          
+          <!-- Subtítulo -->
+          <p class="hero__subtitle">
+            Empower your HR team with AI-driven interviews. Evaluate candidates efficiently, 
+            reduce bias, and make data-driven hiring decisions that transform your recruitment.
+          </p>
+          
+          <!-- Botões -->
+          <div class="btn-group">
+            <a href="#" class="btn btn--primary">
+              Start Free Trial
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </a>
+            <a href="#" class="btn btn--secondary">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              Watch Demo
+            </a>
+          </div>
+          
+          <!-- Estatísticas -->
+          <div class="hero__stats">
+            <div class="hero__stat">
+              <div class="hero__stat-value">95%</div>
+              <div class="hero__stat-label">Time Saved</div>
+            </div>
+            <div class="hero__stat">
+              <div class="hero__stat-value">4.8/5</div>
+              <div class="hero__stat-label">User Rating</div>
+            </div>
+            <div class="hero__stat">
+              <div class="hero__stat-value">500+</div>
+              <div class="hero__stat-label">Companies</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Visual -->
+        <div class="hero__visual">
+          <div class="hero__card glass">
+            <div class="hero__placeholder">
+              <div class="hero__placeholder-icon">🎯</div>
+              <div class="hero__placeholder-text">AI Interview Dashboard</div>
+            </div>
+          </div>
+          
+          <!-- Floating Cards -->
+          <div class="floating-card glass floating-card--1">
+            <div class="floating-card__icon">📊</div>
+            <div class="floating-card__text">Analytics</div>
+          </div>
+          
+          <div class="floating-card glass floating-card--2">
+            <div class="floating-card__icon">🤖</div>
+            <div class="floating-card__text">AI Powered</div>
+          </div>
+          
+          <div class="floating-card glass floating-card--3">
+            <div class="floating-card__icon">⚡</div>
+            <div class="floating-card__text">Fast</div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Header scroll effect
+    const header = document.querySelector('.header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  </script>
+
+</body>
+</html>
