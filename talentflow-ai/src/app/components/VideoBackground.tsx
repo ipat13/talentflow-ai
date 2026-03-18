@@ -8,7 +8,7 @@ interface VideoBackgroundProps {
 }
 
 export default function VideoBackground({ 
-  src = "https://cdn.pixabay.com/video/2020/05/25/40130-424930032_large.mp4",
+  src = "https://assets.mixkit.co/videos/45220/45220-720.mp4",
   fallbackGradient = "linear-gradient(135deg, #030712 0%, #0A192F 50%, #030712 100%)"
 }: VideoBackgroundProps) {
   const [videoLoaded, setVideoLoaded] = useState(false);
