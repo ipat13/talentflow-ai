@@ -210,43 +210,6 @@ export default function HeroSection() {
                   </div>
                 </div>
               </div>
-                        <div className="text-xs text-green-500">+0.3</div>
-                      </div>
-                    </div>
-
-                    {/* Lista de Candidatos */}
-                    <div className="rounded-xl bg-white p-4 border border-[#E2E8F0]">
-                      <div className="text-sm font-medium text-[#2C3E50] mb-3">Recent Candidates</div>
-                      <div className="space-y-3">
-                        {[
-                          { name: "Alex Johnson", role: "Frontend Dev", score: 9.2 },
-                          { name: "Maria Garcia", role: "Backend Eng", score: 8.8 },
-                          { name: "David Chen", role: "Full Stack", score: 9.5 }
-                        ].map((candidate, index) => (
-                          <div key={index} className="flex items-center justify-between">
-                            <div className="flex items-center space-x-3">
-                              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#006EB8]/20 to-[#4ECDC4]/20 flex items-center justify-center">
-                                <span className="text-[#006EB8] text-sm">
-                                  {candidate.name.charAt(0)}
-                                </span>
-                              </div>
-                              <div>
-                                <div className="text-sm font-medium text-[#2C3E50]">{candidate.name}</div>
-                                <div className="text-xs text-[#95A5A6]">{candidate.role}</div>
-                              </div>
-                            </div>
-                            <div className="text-sm font-bold text-[#006EB8]">{candidate.score}</div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Elementos Flutuantes Decorativos */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 rounded-2xl bg-gradient-to-br from-[#45B7D1]/20 to-[#4ECDC4]/20 backdrop-blur-sm border border-white/30 shadow-lg flex items-center justify-center">
-                <span className="text-2xl">🤖</span>
             </div>
           </div>
         </div>
