@@ -43,9 +43,10 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="canonical" href="https://talentflow-ai-theta.vercel.app" />
+        <link rel="canonical" href="https://talentflow-ai-phi.vercel.app" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#006EB8" />
+        <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="TalentsFlow.ai" />

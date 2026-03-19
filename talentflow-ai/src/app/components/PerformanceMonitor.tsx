@@ -6,14 +6,7 @@ export function PerformanceMonitor() {
   useEffect(() => {
     // Report Web Vitals
     const reportWebVitals = async (metric: any) => {
-      const body = JSON.stringify(metric);
-      
-      // Send to analytics if available
-      if (typeof navigator !== "undefined" && navigator.sendBeacon) {
-        navigator.sendBeacon("/api/vitals", body);
-      }
-      
-      // Log in development
+      // Only log in development
       if (process.env.NODE_ENV === "development") {
         console.log("Web Vitals:", metric);
       }
