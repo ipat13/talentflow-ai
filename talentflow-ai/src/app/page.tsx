@@ -38,7 +38,7 @@ export default function Home() {
         Skip to main content
       </a>
       
-      <div id="main-content" className="min-h-screen bg-[#F7FFF7] text-[#2C3E50]" style={{ fontFamily: 'var(--font-poppins)' }}>
+      <div id="main-content" className="min-h-screen bg-[#F7FFF7] text-[#2C3E50]" style={{ fontFamily: 'Inter, sans-serif' }}>
       <HeroSection />
       <FeaturesSection />
 

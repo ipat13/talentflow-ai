@@ -31,13 +31,8 @@ export default function HeroSection() {
   return (
     <>
       {/* Header - Sticky */}
-      <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        isScrolled 
-          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-[#E2E8F0]" 
-          : "bg-[#F7FFF7]/60 backdrop-blur-sm"
-      }`}>
-        <div className="container max-w-screen-xl mx-auto">
-          <div className="flex h-16 items-center justify-between">
+      <header className="sticky top-0 z-50 w-full border-b" style={{ backgroundColor: '#F7FFF795', backdropFilter: 'blur(10px)' }}>
+        <div className="container max-w-screen-xl mx-auto flex h-16 items-center justify-between">
             {/* Logo */}
             <a href="#" className="flex items-center space-x-2" aria-label="TalentsFlow.ai Home">
               <img 
@@ -55,7 +50,7 @@ export default function HeroSection() {
               <div className="hidden w-10 h-10 rounded-full bg-[#006EB8] flex items-center justify-center">
                 <span className="text-white font-bold text-lg">T</span>
               </div>
-              <span className="text-xl font-bold text-[#2C3E50]" style={{ fontFamily: 'var(--font-poppins)' }}>
+              <span className="text-xl font-bold" style={{ fontFamily: 'Inter, sans-serif' }}>
                 TalentsFlow.ai
               </span>
             </a>
@@ -148,8 +143,8 @@ export default function HeroSection() {
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-[#2C3E50]">
-              <span className="block text-[#006EB8]">AI Interview Platform</span>
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl" style={{ fontFamily: 'Inter, sans-serif' }}>
+              Streamline Your<span className="block" style={{ color: '#006EB8' }}>Tech Hiring Process</span>
             </h1>
 
             {/* Subtitle */}
