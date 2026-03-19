@@ -70,49 +70,37 @@ export default function FeaturesSection() {
           </p>
         </div>
 
-        {/* Features Grid - 3 Columns */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature) => (
-            <div
-              key={feature.id}
-              className="relative group"
-              onMouseEnter={() => setHoveredCard(feature.id)}
-              onMouseLeave={() => setHoveredCard(null)}
-            >
-              <div className={`
-                relative h-full bg-white rounded-xl p-8 border border-[#E2E8F0]
-                transition-all duration-300 ease-out
-                ${hoveredCard === feature.id 
-                  ? 'shadow-xl transform -translate-y-2' 
-                  : 'shadow-sm hover:shadow-md'
-                }
-              `}>
-                {/* Icon */}
-                <div className="w-14 h-14 rounded-xl bg-[#006EB8]/10 flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110">
-                  <span className="text-2xl">{feature.icon}</span>
-                </div>
+      {/* Features Grid - 3 Columns */}
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {features.map((feature) => (
+          <div
+            key={feature.id}
+            className="rounded-xl border bg-[#F7FFF7] shadow-sm"
+            style={{ borderColor: '#006EB830' }}
+          >
+            <div className="p-6">
+              {/* Icon */}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-12 w-12 mb-4" style={{ color: '#006EB8' }}>
+                <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"></path>
+                <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"></path>
+                <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"></path>
+                <path d="M17.599 6.5a3 3 0 0 0 .399-1.375"></path>
+                <path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"></path>
+                <path d="M3.477 10.896a4 4 0 0 1 .585-.396"></path>
+              </svg>
 
-                {/* Title */}
-                <h3 className="text-xl font-bold text-[#2C3E50] mb-4">
-                  {feature.title}
-                </h3>
+              {/* Title */}
+              <h3 className="text-xl font-bold text-[#2C3E50] mb-2" style={{ fontFamily: 'var(--font-poppins)' }}>
+                {feature.title}
+              </h3>
 
-                {/* Description */}
-                <p className="text-[#95A5A6] leading-relaxed text-base">
-                  {feature.description}
-                </p>
-
-                {/* Hover indicator */}
-                <div className={`
-                  absolute bottom-0 left-0 right-0 h-1 rounded-b-xl
-                  bg-gradient-to-r from-[#006EB8] to-[#4ECDC4]
-                  transition-opacity duration-300
-                  ${hoveredCard === feature.id ? 'opacity-100' : 'opacity-0'}
-                `} />
-              </div>
+              {/* Description */}
+              <p className="text-[#95A5A6] leading-relaxed text-base">
+                {feature.description}
+              </p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );

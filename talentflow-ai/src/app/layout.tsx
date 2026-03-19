@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import "./print.css";
 import { ServiceWorkerRegistration } from "./components/ServiceWorkerRegistration";
@@ -10,10 +10,10 @@ import { KeyboardNavigation } from "./components/KeyboardNavigation";
 import { PerformanceMonitor } from "./components/PerformanceMonitor";
 import { BrowserCompatibility } from "./components/BrowserCompatibility";
 
-const inter = Inter({
-  variable: "--font-inter",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -71,7 +71,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`${poppins.variable} antialiased`}>
         <ReducedMotion />
         <KeyboardNavigation />
         <PerformanceMonitor />
