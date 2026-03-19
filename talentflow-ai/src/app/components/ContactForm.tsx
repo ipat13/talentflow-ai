@@ -92,11 +92,8 @@ export default function ContactForm() {
     setIsSubmitting(true);
 
     try {
-      // For production, replace YOUR_FORMSPREE_ID with your actual Formspree ID
-      // Register at https://formspree.io to get your free endpoint
-      const formspreeEndpoint = "https://formspree.io/f/YOUR_FORMSPREE_ID";
-      
-      const response = await fetch(formspreeEndpoint, {
+      // Use our API route
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
