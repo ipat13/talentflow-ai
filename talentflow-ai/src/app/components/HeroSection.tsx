@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 export default function HeroSection() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +20,14 @@ export default function HeroSection() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <>
       {/* Header */}
@@ -30,17 +39,17 @@ export default function HeroSection() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
-            <div className="flex items-center space-x-2">
+            <a href="#" className="flex items-center space-x-2" aria-label="TalentsFlow.ai Home">
               <div className="w-8 h-8 rounded-full bg-[#006EB8] flex items-center justify-center">
                 <span className="text-white font-bold">T</span>
               </div>
               <span className="text-xl font-bold text-[#2C3E50]">
                 TalentsFlow.ai
               </span>
-            </div>
+            </a>
 
-            {/* Nav */}
-            <nav className="hidden md:flex items-center space-x-8">
+            {/* Desktop Nav */}
+            <nav className="hidden md:flex items-center space-x-8" role="navigation" aria-label="Main navigation">
               <a href="#features" className="text-sm font-medium text-[#2C3E50] hover:text-[#006EB8] transition-colors">
                 Features
               </a>
@@ -52,12 +61,61 @@ export default function HeroSection() {
               </a>
             </nav>
 
-            {/* CTA */}
-            <div className="flex items-center space-x-4">
-              <a href="#" className="hidden md:inline-block text-sm font-medium text-[#2C3E50] hover:text-[#006EB8] transition-colors">
+            {/* Desktop CTA */}
+            <div className="hidden md:flex items-center space-x-4">
+              <a href="#" className="text-sm font-medium text-[#2C3E50] hover:text-[#006EB8] transition-colors">
                 Sign In
               </a>
               <button className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-[#006EB8] text-white hover:bg-[#005A9C] transition-all duration-300 shadow-sm hover:shadow-md">
+                Request Demo
+              </button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button 
+              className="md:hidden inline-flex items-center justify-center rounded-lg p-2 text-[#2C3E50] hover:bg-[#E2E8F0] transition-colors"
+              onClick={toggleMobileMenu}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            >
+              {isMobileMenuOpen ? (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        <div 
+          id="mobile-menu"
+          className={`md:hidden transition-all duration-300 overflow-hidden ${
+            isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          }`}
+          role="navigation"
+          aria-label="Mobile navigation"
+        >
+          <div className="container mx-auto px-4 py-4 space-y-4 bg-white border-t border-[#E2E8F0]">
+            <a href="#features" onClick={closeMobileMenu} className="block text-base font-medium text-[#2C3E50] hover:text-[#006EB8] transition-colors">
+              Features
+            </a>
+            <a href="#how-it-works" onClick={closeMobileMenu} className="block text-base font-medium text-[#2C3E50] hover:text-[#006EB8] transition-colors">
+              How it Works
+            </a>
+            <a href="#pricing" onClick={closeMobileMenu} className="block text-base font-medium text-[#2C3E50] hover:text-[#006EB8] transition-colors">
+              Pricing
+            </a>
+            <div className="pt-4 border-t border-[#E2E8F0] space-y-3">
+              <a href="#" className="block text-base font-medium text-[#2C3E50] hover:text-[#006EB8] transition-colors">
+                Sign In
+              </a>
+              <button className="w-full inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-[#006EB8] text-white hover:bg-[#005A9C] transition-all duration-300">
                 Request Demo
               </button>
             </div>

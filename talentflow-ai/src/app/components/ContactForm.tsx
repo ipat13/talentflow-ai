@@ -91,19 +91,40 @@ export default function ContactForm() {
 
     setIsSubmitting(true);
 
-    // Simulate API call
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      console.log("Form submitted:", formData);
-      setIsSubmitted(true);
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        role: "",
-        message: "",
-        hiringNeeds: "1-5"
+      // For production, replace YOUR_FORMSPREE_ID with your actual Formspree ID
+      // Register at https://formspree.io to get your free endpoint
+      const formspreeEndpoint = "https://formspree.io/f/YOUR_FORMSPREE_ID";
+      
+      const response = await fetch(formspreeEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          role: formData.role,
+          message: formData.message,
+          hiringNeeds: formData.hiringNeeds,
+        }),
       });
+
+      if (response.ok) {
+        console.log("Form submitted successfully:", formData);
+        setIsSubmitted(true);
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          role: "",
+          message: "",
+          hiringNeeds: "1-5"
+        });
+      } else {
+        throw new Error("Form submission failed");
+      }
     } catch (error) {
       console.error("Submission error:", error);
       setErrors({ submit: "Failed to submit form. Please try again." });

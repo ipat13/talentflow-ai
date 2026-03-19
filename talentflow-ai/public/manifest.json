@@ -1,0 +1,21 @@
+{
+  "name": "TalentsFlow.ai",
+  "short_name": "TalentsFlow",
+  "description": "AI-Powered Technical Interviews - Revolutionize your tech hiring process",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F7FFF7",
+  "theme_color": "#006EB8",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "lang": "en",
+  "dir": "ltr"
+}
