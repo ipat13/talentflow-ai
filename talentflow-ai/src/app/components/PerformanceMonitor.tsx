@@ -26,7 +26,8 @@ export function PerformanceMonitor() {
       
       const observer = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
-          if (!entry.hadRecentInput) {
+          const clsEntry = entry as PerformanceEntry & { hadRecentInput?: boolean };
+          if (!clsEntry.hadRecentInput) {
             clsEntries.push(entry);
             clsValue += (entry as any).value;
           }
@@ -105,7 +106,8 @@ export function PerformanceMonitor() {
 
       const observer = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
-          if (entry.interactionId) {
+          const eventEntry = entry as PerformanceEntry & { interactionId?: number };
+          if (eventEntry.interactionId) {
             inpEntries.push(entry as PerformanceEventTiming);
           }
         }

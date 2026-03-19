@@ -1,7 +1,7 @@
-"use client";
-
-import { useEffect } from "react";
+import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import "./globals.css";
+import { ClientComponents } from "./components/ClientComponents";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -39,8 +39,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX";
-  
   return (
     <html lang="en">
       <head>
@@ -50,26 +48,9 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="TalentsFlow.ai" />
-        
-        {/* Google Analytics */}
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${GA_MEASUREMENT_ID}');
-            `,
-          }}
-        />
       </head>
       <body className={`${poppins.variable} antialiased`}>
-        <ReducedMotion />
-        <KeyboardNavigation />
-        <PerformanceMonitor />
-        <BrowserCompatibility />
-        <ServiceWorkerRegistration />
+        <ClientComponents />
         {children}
       </body>
     </html>
