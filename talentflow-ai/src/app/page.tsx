@@ -5,8 +5,12 @@ import HeroSection from "./components/HeroSection";
 import FeaturesSection from "./components/FeaturesSection";
 import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
+import { useLocalStorage } from "./components/LocalStorage";
 
 export default function Home() {
+  // Track user preferences
+  useLocalStorage();
+  
   useEffect(() => {
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;

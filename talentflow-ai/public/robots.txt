@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://talentflow-ai-theta.vercel.app/sitemap.xml

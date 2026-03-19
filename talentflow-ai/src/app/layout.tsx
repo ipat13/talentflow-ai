@@ -3,7 +3,12 @@
 import { useEffect } from "react";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "./print.css";
 import { ServiceWorkerRegistration } from "./components/ServiceWorkerRegistration";
+import { ReducedMotion } from "./components/ReducedMotion";
+import { KeyboardNavigation } from "./components/KeyboardNavigation";
+import { PerformanceMonitor } from "./components/PerformanceMonitor";
+import { BrowserCompatibility } from "./components/BrowserCompatibility";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -67,6 +72,10 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} antialiased`}>
+        <ReducedMotion />
+        <KeyboardNavigation />
+        <PerformanceMonitor />
+        <BrowserCompatibility />
         <ServiceWorkerRegistration />
         {children}
       </body>

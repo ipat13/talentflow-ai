@@ -1,0 +1,68 @@
+/* Print styles */
+@media print {
+  /* Hide non-essential elements */
+  header,
+  footer,
+  button,
+  video,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Reset background and text colors */
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+
+  /* Ensure links show URLs */
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 10pt;
+    color: #666;
+  }
+
+  /* Page breaks */
+  section {
+    page-break-inside: avoid;
+  }
+
+  /* Ensure images print properly */
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  /* Remove shadows and gradients */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Show contact info */
+  .print-only {
+    display: block !important;
+  }
+}
+
+/* Reduced motion */
+.reduced-motion *,
+.reduced-motion *::before,
+.reduced-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  :root {
+    --bg-primary: white;
+    --bg-secondary: #f0f0f0;
+    --text-primary: black;
+    --border-color: black;
+  }
+}
