@@ -50,7 +50,7 @@ export default function HeroSection() {
               <div className="hidden w-10 h-10 rounded-full bg-[#006EB8] flex items-center justify-center">
                 <span className="text-white font-bold text-lg">T</span>
               </div>
-              <span className="text-xl font-bold" style={{ fontFamily: 'Inter, sans-serif' }}>
+              <span className="text-xl font-bold" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 TalentsFlow.ai
               </span>
             </a>
@@ -143,7 +143,7 @@ export default function HeroSection() {
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl" style={{ fontFamily: 'Inter, sans-serif' }}>
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Streamline Your<span className="block" style={{ color: '#006EB8' }}>Tech Hiring Process</span>
             </h1>
 
