@@ -108,12 +108,6 @@ const features: Feature[] = [
 ];
 
 function BentoCard({ feature, isVisible, index }: { feature: Feature; isVisible: boolean; index: number }) {
-  const sizeClasses = {
-    large: "md:col-span-2 md:row-span-2",
-    medium: "md:col-span-1 md:row-span-1",
-    small: "md:col-span-1 md:row-span-1"
-  };
-
   const cardSize = feature.size || "medium";
 
   return (
@@ -122,16 +116,14 @@ function BentoCard({ feature, isVisible, index }: { feature: Feature; isVisible:
         relative overflow-hidden rounded-2xl
         bg-[rgba(10,10,10,0.5)] backdrop-blur-[12px]
         border border-[rgba(255,255,255,0.08)]
-        p-6 md:p-8
+        p-5 sm:p-6 md:p-8
         transition-all duration-500 ease-out
         hover:border-transparent
         group
-        ${sizeClasses[cardSize]}
         ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}
       `}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      {/* Gradient border on hover */}
       <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" 
            style={{ 
              background: "linear-gradient(135deg, #00D2FF, #7c3aed)",
@@ -142,7 +134,6 @@ function BentoCard({ feature, isVisible, index }: { feature: Feature; isVisible:
         <div className="absolute inset-0 rounded-2xl bg-[rgba(10,10,10,0.5)]" />
       </div>
 
-      {/* Glow effect */}
       <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-700"
            style={{ 
              background: "radial-gradient(circle, #00D2FF 0%, transparent 70%)",
@@ -150,31 +141,28 @@ function BentoCard({ feature, isVisible, index }: { feature: Feature; isVisible:
            }}
       />
 
-      {/* Icon with glow */}
-      <div className="relative mb-6">
+      <div className="relative mb-4 sm:mb-6">
         <div className="absolute inset-0 rounded-xl opacity-50 blur-xl transition-opacity duration-500 group-hover:opacity-100"
              style={{ backgroundColor: "#00D2FF", filter: "blur(20px)" }}
         />
-        <div className="relative w-14 h-14 rounded-xl bg-[rgba(0,210,255,0.1)] border border-[rgba(0,210,255,0.2)] flex items-center justify-center text-[#00D2FF]">
+        <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-[rgba(0,210,255,0.1)] border border-[rgba(0,210,255,0.2)] flex items-center justify-center text-[#00D2FF]">
           {feature.icon}
         </div>
       </div>
 
-      {/* Content */}
       <div className="relative z-10">
-        <h3 className="text-xl font-semibold text-white mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
+        <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
           {feature.title}
         </h3>
-        <p className="text-[#94a3b8] leading-relaxed" style={{ lineHeight: "1.6" }}>
+        <p className="text-[#94a3b8] text-sm sm:text-base leading-relaxed" style={{ lineHeight: "1.6" }}>
           {feature.description}
         </p>
       </div>
 
-      {/* Decorative floating elements for large cards */}
       {cardSize === "large" && (
-        <div className="absolute bottom-4 right-4 w-32 h-32 opacity-20">
-          <div className="absolute bottom-0 right-0 w-20 h-20 rounded-lg bg-gradient-to-br from-[#00D2FF]/30 to-[#7c3aed]/30 blur-sm animate-pulse" />
-          <div className="absolute top-0 left-0 w-12 h-12 rounded-full bg-gradient-to-br from-[#7c3aed]/30 to-transparent blur-sm animate-pulse" style={{ animationDelay: "0.5s" }} />
+        <div className="absolute bottom-4 right-4 w-24 sm:w-32 h-24 sm:h-32 opacity-20">
+          <div className="absolute bottom-0 right-0 w-16 sm:w-20 h-16 sm:h-20 rounded-lg bg-gradient-to-br from-[#00D2FF]/30 to-[#7c3aed]/30 blur-sm animate-pulse" />
+          <div className="absolute top-0 left-0 w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-gradient-to-br from-[#7c3aed]/30 to-transparent blur-sm animate-pulse" style={{ animationDelay: "0.5s" }} />
         </div>
       )}
     </div>
@@ -230,7 +218,7 @@ export default function FeaturesSection() {
     <section 
       ref={sectionRef}
       id="features" 
-      className="relative py-24 md:py-32"
+      className="relative py-16 md:py-24 lg:py-32"
       style={{ backgroundColor: "#020617" }}
     >
       {/* Background gradient overlay */}
@@ -243,20 +231,17 @@ export default function FeaturesSection() {
            style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 70%)" }} />
 
       <div className="container max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section header */}
-        <div className={`text-center mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>
+        <div className={`text-center mb-10 md:mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 md:mb-4 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>
             Why HR Teams Choose <span style={{ color: "#00D2FF" }}>TalentsFlow.ai</span>
           </h2>
-          <p className="text-[#94a3b8] text-lg max-w-2xl mx-auto" style={{ lineHeight: "1.6" }}>
-            Revolutionize your tech hiring process with our AI-powered platform that combines cutting-edge technology with human expertise.
+          <p className="text-[#94a3b8] text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-2" style={{ lineHeight: "1.6" }}>
+            Revolutionize your tech hiring process with our AI-powered platform.
           </p>
         </div>
 
-        {/* Bento Grid */}
         <div 
-          className={`grid grid-cols-1 md:grid-cols-3 gap-6 transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-          style={{ gap: "1.5rem" }}
+          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
         >
           {features.map((feature, index) => (
             <BentoCard 

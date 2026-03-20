@@ -1,108 +1,176 @@
-# TalentFlow AI
+# TalentsFlow.ai
 
-Sistema de recrutamento inteligente com matching de candidatos baseado em IA (DeepSeek).
+> AI-Powered Technical Interview Platform Landing Page
 
-## Tech Stack
+![Next.js](https://img.shields.io/badge/Next.js-16.1-black?style=flat-square&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=flat-square&logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B&style=flat-square&logo=tailwind-css)
+![Vercel](https://img.shields.io/badge/Vercel-Deploy-black?style=flat-square&logo=vercel)
 
-- **Frontend**: Next.js 16 + TypeScript + Tailwind CSS 4
-- **Backend**: Next.js API Routes
-- **Database**: Firebase Firestore (configurado)
-- **Auth**: Firebase Auth (Google OAuth)
-- **Storage**: Firebase Storage (CVs)
-- **AI**: DeepSeek API (configurado)
-- **LinkedIn**: Apify API (configurado)
+## Overview
 
-## Getting Started
+TalentsFlow.ai is a modern landing page for an AI-powered technical interview platform. Built with Next.js 16, TypeScript, and Tailwind CSS, featuring a dark theme with glassmorphism effects.
 
-### 1. Install Dependencies
-
-```bash
-npm install
-```
-
-### 2. Configure Environment Variables
-
-Crie um ficheiro `.env.local` com as seguintes variáveis:
-
-```env
-# Firebase
-NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
-FIREBASE_ADMIN_PRIVATE_KEY=your_private_key
-
-# DeepSeek AI
-DEEPSEEK_API_KEY=your_deepseek_api_key
-
-# Apify (LinkedIn Scraping)
-APIFY_API_KEY=your_apify_api_key
-```
-
-### 3. Run Development Server
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to view the application.
-
-### 4. Build for Production
-
-```bash
-npm run build
-npm start
-```
+**Live Demo**: [https://talentflow-ai-phi.vercel.app](https://talentflow-ai-phi.vercel.app)
 
 ## Features
 
-- **Autenticação**: Login com Google OAuth via Firebase
-- **Gestão de Vagas**: CRUD completo de vagas de emprego
-- **Geração de IA**: Geração automática de descrições de vagas com DeepSeek
-- **Gestão de Candidatos**: Upload de CVs e tracking de candidatos
-- **Análise de IA**: Análise de CVs e cálculo de match score
-- **Integração LinkedIn**: Importação de candidatos via Apify
-- **Dashboard**: Métricas e estatísticas em tempo real
+- Dark Theme - Navy/Black (#020617) background with cyan/violet accents
+- Glassmorphism - Modern glass effects with backdrop blur
+- Responsive - Mobile-first design, works on all devices
+- Performance - Optimized with Next.js best practices
+- SEO Ready - Meta tags, Open Graph, sitemap, robots.txt
+- PWA - Installable as an app
+- Accessible - WCAG 2.1 AA compliant
+- Animations - Smooth fade-in and hover effects
 
-## Project Structure
+## Tech Stack
 
+| Technology | Purpose |
+|-----------|---------|
+| Next.js 16 | React framework |
+| TypeScript | Type safety |
+| Tailwind CSS | Styling |
+| Vercel | Deployment |
+| Resend | Email service |
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/ipat13/talentflow-ai.git
+cd talentflow-ai
+
+# Install dependencies
+npm install
+
+# Copy environment variables
+cp .env.example .env.local
+
+# Edit .env.local with your values
 ```
-src/
-├── app/                    # Next.js App Router
-│   ├── (auth)/            # Auth pages (login)
-│   ├── (dashboard)/       # Protected dashboard pages
-│   │   ├── dashboard/     # Dashboard home
-│   │   ├── jobs/          # Jobs CRUD
-│   │   └── candidates/    # Candidates management
-│   └── api/               # API routes
-├── components/             # React components
-│   ├── ui/                # Base UI components
-│   ├── layout/            # Layout components
-│   └── candidates/        # Candidate components
-├── contexts/              # React contexts
-├── lib/                   # Utilities
-├── services/              # Business logic services
-└── types/                 # TypeScript types
+
+### Development
+
+```bash
+# Start development server
+npm run dev
+
+# Open http://localhost:3000
 ```
+
+### Production Build
+
+```bash
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+## Environment Variables
+
+Create a `.env.local` file with:
+
+```env
+# Google Analytics (optional)
+NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+
+# Resend Email API (optional)
+RESEND_API_KEY=re_xxxxxxxxxxxx
+
+# Contact email (receives form submissions)
+CONTACT_EMAIL=your@email.com
+
+# Site URL
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
+```
+
+### Getting API Keys
+
+- Google Analytics: [analytics.google.com](https://analytics.google.com)
+- Resend: [resend.com](https://resend.com) (Free tier available)
+
+## Testing
+
+```bash
+# Run unit tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Generate coverage report
+npm run test:coverage
+```
+
+## Spec Kit Documentation
+
+This project follows the Spec-Driven Development workflow:
+
+| Document | Description |
+|---------|-------------|
+| docs/constitution.md | Project rules and principles |
+| docs/spec.md | Feature specifications |
+| docs/plan.md | Technical architecture |
+| docs/tasks.md | Development tasks |
+
+## Design System
+
+### Colors
+
+| Name | Hex | Usage |
+|------|-----|-------|
+| Primary Background | #020617 | Main background |
+| Accent Cyan | #00D2FF | Primary accent |
+| Accent Violet | #7c3aed | Secondary accent |
+| Text Primary | #FFFFFF | Headlines |
+| Text Secondary | #94a3b8 | Body text |
+
+### Typography
+
+- Font: Poppins (Google Fonts)
+- Weights: 300, 400, 500, 600, 700, 800
 
 ## Deployment
 
 ### Vercel (Recommended)
 
-1. Push your code to GitHub
-2. Import project in Vercel
-3. Add environment variables in Vercel dashboard
-4. Deploy!
+1. Fork or import this repository to Vercel
+2. Add environment variables in Vercel dashboard
+3. Deploy automatically on push to main
 
-### Firebase Hosting
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ipat13/talentflow-ai)
 
-```bash
-npm run build
-firebase deploy
-```
+## Browser Support
+
+| Browser | Version |
+|---------|---------|
+| Chrome | 90+ |
+| Firefox | 88+ |
+| Safari | 14+ |
+| Edge | 90+ |
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit changes
+4. Push to branch
+5. Open a Pull Request
 
 ## License
 
-MIT
+MIT License
+
+---
+
+Built with by [ipat13](https://github.com/ipat13)

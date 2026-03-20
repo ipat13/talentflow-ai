@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "TalentsFlow.ai | AI-Powered Technical Interviews",
     description: "Revolutionize your tech hiring with AI-driven interviews. Evaluate candidates efficiently, reduce bias.",
-    url: "https://talentflow-ai-theta.vercel.app",
+    url: "https://talentflow-ai-phi.vercel.app",
     siteName: "TalentsFlow.ai",
     locale: "en_US",
     type: "website",
@@ -31,7 +31,6 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({
@@ -42,14 +41,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="canonical" href="https://talentflow-ai-phi.vercel.app" />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#006EB8" />
+        <meta name="theme-color" content="#020617" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="TalentsFlow.ai" />
+        <meta name="format-detection" content="telephone=no" />
       </head>
       <body className={`${poppins.variable} antialiased`}>
         <ClientComponents />
