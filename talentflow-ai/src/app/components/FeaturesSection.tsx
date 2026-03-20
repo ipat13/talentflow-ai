@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, ReactNode } from "react";
 
 interface Feature {
   id: number;
   title: string;
   description: string;
-  icon: JSX.Element;
+  icon: ReactNode;
   size?: "large" | "medium" | "small";
 }
 
@@ -114,6 +114,8 @@ function BentoCard({ feature, isVisible, index }: { feature: Feature; isVisible:
     small: "md:col-span-1 md:row-span-1"
   };
 
+  const cardSize = feature.size || "medium";
+
   return (
     <div
       className={`
@@ -124,7 +126,7 @@ function BentoCard({ feature, isVisible, index }: { feature: Feature; isVisible:
         transition-all duration-500 ease-out
         hover:border-transparent
         group
-        ${sizeClasses[feature.size]}
+        ${sizeClasses[cardSize]}
         ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}
       `}
       style={{ transitionDelay: `${index * 100}ms` }}
@@ -169,7 +171,7 @@ function BentoCard({ feature, isVisible, index }: { feature: Feature; isVisible:
       </div>
 
       {/* Decorative floating elements for large cards */}
-      {feature.size === "large" && (
+      {cardSize === "large" && (
         <div className="absolute bottom-4 right-4 w-32 h-32 opacity-20">
           <div className="absolute bottom-0 right-0 w-20 h-20 rounded-lg bg-gradient-to-br from-[#00D2FF]/30 to-[#7c3aed]/30 blur-sm animate-pulse" />
           <div className="absolute top-0 left-0 w-12 h-12 rounded-full bg-gradient-to-br from-[#7c3aed]/30 to-transparent blur-sm animate-pulse" style={{ animationDelay: "0.5s" }} />
