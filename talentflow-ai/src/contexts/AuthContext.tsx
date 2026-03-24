@@ -21,6 +21,7 @@ interface AuthContextType {
   loading: boolean;
   signInWithGoogle: () => Promise<void>;
   signOut: () => Promise<void>;
+  isMockMode: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -28,15 +29,22 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isMockMode, setIsMockMode] = useState(false);
   const initialized = useRef(false);
 
   useEffect(() => {
     if (initialized.current) return;
     initialized.current = true;
 
+    const apiKey = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
+    if (!apiKey || apiKey === "dummy" || apiKey.startsWith("AIzaSyDummy")) {
+      console.log("Mock mode: using dummy Firebase config");
+      setLoading(false);
+      return;
+    }
+
     const auth = getAuthInstance();
     if (!auth) {
-      console.error("Firebase Auth not initialized");
       setLoading(false);
       return;
     }
@@ -51,11 +59,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const signInWithGoogle = async () => {
+    const apiKey = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
+    if (!apiKey || apiKey === "dummy" || apiKey.startsWith("AIzaSyDummy")) {
+      console.log("Mock mode: simulating Google sign-in");
+      setIsMockMode(true);
+      return;
+    }
+
     const auth = getAuthInstance();
     const provider = getGoogleProvider();
     
     if (!auth || !provider) {
-      throw new Error("Firebase not initialized. Check .env.local configuration.");
+      setIsMockMode(true);
+      return;
     }
 
     provider.setCustomParameters({
@@ -74,25 +90,32 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       ) {
         return;
       }
-      throw error;
+      setIsMockMode(true);
     }
   };
 
   const signOut = async () => {
+    if (isMockMode) {
+      setUser(null);
+      return;
+    }
+    
     const auth = getAuthInstance();
-    if (!auth) return;
+    if (!auth) {
+      setUser(null);
+      return;
+    }
     
     try {
       await firebaseSignOut(auth);
     } catch (error) {
       console.error("Error signing out:", error);
-      throw error;
     }
   };
 
   return (
     <AuthContext.Provider
-      value={{ user, loading, signInWithGoogle, signOut }}
+      value={{ user, loading, signInWithGoogle, signOut, isMockMode }}
     >
       {children}
     </AuthContext.Provider>
