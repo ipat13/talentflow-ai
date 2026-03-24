@@ -1,10 +1,19 @@
 "use client";
 
+import { User } from "firebase/auth";
 import { useAuth } from "@/contexts/AuthContext";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
+interface SessionUser {
+  uid: string;
+  email: string | null;
+  name: string | null;
+  role: string;
+}
+
 interface UseSessionReturn {
-  user: any;
+  user: SessionUser | null;
   loading: boolean;
   signInWithGoogle: () => Promise<void>;
   signOut: () => Promise<void>;
@@ -12,17 +21,20 @@ interface UseSessionReturn {
 
 export function useSession(): UseSessionReturn {
   const { user: firebaseUser, loading: authLoading, signInWithGoogle, signOut: firebaseSignOut } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     if (firebaseUser && !authLoading) {
       console.log("User logged in, redirecting to dashboard:", firebaseUser.email);
-      window.location.href = "/dashboard";
+      router.push("/dashboard");
+      router.refresh();
     }
-  }, [firebaseUser, authLoading]);
+  }, [firebaseUser, authLoading, router]);
 
   const signOut = async () => {
     await firebaseSignOut();
-    window.location.href = "/login";
+    router.push("/login");
+    router.refresh();
   };
 
   return {

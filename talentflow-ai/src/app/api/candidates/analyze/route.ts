@@ -1,115 +1,99 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getAdminDb } from "@/lib/firebase-admin";
+
+const candidates: any[] = [
+  {
+    id: "1",
+    name: "Ana Silva",
+    email: "ana.silva@email.com",
+    phone: "+351 912 345 678",
+    cvUrl: "/cvs/ana-silva.pdf",
+    source: "upload",
+    matchScore: 94,
+    matchHighlights: ["React", "TypeScript", "Node.js"],
+    jobId: "1",
+    jobTitle: "Senior Frontend Engineer",
+    status: "interview",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: "2",
+    name: "João Santos",
+    email: "joao.santos@email.com",
+    phone: "+351 912 345 679",
+    cvUrl: "/cvs/joao-santos.pdf",
+    source: "upload",
+    matchScore: 91,
+    matchHighlights: ["Product Management", "Agile", "Analytics"],
+    jobId: "2",
+    jobTitle: "Data Scientist",
+    status: "reviewing",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: "3",
+    name: "Maria Costa",
+    email: "maria.costa@email.com",
+    cvUrl: "/cvs/maria-costa.pdf",
+    source: "linkedin",
+    matchScore: 88,
+    matchHighlights: ["Figma", "UI/UX", "Prototyping"],
+    jobId: "3",
+    jobTitle: "Product Designer",
+    status: "new",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+];
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { candidateId, jobId } = body;
+    const { candidateId } = body;
 
-    if (!candidateId || !jobId) {
-      return NextResponse.json({ error: "candidateId and jobId are required" }, { status: 400 });
+    if (!candidateId) {
+      return NextResponse.json({ error: "candidateId is required" }, { status: 400 });
     }
 
-    const db = getAdminDb();
-    
-    const [candidateSnap, jobSnap] = await Promise.all([
-      db.collection("candidates").doc(candidateId).get(),
-      db.collection("jobs").doc(jobId).get()
-    ]);
+    const candidateIndex = candidates.findIndex((c) => c.id === candidateId);
 
-    if (!candidateSnap.exists) {
+    if (candidateIndex === -1) {
       return NextResponse.json({ error: "Candidate not found" }, { status: 404 });
     }
 
-    if (!jobSnap.exists) {
-      return NextResponse.json({ error: "Job not found" }, { status: 404 });
-    }
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    const candidate = candidateSnap.data() || {};
-    const job = jobSnap.data() || {};
+    const mockScores = [75, 82, 88, 91, 94, 96];
+    const newScore = mockScores[Math.floor(Math.random() * mockScores.length)];
 
-    const deepseekApiKey = process.env.DEEPSEEK_API_KEY;
-    if (!deepseekApiKey) {
-      return NextResponse.json({ error: "DeepSeek API key not configured" }, { status: 500 });
-    }
-
-    const prompt = `Analisa o seguinte candidato para a vaga de ${job.title || ""}:
-
-**Candidato:**
-- Nome: ${candidate.name || ""}
-- Email: ${candidate.email || ""}
-- Experiência: ${candidate.experience || "Não especificada"}
-- Habilidades: ${Array.isArray(candidate.skills) ? candidate.skills.join(", ") : "Não especificadas"}
-- Educação: ${candidate.education || "Não especificada"}
-
-**Vaga:**
-- Título: ${job.title || ""}
-- Descrição: ${job.description || ""}
-- Requisitos: ${Array.isArray(job.requirements) ? job.requirements.join(", ") : "Não especificados"}
-- Habilidades necessárias: ${Array.isArray(job.skills) ? job.skills.join(", ") : "Não especificadas"}
-
-Analisa e retorna um JSON com:
-1. matchScore: percentagem de compatibilidade (0-100)
-2. matchHighlights: array de strings com pontos fortes do match
-3. missingSkills: array de strings com habilidades em falta
-4. recommendation: "strong_match", "good_match", "potential" ou "not_suitable"
-5. recommendationReason: explicação detalhada da recomendação
-6. analysis: análise detalhada do fit técnico e cultural`;
-
-    const response = await fetch("https://api.deepseek.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${deepseekApiKey}`,
-      },
-      body: JSON.stringify({
-        model: "deepseek-chat",
-        messages: [{ role: "user", content: prompt }],
-        temperature: 0.7,
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`DeepSeek API error: ${response.status}`);
-    }
-
-    const data = await response.json();
-    const content = data.choices?.[0]?.message?.content;
-
-    let analysisResult;
-    try {
-      analysisResult = JSON.parse(content);
-    } catch {
-      analysisResult = {
-        matchScore: 75,
-        matchHighlights: ["Experiência relevante encontrada"],
-        missingSkills: ["Algumas habilidades específicas"],
-        recommendation: "potential",
-        recommendationReason: "Candidato com potencial, necessita avaliação adicional",
-        analysis: content || "Análise realizada com sucesso"
-      };
-    }
-
-    const updateData = {
-      matchScore: analysisResult.matchScore,
-      matchHighlights: analysisResult.matchHighlights,
-      analysis: analysisResult,
-      status: "reviewing",
-      jobId: jobId,
-      jobTitle: job.title || "",
-      analyzedAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
+    const skillsMatch = {
+      matched: ["JavaScript", "React", "TypeScript"],
+      missing: ["GraphQL"],
     };
 
-    await db.collection("candidates").doc(candidateId).update(updateData);
+    candidates[candidateIndex] = {
+      ...candidates[candidateIndex],
+      matchScore: newScore,
+      matchHighlights: skillsMatch.matched,
+      analysis: {
+        skillsMatch,
+        experience: {
+          yearsFound: 5,
+          relevantRoles: ["Senior Developer", "Tech Lead"],
+        },
+        education: {
+          level: "Master's",
+          field: "Computer Science",
+        },
+        recommendation: newScore >= 90 ? "strong_match" : newScore >= 80 ? "good_match" : "potential",
+        recommendationReason: `Candidato com ${newScore}% de compatibilidade. Experiência relevante encontrada.`,
+      },
+      status: "reviewing",
+      updatedAt: new Date(),
+    };
 
-    return NextResponse.json({
-      candidate: {
-        id: candidateId,
-        ...candidate,
-        ...updateData
-      }
-    });
+    return NextResponse.json({ candidate: candidates[candidateIndex] });
   } catch (error) {
     console.error("Error analyzing candidate:", error);
     return NextResponse.json({ error: "Failed to analyze candidate" }, { status: 500 });

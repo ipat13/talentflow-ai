@@ -36,37 +36,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const auth = getAuthInstance();
     if (!auth) {
-      // Firebase is not configured - this is normal in development
-      // or when environment variables are not defined
-      if (process.env.NODE_ENV === 'development') {
-        console.log("🔧 Firebase not configured - Demo mode active");
-      }
-      // Timeout para garantir que saia do loading mesmo sem Firebase
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
+      console.error("Firebase Auth not initialized");
+      setLoading(false);
       return;
     }
 
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log("✅ Auth state changed: User logged in", user.email);
-      } else {
-        // Não mostrar log quando não há usuário - isso é normal
-      }
+      console.log("Auth state changed:", user?.email);
       setUser(user);
       setLoading(false);
     });
 
-    // Timeout de segurança para garantir que saia do loading
-    const timeoutId = setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-
-    return () => {
-      unsubscribe();
-      clearTimeout(timeoutId);
-    };
+    return () => unsubscribe();
   }, []);
 
   const signInWithGoogle = async () => {
@@ -74,23 +55,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const provider = getGoogleProvider();
     
     if (!auth || !provider) {
-        // Demo mode - simulate successful login
-        console.log("🔧 Demo mode: Simulated login");
-        
-        // Create a demo user
-        const demoUser = {
-          uid: 'demo-user-123',
-          email: 'demo@talentflow.ai',
-          displayName: 'Demo User',
-          photoURL: null
-        };
-      
-      // Simular delay de login
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Atualizar estado com usuário de demonstração
-      setUser(demoUser as any);
-      return;
+      throw new Error("Firebase not initialized. Check .env.local configuration.");
     }
 
     provider.setCustomParameters({
@@ -115,12 +80,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signOut = async () => {
     const auth = getAuthInstance();
-    if (!auth) {
-        // Demo mode - simulate logout
-        console.log("🔧 Demo mode: Simulated logout");
-      setUser(null);
-      return;
-    }
+    if (!auth) return;
     
     try {
       await firebaseSignOut(auth);

@@ -1,11 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { v4 as uuidv4 } from "uuid";
-import { getAdminDb } from "@/lib/firebase-admin";
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { url, jobId } = body;
+    const { url } = await request.json();
 
     if (!url || !url.includes("linkedin.com")) {
       return NextResponse.json(
@@ -14,18 +11,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!jobId) {
-      return NextResponse.json(
-        { error: "jobId é obrigatório" },
-        { status: 400 }
-      );
-    }
+    const apifyToken = process.env.APIFY_API_TOKEN;
 
-    const apifyToken = process.env.APIFY_API_KEY;
-
-    if (!apifyToken) {
+    if (!apifyToken || apifyToken === "your-apify-token-here") {
       return NextResponse.json(
-        { error: "API do LinkedIn não configurada. Configure APIFY_API_KEY no .env.local" },
+        { error: "API do LinkedIn não configurada. Contacte o administrador." },
         { status: 500 }
       );
     }
@@ -79,46 +69,21 @@ export async function POST(request: NextRequest) {
 
     const profile = datasetItems[0];
     
-    const db = getAdminDb();
-    const candidatesRef = db.collection("candidates");
-    
-    const candidateData = {
+    const candidate = {
       name: profile.fullName || profile.name || "Unknown",
-      email: `${profile.fullName?.toLowerCase().replace(/\s+/g, ".") || "candidate"}@linkedin.com`,
-      phone: "",
-      cvUrl: "",
-      cvText: JSON.stringify({
-        headline: profile.headline || profile.title || "",
-        location: profile.location || "",
-        company: profile.companyName || "",
-        experience: profile.experience || [],
-        education: profile.education || [],
-        skills: profile.skills || [],
-        summary: profile.summary || "",
-      }),
-      source: "linkedin",
-      matchScore: null,
-      matchHighlights: [],
-      jobId,
-      jobTitle: "",
-      status: "new",
-      skills: profile.skills || [],
-      experience: profile.experience?.length ? `${profile.experience.length} experiências` : "",
-      education: profile.education?.map((edu: any) => edu.schoolName).join(", ") || "",
+      role: profile.headline || profile.title || "Professional",
+      score: Math.floor(Math.random() * 30) + 70,
       linkedinUrl: url,
-      profileData: profile,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
+      location: profile.location || "",
+      company: profile.companyName || "",
+      experience: profile.experience || [],
+      education: profile.education || [],
+      skills: profile.skills || [],
     };
-
-    const docRef = await candidatesRef.add(candidateData);
 
     return NextResponse.json({
       success: true,
-      candidate: {
-        id: docRef.id,
-        ...candidateData
-      },
+      candidates: [candidate],
     });
   } catch (error) {
     console.error("LinkedIn import error:", error);

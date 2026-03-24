@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const MOCK_MODE = false;
+const MOCK_MODE = !process.env.DEEPSEEK_API_KEY;
 
 export async function POST(request: NextRequest) {
   try {

@@ -1,364 +1,248 @@
 "use client";
 
-import { useEffect } from "react";
-import HeroSection from "./components/HeroSection";
-import FeaturesSection from "./components/FeaturesSection";
-import ContactForm from "./components/ContactForm";
-import Footer from "./components/Footer";
-import { useLocalStorage } from "./components/LocalStorage";
+import { useAuth } from "@/contexts/AuthContext";
+import { Button } from "@/components/ui/Button";
+import { Card, CardContent } from "@/components/ui/Card";
+import { Badge } from "@/components/ui/Badge";
+import { Input } from "@/components/ui/Input";
+import { Textarea } from "@/components/ui/Textarea";
+import { Users, Briefcase, Zap, Search, Globe, Plus, Linkedin, X, Upload, Loader2, MapPin, DollarSign } from "lucide-react";
+import { useState } from "react";
+import Link from "next/link";
+
+interface Job {
+  id: string;
+  title: string;
+  company: string;
+  location: string;
+  type: string;
+  salary: string;
+  description: string;
+  candidates: number;
+  matches: number;
+}
 
 export default function Home() {
-  useLocalStorage();
-  
-  useEffect(() => {
-    const handleAnchorClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (target.tagName === 'A' && target.getAttribute('href')?.startsWith('#')) {
-        e.preventDefault();
-        const id = target.getAttribute('href')?.substring(1);
-        const element = document.getElementById(id || '');
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    };
+  const { user, signInWithGoogle } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+  const [showNewJobModal, setShowNewJobModal] = useState(false);
+  const [showLinkedInModal, setShowLinkedInModal] = useState(false);
+  const [linkedInUrl, setLinkedInUrl] = useState("");
+  const [isImporting, setIsImporting] = useState(false);
+  const [importedCandidates, setImportedCandidates] = useState<any[]>([]);
+  const [jobForm, setJobForm] = useState({
+    title: "",
+    company: "",
+    location: "",
+    type: "Full-time",
+    salary: "",
+    description: "",
+  });
+  const [jobs, setJobs] = useState<Job[]>([
+    { id: "1", title: "Senior Frontend Engineer", company: "Tech Corp", location: "Remote", type: "Full-time", salary: "€60k - €80k", description: "We are looking for a Senior Frontend Engineer...", candidates: 45, matches: 12 },
+    { id: "2", title: "Data Scientist", company: "DataTech", location: "Lisbon, PT", type: "Full-time", salary: "€50k - €70k", description: "Join our data science team...", candidates: 38, matches: 8 },
+    { id: "3", title: "Product Designer", company: "DesignStudio", location: "Remote", type: "Contract", salary: "€40k - €60k", description: "Create amazing user experiences...", candidates: 28, matches: 6 },
+  ]);
 
-    document.addEventListener('click', handleAnchorClick);
-    return () => document.removeEventListener('click', handleAnchorClick);
-  }, []);
+  const handleSignIn = async () => {
+    setIsLoading(true);
+    try {
+      await signInWithGoogle();
+    } catch (error) {
+      console.error("Sign in error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  if (user) {
+    return (
+      <div className="min-h-screen bg-gray-900 p-8">
+        <header className="flex justify-between items-center mb-8">
+          <div>
+            <h1 className="text-3xl font-bold text-white">Dashboard TalentFlow</h1>
+            <p className="text-gray-400">Bem-vindo, {user.displayName}</p>
+          </div>
+          <div className="flex gap-3">
+            <Button variant="outline" className="border-slate-700 text-white hover:bg-slate-800" onClick={() => setShowLinkedInModal(true)}>
+              <Linkedin className="w-4 h-4 mr-2" />
+              Importar LinkedIn
+            </Button>
+            <Button className="bg-gradient-to-r from-indigo-500 to-purple-600" onClick={() => setShowNewJobModal(true)}>
+              <Plus className="w-4 h-4 mr-2" />
+              Nova Vaga
+            </Button>
+          </div>
+        </header>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <StatsCard title="Vagas Ativas" value={jobs.length.toString()} icon={<Briefcase className="text-blue-400" />} color="blue" />
+          <StatsCard title="Candidatos" value="148" icon={<Users className="text-emerald-400" />} color="emerald" />
+          <StatsCard title="Matches" value="24" icon={<Zap className="text-purple-400" />} color="purple" />
+        </div>
+
+        <h2 className="text-xl font-semibold mb-4 text-white">Vagas Recentes</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+          {jobs.map((job) => (
+            <JobCard key={job.id} job={job} />
+          ))}
+        </div>
+
+        <h2 className="text-xl font-semibold mb-4 text-white">Candidatos Recentes</h2>
+        <div className="space-y-4">
+          <CandidateRow name="Ana Silva" role="Senior Frontend Engineer" score={92} linkedinUrl="https://linkedin.com/in/anasilva" />
+          <CandidateRow name="João Pereira" role="Data Scientist" score={85} linkedinUrl="https://linkedin.com/in/joaopereira" />
+          <CandidateRow name="Marta Santos" role="Product Designer" score={74} linkedinUrl="https://linkedin.com/in/martasantos" />
+          {importedCandidates.map((c, i) => <CandidateRow key={i} name={c.name} role={c.role} score={c.score} linkedinUrl={c.linkedinUrl} />)}
+        </div>
+
+        {showNewJobModal && <NewJobModal jobs={jobs} setJobs={setJobs} setShowNewJobModal={setShowNewJobModal} jobForm={jobForm} setJobForm={setJobForm} />}
+        {showLinkedInModal && <LinkedInModal linkedInUrl={linkedInUrl} setLinkedInUrl={setLinkedInUrl} isImporting={isImporting} setIsImporting={setIsImporting} setImportedCandidates={setImportedCandidates} setShowLinkedInModal={setShowLinkedInModal} />}
+      </div>
+    );
+  }
 
   return (
-    <>
-      <a 
-        href="#main-content" 
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-[#00D2FF] focus:text-[#020617] focus:px-4 focus:py-2 focus:rounded-lg"
-      >
-        Skip to main content
-      </a>
-      
-      <div id="main-content" className="min-h-screen" style={{ backgroundColor: '#020617' }}>
-        <HeroSection />
-        <FeaturesSection />
-
-        {/* Time & Cost Savings */}
-        <section id="time-savings" className="py-16 md:py-24 lg:py-32" style={{ backgroundColor: '#020617' }}>
-          <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-            <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-              <div>
-                <div className="mb-6 md:mb-8">
-                  <span 
-                    className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium"
-                    style={{ 
-                      background: "linear-gradient(135deg, rgba(0, 210, 255, 0.1), rgba(124, 58, 237, 0.1))",
-                      color: "#00D2FF"
-                    }}
-                  >
-                    ⏱️ Time & Cost Savings
-                  </span>
-                </div>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6 text-white" style={{ fontFamily: "'Poppins', sans-serif" }}>
-                  Cut Your Hiring Cost and Timespan
-                </h2>
-                <p className="text-base md:text-lg mb-6 md:mb-8" style={{ color: '#94a3b8' }}>
-                  With Talentsflow, you can slash the time spent on scheduling, screening, and ranking candidates—saving weeks of effort and thousands of dollars in direct costs.
-                </p>
-                <ul className="space-y-3 md:space-y-4" style={{ color: '#94a3b8' }}>
-                  <li className="flex items-start">
-                    <span className="mr-2 mt-1" style={{ color: "#00D2FF" }}>•</span>
-                    Save scheduling overhead
-                  </li>
-                  <li className="flex items-start">
-                    <span className="mr-2 mt-1" style={{ color: "#00D2FF" }}>•</span>
-                    Eliminate 100% of manual screening/tech interviews
-                  </li>
-                  <li className="flex items-start">
-                    <span className="mr-2 mt-1" style={{ color: "#00D2FF" }}>•</span>
-                    Accelerate hiring from 4 weeks to just 2-4 days
-                  </li>
-                  <li className="flex items-start">
-                    <span className="mr-2 mt-1" style={{ color: "#00D2FF" }}>•</span>
-                    Achieve a dramatic reduction in direct costs
-                  </li>
-                </ul>
-              </div>
-              <div className="relative">
-                <div 
-                  className="aspect-video rounded-2xl overflow-hidden border"
-                  style={{ borderColor: "rgba(255, 255, 255, 0.08)" }}
-                >
-                  <img 
-                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
-                    alt="Time & Cost Savings Dashboard"
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* AI Interview Experience */}
-        <section id="ai-experience" className="py-16 md:py-24 lg:py-32" style={{ backgroundColor: '#020617' }}>
-          <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-            <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-              <div className="order-2 lg:order-1">
-                <div 
-                  className="aspect-video rounded-2xl overflow-hidden border"
-                  style={{ borderColor: "rgba(255, 255, 255, 0.08)" }}
-                >
-                  <img 
-                    src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&q=80"
-                    alt="AI Interview Interface"
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-              <div className="order-1 lg:order-2">
-                <div className="mb-6 md:mb-8">
-                  <span 
-                    className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium"
-                    style={{ 
-                      background: "linear-gradient(135deg, rgba(0, 210, 255, 0.1), rgba(124, 58, 237, 0.1))",
-                      color: "#00D2FF"
-                    }}
-                  >
-                    🎯 AI Interview Experience
-                  </span>
-                </div>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6 text-white" style={{ fontFamily: "'Poppins', sans-serif" }}>
-                  Conduct Fair and Consistent Technical Interviews
-                </h2>
-                <p className="text-base md:text-lg mb-6 md:mb-8" style={{ color: '#94a3b8' }}>
-                  Our AI interviewer ensures a standardized evaluation process for all candidates, eliminating human bias and providing consistent results.
-                </p>
-                <ul className="space-y-3 md:space-y-4" style={{ color: '#94a3b8' }}>
-                  <li className="flex items-start">
-                    <span className="mr-2 mt-1" style={{ color: "#00D2FF" }}>•</span>
-                    Customizable interview scripts
-                  </li>
-                  <li className="flex items-start">
-                    <span className="mr-2 mt-1" style={{ color: "#00D2FF" }}>•</span>
-                    Real-time code evaluation
-                  </li>
-                  <li className="flex items-start">
-                    <span className="mr-2 mt-1" style={{ color: "#00D2FF" }}>•</span>
-                    Adaptive questioning based on candidate responses
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Performance Analytics */}
-        <section id="analytics" className="py-16 md:py-24 lg:py-32" style={{ backgroundColor: '#020617' }}>
-          <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-            <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-              <div>
-                <div className="mb-6 md:mb-8">
-                  <span 
-                    className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium"
-                    style={{ 
-                      background: "linear-gradient(135deg, rgba(0, 210, 255, 0.1), rgba(124, 58, 237, 0.1))",
-                      color: "#00D2FF"
-                    }}
-                  >
-                    📊 Performance Analytics
-                  </span>
-                </div>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6 text-white" style={{ fontFamily: "'Poppins', sans-serif" }}>
-                  Make Data-Driven Hiring Decisions
-                </h2>
-                <p className="text-base md:text-lg mb-6 md:mb-8" style={{ color: '#94a3b8' }}>
-                  Gain valuable insights into candidate performance with our comprehensive analytics dashboard. Compare candidates objectively and identify top talent efficiently.
-                </p>
-                <ul className="space-y-3 md:space-y-4" style={{ color: '#94a3b8' }}>
-                  <li className="flex items-start">
-                    <span className="mr-2 mt-1" style={{ color: "#00D2FF" }}>•</span>
-                    Detailed performance metrics
-                  </li>
-                  <li className="flex items-start">
-                    <span className="mr-2 mt-1" style={{ color: "#00D2FF" }}>•</span>
-                    Skill gap analysis
-                  </li>
-                  <li className="flex items-start">
-                    <span className="mr-2 mt-1" style={{ color: "#00D2FF" }}>•</span>
-                    Candidate comparison tools
-                  </li>
-                </ul>
-              </div>
-              <div className="relative">
-                <div 
-                  className="aspect-video rounded-2xl overflow-hidden border"
-                  style={{ borderColor: "rgba(255, 255, 255, 0.08)" }}
-                >
-                  <img 
-                    src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80"
-                    alt="Performance Analytics Dashboard"
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* How It Works */}
-        <section id="how-it-works" className="py-16 md:py-24 lg:py-32" style={{ backgroundColor: '#020617' }}>
-          <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-3xl text-center">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6 text-white" style={{ fontFamily: "'Poppins', sans-serif" }}>
-                See TalentsFlow.ai in Action
-              </h2>
-              <p className="text-base md:text-lg mb-8 md:mb-10" style={{ color: '#94a3b8' }}>
-                Watch how our AI-powered platform helps HR teams conduct efficient technical interviews and make data-driven hiring decisions.
-              </p>
-              <div 
-                className="aspect-video rounded-2xl mb-6 md:mb-8 overflow-hidden border relative"
-                style={{ borderColor: "rgba(255, 255, 255, 0.08)" }}
-              >
-                <video
-                  className="w-full h-full object-cover"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  poster="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&q=80"
-                >
-                  <source src="https://assets.mixkit.co/videos/45220/45220-720.mp4" type="video/mp4" />
-                </video>
-                <div className="absolute inset-0 flex items-center justify-center bg-black/30 pointer-events-none">
-                  <div className="text-center text-white">
-                    <div className="text-5xl md:text-6xl mb-2 md:mb-4">▶️</div>
-                    <p className="text-base md:text-lg font-medium">Watch Demo</p>
-                  </div>
-                </div>
-              </div>
-              <a
-                href="https://www.linkedin.com/in/ruofei-du-softwaredeveloper/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-lg px-8 py-3 md:py-4 text-sm md:text-base font-medium text-white transition-all duration-300 hover:-translate-y-1"
-                style={{ background: "linear-gradient(135deg, #00D2FF, #7c3aed)" }}
-              >
-                Request a Demo
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Pricing */}
-        <section id="pricing" className="py-16 md:py-24 lg:py-32" style={{ backgroundColor: '#020617' }}>
-          <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-3xl text-center mb-10 md:mb-16">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6 text-white" style={{ fontFamily: "'Poppins', sans-serif" }}>
-                Pricing
-              </h2>
-              <p className="text-base md:text-lg" style={{ color: '#94a3b8' }}>
-                Start with our 2-week free trial to experience the power of AI-driven hiring
-              </p>
-            </div>
-
-            <div className="mx-auto max-w-md">
-              <div 
-                className="rounded-2xl p-6 md:p-8 border"
-                style={{ 
-                  backgroundColor: "rgba(10, 10, 10, 0.5)",
-                  backdropFilter: "blur(12px)",
-                  borderColor: "rgba(255, 255, 255, 0.08)"
-                }}
-              >
-                <div className="text-center mb-6 md:mb-8">
-                  <div className="text-3xl md:text-4xl font-bold mb-2 text-white" style={{ fontFamily: "'Poppins', sans-serif" }}>CA$599 / month</div>
-                  <p className="text-sm md:text-base" style={{ color: '#94a3b8' }}>Perfect for growing tech teams</p>
-                </div>
-
-                <div className="mb-6 md:mb-8">
-                  <div className="text-center mb-4">
-                    <p className="text-sm" style={{ color: '#94a3b8' }}>2-week free trial for 1 account and 10 interviews</p>
-                  </div>
-                  <ul className="space-y-3 md:space-y-4" style={{ color: '#94a3b8' }}>
-                    <li className="flex items-start">
-                      <span className="mr-2 mt-1" style={{ color: "#00D2FF" }}>•</span>
-                      100 Interviews Included
-                    </li>
-                    <li className="flex items-start">
-                      <span className="mr-2 mt-1" style={{ color: "#00D2FF" }}>•</span>
-                      Unlimited usage of the question bank
-                    </li>
-                    <li className="flex items-start">
-                      <span className="mr-2 mt-1" style={{ color: "#00D2FF" }}>•</span>
-                      On Demand Training Sessions
-                    </li>
-                    <li className="flex items-start">
-                      <span className="mr-2 mt-1" style={{ color: "#00D2FF" }}>•</span>
-                      Platform Tech support
-                    </li>
-                  </ul>
-                </div>
-
-                <a
-                  href="https://www.linkedin.com/in/ruofei-du-softwaredeveloper/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center rounded-lg px-8 py-3 md:py-4 text-sm md:text-base font-medium text-white transition-all duration-300 hover:-translate-y-1"
-                  style={{ background: "linear-gradient(135deg, #00D2FF, #7c3aed)" }}
-                >
-                  Start Free Trial
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Final CTA */}
-        <section className="py-16 md:py-24 lg:py-32" style={{ backgroundColor: '#020617' }}>
-          <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-3xl text-center">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6 text-white" style={{ fontFamily: "'Poppins', sans-serif" }}>
-                Ready to Transform Your Tech Hiring?
-              </h2>
-              <p className="text-base md:text-lg mb-8 md:mb-10" style={{ color: '#94a3b8' }}>
-                Join leading companies who have streamlined their hiring process and found top tech talent with TalentsFlow.ai
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
-                <a
-                  href="https://www.linkedin.com/in/ruofei-du-softwaredeveloper/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-lg px-8 py-3 md:py-4 text-sm md:text-base font-medium text-white transition-all duration-300 hover:-translate-y-1"
-                  style={{ background: "linear-gradient(135deg, #00D2FF, #7c3aed)" }}
-                >
-                  Schedule a Demo
-                </a>
-                <a
-                  href="#contact"
-                  className="inline-flex items-center justify-center rounded-lg px-8 py-3 md:py-4 text-sm md:text-base font-medium border-2 transition-all duration-300 hover:-translate-y-1"
-                  style={{ 
-                    borderColor: "rgba(255, 255, 255, 0.2)",
-                    color: "white"
-                  }}
-                >
-                  Contact Sales
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Contact Form Section */}
-        <section id="contact" className="py-16 md:py-24 lg:py-32" style={{ backgroundColor: '#020617' }}>
-          <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-            <ContactForm />
-          </div>
-        </section>
-
-        <Footer />
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white flex flex-col items-center justify-center p-6">
+      <div className="max-w-4xl text-center space-y-8">
+        <Badge className="bg-pink-500/30 text-pink-200 border-pink-400/50 px-4 py-1 text-lg">
+          Powered by DeepSeek AI
+        </Badge>
+        <h1 className="text-6xl font-extrabold tracking-tight bg-gradient-to-r from-white via-pink-200 to-purple-200 bg-clip-text text-transparent">
+          Recrutamento Inteligente com DeepSeek
+        </h1>
+        <p className="text-xl text-purple-200 max-w-2xl mx-auto">
+          Automatize a triagem de currículos e encontre os melhores talentos 
+          em segundos com o poder da inteligência artificial generativa.
+        </p>
+        <div className="flex gap-4 justify-center">
+          <Button size="lg" onClick={handleSignIn} disabled={isLoading} className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-8 shadow-lg shadow-pink-500/25">
+            {isLoading ? "A entrar..." : "Entrar com Google"}
+          </Button>
+        </div>
       </div>
-    </>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-24 max-w-5xl w-full">
+        <FeatureCard icon={<Zap className="text-yellow-400" />} title="Análise Instantânea" desc="DeepSeek AI analisa competências e fit cultural em milissegundos." />
+        <FeatureCard icon={<Globe className="text-pink-400" />} title="Sourcing LinkedIn" desc="Integração com OpenClaw para extrair talentos diretamente da rede." />
+        <FeatureCard icon={<Search className="text-purple-400" />} title="Match Score" desc="Ranking inteligente baseado nos requisitos reais da tua vaga." />
+      </div>
+    </div>
+  );
+}
+
+function StatsCard({ title, value, icon, color }: { title: string; value: string; icon: any; color: string }) {
+  const colors: any = { blue: "from-blue-600 to-blue-700", emerald: "from-emerald-600 to-emerald-700", purple: "from-violet-600 to-violet-700" };
+  return (
+    <Card className="bg-gray-800 border border-gray-700">
+      <CardContent className="flex items-center p-6 gap-4">
+        <div className={`p-3 bg-gradient-to-br ${colors[color]} rounded-lg`}>{icon}</div>
+        <div><p className="text-gray-300 text-sm">{title}</p><p className="text-2xl font-bold text-white">{value}</p></div>
+      </CardContent>
+    </Card>
+  );
+}
+
+function JobCard({ job }: { job: Job }) {
+  return (
+    <Card className="bg-gray-800 border border-gray-700 hover:border-gray-500">
+      <CardContent className="p-5">
+        <div className="flex justify-between items-start mb-3">
+          <Badge className="bg-gray-700 text-white">{job.type}</Badge>
+          <span className="text-gray-400 text-sm">{job.candidates} candidatos</span>
+        </div>
+        <h3 className="font-semibold text-white text-lg mb-1">{job.title}</h3>
+        <p className="text-gray-300 mb-3">{job.company}</p>
+        <div className="flex items-center gap-3 text-gray-400 text-sm">
+          <span className="flex items-center gap-1"><MapPin className="w-4 h-4" />{job.location || "N/A"}</span>
+          {job.salary && <span className="flex items-center gap-1"><DollarSign className="w-4 h-4" />{job.salary}</span>}
+        </div>
+        <div className="flex justify-between items-center pt-3 border-t border-gray-700 mt-3">
+          <span className="text-violet-400 text-sm font-medium">{job.matches} matches</span>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+function CandidateRow({ name, role, score, linkedinUrl }: { name: string; role: string; score: number; linkedinUrl?: string }) {
+  return (
+    <Card className="bg-gray-800 border border-gray-700 hover:border-gray-500">
+      <CardContent className="flex items-center justify-between p-4">
+        <div><p className="font-semibold text-white">{name}</p><p className="text-gray-300 text-sm">{role}</p></div>
+        <div className="flex items-center gap-2">
+          {linkedinUrl && <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-blue-400 hover:text-blue-300 text-sm"><Linkedin className="w-4 h-4" /></a>}
+          <Badge className={score >= 80 ? "bg-emerald-700 text-emerald-300 border border-emerald-600" : "bg-gray-700 text-gray-300"}>{score}% Match</Badge>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+function FeatureCard({ icon, title, desc }: { icon: any; title: string; desc: string }) {
+  return <Card className="bg-black border border-slate-800 text-left p-6 hover:border-slate-600"><div className="mb-4 text-2xl text-yellow-400">{icon}</div><h3 className="text-base font-semibold text-white mb-2">{title}</h3><p className="text-slate-300 text-sm">{desc}</p></Card>;
+}
+
+function NewJobModal({ jobs, setJobs, setShowNewJobModal, jobForm, setJobForm }: any) {
+  const [isSaving, setIsSaving] = useState(false);
+  const handleCreate = () => {
+    if (!jobForm.title || !jobForm.company) return;
+    setIsSaving(true);
+    setTimeout(() => {
+      setJobs([{ ...jobForm, id: Date.now().toString(), candidates: 0, matches: 0 }, ...jobs]);
+      setJobForm({ title: "", company: "", location: "", type: "Full-time", salary: "", description: "" });
+      setShowNewJobModal(false);
+      setIsSaving(false);
+    }, 500);
+  };
+  return (
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+      <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-lg border border-white/10">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-xl font-bold text-white">Criar Nova Vaga</h2>
+          <button onClick={() => setShowNewJobModal(false)} className="text-white/60 hover:text-white"><X className="w-5 h-5" /></button>
+        </div>
+        <div className="space-y-4">
+          <div><label className="text-white/80 text-sm mb-2 block">Título *</label><Input value={jobForm.title} onChange={(e: any) => setJobForm({...jobForm, title: e.target.value})} className="w-full bg-white/5 border-white/10 text-white" placeholder="Ex: Senior Frontend Engineer" /></div>
+          <div><label className="text-white/80 text-sm mb-2 block">Empresa *</label><Input value={jobForm.company} onChange={(e: any) => setJobForm({...jobForm, company: e.target.value})} className="w-full bg-white/5 border-white/10 text-white" placeholder="Ex: Tech Corp" /></div>
+          <div className="grid grid-cols-2 gap-4">
+            <div><label className="text-white/80 text-sm mb-2 block">Localização</label><Input value={jobForm.location} onChange={(e: any) => setJobForm({...jobForm, location: e.target.value})} className="w-full bg-white/5 border-white/10 text-white" placeholder="Remote, Lisboa" /></div>
+            <div><label className="text-white/80 text-sm mb-2 block">Tipo</label><select value={jobForm.type} onChange={(e: any) => setJobForm({...jobForm, type: e.target.value})} className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white"><option>Full-time</option><option>Part-time</option><option>Contract</option></select></div>
+          </div>
+          <div><label className="text-white/80 text-sm mb-2 block">Salário</label><Input value={jobForm.salary} onChange={(e: any) => setJobForm({...jobForm, salary: e.target.value})} className="w-full bg-white/5 border-white/10 text-white" placeholder="€50k - €70k" /></div>
+          <div><label className="text-white/80 text-sm mb-2 block">Descrição</label><Textarea value={jobForm.description} onChange={(e: any) => setJobForm({...jobForm, description: e.target.value})} className="w-full h-32 bg-white/5 border-white/10 text-white" placeholder="Descreve a vaga..." /></div>
+          <Button onClick={handleCreate} disabled={isSaving || !jobForm.title || !jobForm.company} className="w-full bg-indigo-600 hover:bg-indigo-700">{isSaving ? "A criar..." : "Criar Vaga"}</Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function LinkedInModal({ linkedInUrl, setLinkedInUrl, isImporting, setIsImporting, setImportedCandidates, setShowLinkedInModal }: any) {
+  const handleImport = async () => {
+    if (!linkedInUrl.trim()) return;
+    setIsImporting(true);
+    setTimeout(() => {
+      const name = linkedInUrl.split("linkedin.com/in/")[1]?.split("/")[0]?.replace(/-/g, " ") || "Candidato";
+      setImportedCandidates([{ name: name.charAt(0).toUpperCase() + name.slice(1), role: "Professional", score: Math.floor(Math.random() * 20) + 75, linkedInUrl }]);
+      setLinkedInUrl("");
+      setIsImporting(false);
+      setShowLinkedInModal(false);
+    }, 1500);
+  };
+  return (
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+      <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-lg border border-white/10">
+        <div className="flex justify-between items-center mb-6">
+          <div className="flex items-center gap-3"><div className="p-2 bg-blue-500/20 rounded-lg"><Linkedin className="w-6 h-6 text-blue-400" /></div><h2 className="text-xl font-bold text-white">Importar do LinkedIn</h2></div>
+          <button onClick={() => setShowLinkedInModal(false)} className="text-white/60 hover:text-white"><X className="w-5 h-5" /></button>
+        </div>
+        <div className="space-y-4">
+          <div><label className="text-white/80 text-sm mb-2 block">URL do Perfil LinkedIn</label><Input value={linkedInUrl} onChange={(e: any) => setLinkedInUrl(e.target.value)} className="w-full bg-white/5 border-white/10 text-white" placeholder="https://linkedin.com/in/nome" /></div>
+          <p className="text-white/40 text-sm">Cole o link do perfil LinkedIn do candidato.</p>
+          <Button onClick={handleImport} disabled={!linkedInUrl.trim() || isImporting} className="w-full bg-blue-600 hover:bg-blue-700">{isImporting ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" />A importar...</> : <><Upload className="w-4 h-4 mr-2" />Importar</>}</Button>
+        </div>
+      </div>
+    </div>
   );
 }
