@@ -63,6 +63,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (!apiKey || apiKey === "dummy" || apiKey.startsWith("AIzaSyDummy")) {
       console.log("Mock mode: simulating Google sign-in");
       setIsMockMode(true);
+      setUser({
+        displayName: "Demo User",
+        email: "demo@talentflow.ai",
+        photoURL: null,
+        uid: "mock-user-123",
+      } as User);
       return;
     }
 

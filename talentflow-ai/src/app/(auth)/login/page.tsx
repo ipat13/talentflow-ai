@@ -26,12 +26,12 @@ export default function LoginPage() {
         <CardContent className="p-8">
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-white mb-2">TalentFlow AI</h1>
-            <p className="text-indigo-300">Sistema de Recrutamento Inteligente</p>
+            <p className="text-indigo-300">Smart Recruitment System</p>
           </div>
           
           <div className="text-center mb-6">
-            <h2 className="text-xl text-white mb-1">Iniciar Sessão</h2>
-            <p className="text-white/60 text-sm">Usa a tua conta Google para continuar</p>
+            <h2 className="text-xl text-white mb-1">Sign In</h2>
+            <p className="text-white/60 text-sm">Use your Google account to continue</p>
           </div>
 
           <Button
@@ -41,11 +41,11 @@ export default function LoginPage() {
             className="w-full bg-white text-indigo-900 hover:bg-gray-100 font-semibold py-3 disabled:opacity-50"
           >
             <Chrome className="w-5 h-5 mr-2" />
-            {isLoading ? "A entrar..." : "Entrar com Google"}
+            {isLoading ? "Signing in..." : "Sign in with Google"}
           </Button>
 
           <p className="text-center text-white/40 text-xs mt-6">
-            Ao entrares, concordas com os nossos termos de serviço.
+            By signing in, you agree to our terms of service.
           </p>
         </CardContent>
       </Card>

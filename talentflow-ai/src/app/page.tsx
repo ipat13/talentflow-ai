@@ -60,35 +60,35 @@ export default function Home() {
       <div className="min-h-screen bg-gray-900 p-8">
         <header className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-white">Dashboard TalentFlow</h1>
-            <p className="text-gray-400">Bem-vindo, {user.displayName}</p>
+            <h1 className="text-3xl font-bold text-white">TalentFlow Dashboard</h1>
+            <p className="text-gray-400">Welcome, {user.displayName}</p>
           </div>
           <div className="flex gap-3">
             <Button variant="outline" className="border-slate-700 text-white hover:bg-slate-800" onClick={() => setShowLinkedInModal(true)}>
               <Linkedin className="w-4 h-4 mr-2" />
-              Importar LinkedIn
+              Import LinkedIn
             </Button>
             <Button className="bg-gradient-to-r from-indigo-500 to-purple-600" onClick={() => setShowNewJobModal(true)}>
               <Plus className="w-4 h-4 mr-2" />
-              Nova Vaga
+              New Job
             </Button>
           </div>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <StatsCard title="Vagas Ativas" value={jobs.length.toString()} icon={<Briefcase className="text-blue-400" />} color="blue" />
-          <StatsCard title="Candidatos" value="148" icon={<Users className="text-emerald-400" />} color="emerald" />
+          <StatsCard title="Active Jobs" value={jobs.length.toString()} icon={<Briefcase className="text-blue-400" />} color="blue" />
+          <StatsCard title="Candidates" value="148" icon={<Users className="text-emerald-400" />} color="emerald" />
           <StatsCard title="Matches" value="24" icon={<Zap className="text-purple-400" />} color="purple" />
         </div>
 
-        <h2 className="text-xl font-semibold mb-4 text-white">Vagas Recentes</h2>
+        <h2 className="text-xl font-semibold mb-4 text-white">Recent Jobs</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
           {jobs.map((job) => (
             <JobCard key={job.id} job={job} />
           ))}
         </div>
 
-        <h2 className="text-xl font-semibold mb-4 text-white">Candidatos Recentes</h2>
+        <h2 className="text-xl font-semibold mb-4 text-white">Recent Candidates</h2>
         <div className="space-y-4">
           <CandidateRow name="Ana Silva" role="Senior Frontend Engineer" score={92} linkedinUrl="https://linkedin.com/in/anasilva" />
           <CandidateRow name="João Pereira" role="Data Scientist" score={85} linkedinUrl="https://linkedin.com/in/joaopereira" />
@@ -109,23 +109,23 @@ export default function Home() {
           Powered by DeepSeek AI
         </Badge>
         <h1 className="text-6xl font-extrabold tracking-tight bg-gradient-to-r from-white via-pink-200 to-purple-200 bg-clip-text text-transparent">
-          Recrutamento Inteligente com DeepSeek
+          Smart Recruitment with DeepSeek
         </h1>
         <p className="text-xl text-purple-200 max-w-2xl mx-auto">
-          Automatize a triagem de currículos e encontre os melhores talentos 
-          em segundos com o poder da inteligência artificial generativa.
+          Automate resume screening and find the best talent 
+          in seconds with the power of generative AI.
         </p>
         <div className="flex gap-4 justify-center">
           <Button size="lg" onClick={handleSignIn} disabled={isLoading} className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-8 shadow-lg shadow-pink-500/25">
-            {isLoading ? "A entrar..." : "Entrar com Google"}
+            {isLoading ? "Signing in..." : "Sign in with Google"}
           </Button>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-24 max-w-5xl w-full">
-        <FeatureCard icon={<Zap className="text-yellow-400" />} title="Análise Instantânea" desc="DeepSeek AI analisa competências e fit cultural em milissegundos." />
-        <FeatureCard icon={<Globe className="text-pink-400" />} title="Sourcing LinkedIn" desc="Integração com OpenClaw para extrair talentos diretamente da rede." />
-        <FeatureCard icon={<Search className="text-purple-400" />} title="Match Score" desc="Ranking inteligente baseado nos requisitos reais da tua vaga." />
+        <FeatureCard icon={<Zap className="text-yellow-400" />} title="Instant Analysis" desc="DeepSeek AI analyzes skills and cultural fit in milliseconds." />
+        <FeatureCard icon={<Globe className="text-pink-400" />} title="LinkedIn Sourcing" desc="Integration with OpenClaw to extract talent directly from the network." />
+        <FeatureCard icon={<Search className="text-purple-400" />} title="Match Score" desc="Intelligent ranking based on your job's real requirements." />
       </div>
     </div>
   );
@@ -149,7 +149,7 @@ function JobCard({ job }: { job: Job }) {
       <CardContent className="p-5">
         <div className="flex justify-between items-start mb-3">
           <Badge className="bg-gray-700 text-white">{job.type}</Badge>
-          <span className="text-gray-400 text-sm">{job.candidates} candidatos</span>
+          <span className="text-gray-400 text-sm">{job.candidates} candidates</span>
         </div>
         <h3 className="font-semibold text-white text-lg mb-1">{job.title}</h3>
         <p className="text-gray-300 mb-3">{job.company}</p>
@@ -199,19 +199,19 @@ function NewJobModal({ jobs, setJobs, setShowNewJobModal, jobForm, setJobForm }:
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
       <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-lg border border-white/10">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-bold text-white">Criar Nova Vaga</h2>
+          <h2 className="text-xl font-bold text-white">Create New Job</h2>
           <button onClick={() => setShowNewJobModal(false)} className="text-white/60 hover:text-white"><X className="w-5 h-5" /></button>
         </div>
         <div className="space-y-4">
-          <div><label className="text-white/80 text-sm mb-2 block">Título *</label><Input value={jobForm.title} onChange={(e: any) => setJobForm({...jobForm, title: e.target.value})} className="w-full bg-white/5 border-white/10 text-white" placeholder="Ex: Senior Frontend Engineer" /></div>
-          <div><label className="text-white/80 text-sm mb-2 block">Empresa *</label><Input value={jobForm.company} onChange={(e: any) => setJobForm({...jobForm, company: e.target.value})} className="w-full bg-white/5 border-white/10 text-white" placeholder="Ex: Tech Corp" /></div>
+          <div><label className="text-white/80 text-sm mb-2 block">Title *</label><Input value={jobForm.title} onChange={(e: any) => setJobForm({...jobForm, title: e.target.value})} className="w-full bg-white/5 border-white/10 text-white" placeholder="Ex: Senior Frontend Engineer" /></div>
+          <div><label className="text-white/80 text-sm mb-2 block">Company *</label><Input value={jobForm.company} onChange={(e: any) => setJobForm({...jobForm, company: e.target.value})} className="w-full bg-white/5 border-white/10 text-white" placeholder="Ex: Tech Corp" /></div>
           <div className="grid grid-cols-2 gap-4">
-            <div><label className="text-white/80 text-sm mb-2 block">Localização</label><Input value={jobForm.location} onChange={(e: any) => setJobForm({...jobForm, location: e.target.value})} className="w-full bg-white/5 border-white/10 text-white" placeholder="Remote, Lisboa" /></div>
-            <div><label className="text-white/80 text-sm mb-2 block">Tipo</label><select value={jobForm.type} onChange={(e: any) => setJobForm({...jobForm, type: e.target.value})} className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white"><option>Full-time</option><option>Part-time</option><option>Contract</option></select></div>
+            <div><label className="text-white/80 text-sm mb-2 block">Location</label><Input value={jobForm.location} onChange={(e: any) => setJobForm({...jobForm, location: e.target.value})} className="w-full bg-white/5 border-white/10 text-white" placeholder="Remote, Lisbon" /></div>
+            <div><label className="text-white/80 text-sm mb-2 block">Type</label><select value={jobForm.type} onChange={(e: any) => setJobForm({...jobForm, type: e.target.value})} className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white"><option>Full-time</option><option>Part-time</option><option>Contract</option></select></div>
           </div>
-          <div><label className="text-white/80 text-sm mb-2 block">Salário</label><Input value={jobForm.salary} onChange={(e: any) => setJobForm({...jobForm, salary: e.target.value})} className="w-full bg-white/5 border-white/10 text-white" placeholder="€50k - €70k" /></div>
-          <div><label className="text-white/80 text-sm mb-2 block">Descrição</label><Textarea value={jobForm.description} onChange={(e: any) => setJobForm({...jobForm, description: e.target.value})} className="w-full h-32 bg-white/5 border-white/10 text-white" placeholder="Descreve a vaga..." /></div>
-          <Button onClick={handleCreate} disabled={isSaving || !jobForm.title || !jobForm.company} className="w-full bg-indigo-600 hover:bg-indigo-700">{isSaving ? "A criar..." : "Criar Vaga"}</Button>
+          <div><label className="text-white/80 text-sm mb-2 block">Salary</label><Input value={jobForm.salary} onChange={(e: any) => setJobForm({...jobForm, salary: e.target.value})} className="w-full bg-white/5 border-white/10 text-white" placeholder="$50k - $70k" /></div>
+          <div><label className="text-white/80 text-sm mb-2 block">Description</label><Textarea value={jobForm.description} onChange={(e: any) => setJobForm({...jobForm, description: e.target.value})} className="w-full h-32 bg-white/5 border-white/10 text-white" placeholder="Describe the job..." /></div>
+          <Button onClick={handleCreate} disabled={isSaving || !jobForm.title || !jobForm.company} className="w-full bg-indigo-600 hover:bg-indigo-700">{isSaving ? "Creating..." : "Create Job"}</Button>
         </div>
       </div>
     </div>
@@ -223,7 +223,7 @@ function LinkedInModal({ linkedInUrl, setLinkedInUrl, isImporting, setIsImportin
     if (!linkedInUrl.trim()) return;
     setIsImporting(true);
     setTimeout(() => {
-      const name = linkedInUrl.split("linkedin.com/in/")[1]?.split("/")[0]?.replace(/-/g, " ") || "Candidato";
+      const name = linkedInUrl.split("linkedin.com/in/")[1]?.split("/")[0]?.replace(/-/g, " ") || "Candidate";
       setImportedCandidates([{ name: name.charAt(0).toUpperCase() + name.slice(1), role: "Professional", score: Math.floor(Math.random() * 20) + 75, linkedInUrl }]);
       setLinkedInUrl("");
       setIsImporting(false);
@@ -234,13 +234,13 @@ function LinkedInModal({ linkedInUrl, setLinkedInUrl, isImporting, setIsImportin
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
       <div className="bg-slate-800 rounded-2xl p-6 w-full max-w-lg border border-white/10">
         <div className="flex justify-between items-center mb-6">
-          <div className="flex items-center gap-3"><div className="p-2 bg-blue-500/20 rounded-lg"><Linkedin className="w-6 h-6 text-blue-400" /></div><h2 className="text-xl font-bold text-white">Importar do LinkedIn</h2></div>
+          <div className="flex items-center gap-3"><div className="p-2 bg-blue-500/20 rounded-lg"><Linkedin className="w-6 h-6 text-blue-400" /></div><h2 className="text-xl font-bold text-white">Import from LinkedIn</h2></div>
           <button onClick={() => setShowLinkedInModal(false)} className="text-white/60 hover:text-white"><X className="w-5 h-5" /></button>
         </div>
         <div className="space-y-4">
-          <div><label className="text-white/80 text-sm mb-2 block">URL do Perfil LinkedIn</label><Input value={linkedInUrl} onChange={(e: any) => setLinkedInUrl(e.target.value)} className="w-full bg-white/5 border-white/10 text-white" placeholder="https://linkedin.com/in/nome" /></div>
-          <p className="text-white/40 text-sm">Cole o link do perfil LinkedIn do candidato.</p>
-          <Button onClick={handleImport} disabled={!linkedInUrl.trim() || isImporting} className="w-full bg-blue-600 hover:bg-blue-700">{isImporting ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" />A importar...</> : <><Upload className="w-4 h-4 mr-2" />Importar</>}</Button>
+          <div><label className="text-white/80 text-sm mb-2 block">LinkedIn Profile URL</label><Input value={linkedInUrl} onChange={(e: any) => setLinkedInUrl(e.target.value)} className="w-full bg-white/5 border-white/10 text-white" placeholder="https://linkedin.com/in/name" /></div>
+          <p className="text-white/40 text-sm">Paste the LinkedIn profile link of the candidate.</p>
+          <Button onClick={handleImport} disabled={!linkedInUrl.trim() || isImporting} className="w-full bg-blue-600 hover:bg-blue-700">{isImporting ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Importing...</> : <><Upload className="w-4 h-4 mr-2" />Import</>}</Button>
         </div>
       </div>
     </div>
