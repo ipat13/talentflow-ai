@@ -10,13 +10,15 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
+  Settings,
 } from "lucide-react";
 import { useState } from "react";
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/jobs", label: "Vagas", icon: Briefcase },
-  { href: "/candidates", label: "Candidatos", icon: Users },
+  { href: "/jobs", label: "Jobs", icon: Briefcase },
+  { href: "/candidates", label: "Candidates", icon: Users },
+  { href: "/settings", label: "Settings", icon: Settings },
 ];
 
 export function Sidebar() {
@@ -27,20 +29,20 @@ export function Sidebar() {
   return (
     <aside
       role="navigation"
-      aria-label="Menu principal"
-      className={`flex flex-col h-screen bg-slate-800/80 backdrop-blur-xl border-r border-slate-700 transition-all duration-300 ${
+      aria-label="Main menu"
+      className={`flex flex-col h-screen bg-white border-r border-gray-200 transition-all duration-300 ${
         collapsed ? "w-20" : "w-64"
       }`}
     >
-      <div className="flex items-center justify-between h-16 px-4 border-b border-slate-700">
+      <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200">
         {!collapsed && (
-          <span className="text-xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+          <span className="text-xl font-bold text-blue-500">
             TalentFlow
           </span>
         )}
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="p-2 rounded-lg hover:bg-slate-700 transition-colors text-slate-300 hover:text-white"
+          className="p-2 rounded-lg hover:bg-gray-100 transition-colors text-gray-500 hover:text-gray-900"
         >
           {collapsed ? (
             <ChevronRight className="w-5 h-5" />
@@ -59,8 +61,8 @@ export function Sidebar() {
               href={item.href}
               className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                 isActive
-                  ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg shadow-indigo-500/25"
-                  : "text-slate-300 hover:bg-slate-700 hover:text-white"
+                  ? "bg-blue-500 text-white shadow-md"
+                  : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
               }`}
             >
               <item.icon className="w-5 h-5 flex-shrink-0" />
@@ -69,16 +71,6 @@ export function Sidebar() {
           );
         })}
       </nav>
-
-      <div className="px-3 py-4 border-t border-slate-700 space-y-2">
-        <button
-          onClick={signOut}
-          className="flex items-center gap-3 px-4 py-3 w-full rounded-xl text-slate-300 hover:bg-slate-700 hover:text-white transition-all"
-        >
-          <LogOut className="w-5 h-5 flex-shrink-0" />
-          {!collapsed && <span>Sair</span>}
-        </button>
-      </div>
     </aside>
   );
 }
