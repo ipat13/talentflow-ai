@@ -14,24 +14,28 @@ module.exports = {
         'inter': ['Inter', 'sans-serif'],
       },
       colors: {
-        // Cores exatas do site exemplo TalentsFlow.ai
-        'talents-bg': '#F7FFF7',
-        'talents-text': '#2C3E50',
-        'talents-black': '#09090b',
-        'talents-dark-gray': '#18181b',
-        'talents-shadow': '#121212',
-        'talents-border-dark': '#27272a',
-        'talents-text-secondary': '#52525b',
+        // Cores claras - Background branco
+        'talents-bg': '#ffffff',
+        'talents-text': '#1e293b',
+        'talents-black': '#0f172a',
+        'talents-dark-gray': '#334155',
+        'talents-shadow': '#e2e8f0',
+        'talents-border-dark': '#e2e8f0',
+        'talents-text-secondary': '#64748b',
         'talents-white': '#ffffff',
-        'talents-off-white': '#fafafa',
-        'talents-light-gray': '#f4f4f5',
+        'talents-off-white': '#f8fafc',
+        'talents-light-gray': '#f1f5f9',
         
-        // Cores do gradiente
-        'talents-blue': '#3b82f6',
-        'talents-indigo': '#6366f1',
-        'talents-purple': '#8b5cf6',
-        'talents-pink': '#d946ef',
-        'talents-rose': '#f472b6',
+        // Cores do gradiente - Azul pastel
+        'talents-blue': '#93c5fd',
+        'talents-indigo': '#818cf8',
+        'talents-purple': '#a78bfa',
+        'talents-pink': '#f9a8d4',
+        'talents-rose': '#f9a8d4',
+        
+        // Botões - Azul pastel
+        'primary': '#60a5fa',
+        'primary-hover': '#3b82f6',
       },
       animation: {
         'float': 'float 3s ease-in-out infinite',
@@ -75,8 +79,8 @@ module.exports = {
         },
       },
       backgroundImage: {
-        'gradient-talents': 'linear-gradient(90deg, #3b82f6 0%, #6366f1 25%, #8b5cf6 50%, #d946ef 75%, #f472b6 100%)',
-        'gradient-talents-button': 'radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgb(0 0 0 / 68%) 100%), #09090b',
+        'gradient-talents': 'linear-gradient(90deg, #93c5fd 0%, #818cf8 25%, #a78bfa 50%, #f9a8d4 75%, #f9a8d4 100%)',
+        'gradient-talents-button': 'radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgb(96 165 250 / 68%) 100%), #60a5fa',
       },
     },
   },
