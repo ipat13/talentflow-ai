@@ -6,7 +6,7 @@ import { User, Mail, Building, Save } from "lucide-react";
 
 export default function SettingsPage() {
   const { user } = useAuth();
-  const { user: sessionUser, updateUser } = useSession();
+  const { user: sessionUser } = useSession();
 
   return (
     <div className="max-w-2xl mx-auto">
