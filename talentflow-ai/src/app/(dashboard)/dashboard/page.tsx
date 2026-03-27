@@ -47,13 +47,21 @@ export default function DashboardPage() {
 
   const fetchData = async () => {
     try {
+      console.log("Fetching data...");
+      
       const [jobsRes, candidatesRes] = await Promise.all([
         fetch("/api/jobs"),
         fetch("/api/candidates"),
       ]);
 
+      console.log("Jobs response:", jobsRes.ok);
+      console.log("Candidates response:", candidatesRes.ok);
+
       const jobsData = await jobsRes.json();
       const candidatesData = await candidatesRes.json();
+
+      console.log("Jobs data:", jobsData);
+      console.log("Candidates data:", candidatesData);
 
       const jobs = jobsData.jobs || [];
       const candidates = candidatesData.candidates || [];
