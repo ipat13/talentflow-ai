@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Card, CardHeader, CardTitle, CardContent, Button, Badge } from "@/components/ui";
-import { Briefcase, Users, TrendingUp, Clock, ArrowRight, Loader2, Linkedin, Upload } from "lucide-react";
+import { Briefcase, Users, TrendingUp, Clock, ArrowRight, Loader2, Linkedin, Upload, Sparkles } from "lucide-react";
 import Link from "next/link";
 
 interface DashboardStats {
@@ -89,101 +89,105 @@ export default function DashboardPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <Loader2 className="w-8 h-8 animate-spin text-slate-400" />
+        <Loader2 className="w-8 h-8 animate-spin text-gray-400" />
       </div>
     );
   }
 
   const statsCards = [
     {
-      title: "Vagas Ativas",
+      title: "Active Jobs",
       value: stats.activeJobs.toString(),
-      change: `${stats.totalCandidates} candidatos total`,
+      change: `${stats.totalCandidates} total candidates`,
       icon: Briefcase,
-      color: "from-blue-500 to-blue-600",
+      color: "bg-blue-50 text-blue-600",
+      iconBg: "bg-blue-100",
     },
     {
-      title: "Candidatos",
+      title: "Candidates",
       value: stats.totalCandidates.toString(),
-      change: `${stats.inInterview} em entrevista`,
+      change: `${stats.inInterview} in interview`,
       icon: Users,
-      color: "from-emerald-500 to-emerald-600",
+      color: "bg-emerald-50 text-emerald-600",
+      iconBg: "bg-emerald-100",
     },
     {
-      title: "Match Score Médio",
+      title: "Avg Match Score",
       value: `${stats.avgMatchScore}%`,
-      change: stats.avgMatchScore >= 80 ? "Excelente" : "Bom",
+      change: stats.avgMatchScore >= 80 ? "Excellent" : "Good",
       icon: TrendingUp,
-      color: "from-purple-500 to-purple-600",
+      color: "bg-purple-50 text-purple-600",
+      iconBg: "bg-purple-100",
     },
     {
-      title: "Em Entrevista",
+      title: "In Interview",
       value: stats.inInterview.toString(),
-      change: "Candidatos avançados",
+      change: "Advanced candidates",
       icon: Clock,
-      color: "from-orange-500 to-orange-600",
+      color: "bg-orange-50 text-orange-600",
+      iconBg: "bg-orange-100",
     },
   ];
 
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "interview":
-        return <Badge variant="success">Entrevista</Badge>;
+        return <Badge variant="success">Interview</Badge>;
       case "reviewing":
-        return <Badge variant="warning">Em Análise</Badge>;
+        return <Badge variant="warning">Reviewing</Badge>;
       case "offer":
-        return <Badge variant="info">Proposta</Badge>;
+        return <Badge variant="info">Offer</Badge>;
       case "rejected":
-        return <Badge variant="danger">Rejeitado</Badge>;
+        return <Badge variant="danger">Rejected</Badge>;
       default:
-        return <Badge variant="default">Novo</Badge>;
+        return <Badge variant="default">New</Badge>;
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800/50 to-slate-900 p-8 space-y-6">
+    <div className="min-h-screen bg-gray-50 p-8 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-white">Dashboard</h1>
-          <p className="text-slate-300">
-            Visão geral do teu processo de recrutamento
+          <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+          <p className="text-gray-500">
+            Overview of your recruitment process
           </p>
         </div>
         <div className="flex gap-3">
           <Button
             variant="outline"
-            className="border-slate-600 text-slate-300 hover:bg-slate-700"
+            className="border-gray-300 text-gray-700 hover:bg-gray-100"
             onClick={() => router.push("/jobs?modal=linkedin")}
           >
             <Linkedin className="w-4 h-4 mr-2" />
-            Importar LinkedIn
+            Import LinkedIn
           </Button>
           <Button
-            className="bg-gradient-to-r from-indigo-500 to-purple-600"
+            className="bg-blue-500 hover:bg-blue-600"
             onClick={() => router.push("/jobs/new")}
           >
             <Upload className="w-4 h-4 mr-2" />
-            Nova Vaga
+            New Job
           </Button>
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {statsCards.map((stat) => (
-          <Card key={stat.title} className="bg-slate-800/80 backdrop-blur-sm border-slate-700">
+          <Card key={stat.title} className="bg-white border-gray-200 shadow-sm hover:shadow-md transition-shadow">
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-slate-300 text-sm">{stat.title}</p>
-                  <p className="text-3xl font-bold text-white mt-1">
+                  <p className="text-gray-500 text-sm">{stat.title}</p>
+                  <p className="text-3xl font-bold text-gray-900 mt-1">
                     {stat.value}
                   </p>
-                  <p className="text-slate-400 text-xs mt-1">
+                  <p className="text-gray-400 text-xs mt-1">
                     {stat.change}
                   </p>
                 </div>
-                <div className={`p-3 bg-gradient-to-br ${stat.color} rounded-xl shadow-lg`}>
-                  <stat.icon className="w-6 h-6 text-white" />
+                <div className={`p-3 ${stat.iconBg} rounded-xl`}>
+                  <stat.icon className={`w-6 h-6 ${stat.color.split(' ')[1]}`} />
                 </div>
               </div>
             </CardContent>
@@ -192,33 +196,47 @@ export default function DashboardPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="bg-slate-800/80 backdrop-blur-sm border-slate-700">
+        <Card className="bg-white border-gray-200 shadow-sm">
           <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="text-white text-lg">Vagas Recentes</CardTitle>
-            <Link href="/jobs" className="text-indigo-400 hover:text-indigo-300 text-sm flex items-center gap-1">
-              Ver todas <ArrowRight className="w-4 h-4" />
+            <CardTitle className="text-gray-900 text-lg">Recent Jobs</CardTitle>
+            <Link href="/jobs" className="text-blue-500 hover:text-blue-600 text-sm flex items-center gap-1">
+              View all <ArrowRight className="w-4 h-4" />
             </Link>
           </CardHeader>
           <CardContent>
             {recentJobs.length === 0 ? (
-              <p className="text-slate-400 text-center py-8">Nenhuma vaga ainda.</p>
+              <div className="text-center py-8">
+                <Briefcase className="w-12 h-12 text-gray-300 mx-auto mb-3" />
+                <p className="text-gray-500">No jobs yet.</p>
+                <Button 
+                  className="mt-3 bg-blue-500 hover:bg-blue-600"
+                  onClick={() => router.push("/jobs/new")}
+                >
+                  <Upload className="w-4 h-4 mr-2" />
+                  Create First Job
+                </Button>
+              </div>
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {recentJobs.map((job) => (
                   <Link
                     key={job.id}
                     href={`/jobs?id=${job.id}`}
-                    className="flex items-center justify-between py-2 border-b border-slate-700 last:border-0 hover:bg-slate-700/50 -mx-2 px-2 rounded transition-colors"
+                    className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0 hover:bg-gray-50 -mx-2 px-2 rounded-lg transition-colors"
                   >
                     <div>
-                      <p className="font-medium text-white">{job.title}</p>
-                      <p className="text-sm text-slate-300">
-                        {job.company} • {job._count?.candidates || 0} candidatos
+                      <p className="font-medium text-gray-900">{job.title}</p>
+                      <p className="text-sm text-gray-500">
+                        {job.company} • {job._count?.candidates || 0} candidates
                       </p>
                     </div>
-                    <Badge className={job.status === "active" ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30" : "bg-slate-700 text-slate-300 border-slate-600"}>
-                      {job.status === "active" ? "Ativa" : "Rascunho"}
-                    </Badge>
+                    <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${
+                      job.status === "active" 
+                        ? "bg-emerald-100 text-emerald-700" 
+                        : "bg-gray-100 text-gray-600"
+                    }`}>
+                      {job.status === "active" ? "Active" : "Draft"}
+                    </span>
                   </Link>
                 ))}
               </div>
@@ -226,34 +244,38 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-800/80 backdrop-blur-sm border-slate-700">
+        <Card className="bg-white border-gray-200 shadow-sm">
           <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="text-white text-lg">Top Candidatos</CardTitle>
-            <Link href="/candidates" className="text-indigo-400 hover:text-indigo-300 text-sm flex items-center gap-1">
-              Ver todos <ArrowRight className="w-4 h-4" />
+            <CardTitle className="text-gray-900 text-lg">Top Candidates</CardTitle>
+            <Link href="/candidates" className="text-blue-500 hover:text-blue-600 text-sm flex items-center gap-1">
+              View all <ArrowRight className="w-4 h-4" />
             </Link>
           </CardHeader>
           <CardContent>
             {topCandidates.length === 0 ? (
-              <p className="text-slate-400 text-center py-8">Nenhum candidato ainda.</p>
+              <div className="text-center py-8">
+                <Users className="w-12 h-12 text-gray-300 mx-auto mb-3" />
+                <p className="text-gray-500">No candidates yet.</p>
+                <p className="text-gray-400 text-sm mt-1">Upload CVs to see candidates here</p>
+              </div>
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {topCandidates.map((candidate) => (
                   <Link
                     key={candidate.id}
                     href={`/candidates?id=${candidate.id}`}
-                    className="flex items-center justify-between py-2 border-b border-slate-700 last:border-0 hover:bg-slate-700/50 -mx-2 px-2 rounded transition-colors"
+                    className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0 hover:bg-gray-50 -mx-2 px-2 rounded-lg transition-colors"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-medium">
+                      <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-medium">
                         {candidate.name[0]}
                       </div>
                       <div>
-                        <p className="font-medium text-white">
+                        <p className="font-medium text-gray-900">
                           {candidate.name}
                         </p>
-                        <p className="text-sm text-slate-300">
-                          {candidate.jobTitle || "Candidato"}
+                        <p className="text-sm text-gray-500">
+                          {candidate.jobTitle || "Candidate"}
                         </p>
                       </div>
                     </div>
@@ -261,12 +283,12 @@ export default function DashboardPage() {
                       {getStatusBadge(candidate.status)}
                       {candidate.matchScore !== null && (
                         <span
-                          className={`text-lg font-bold ${
+                          className={`text-sm font-semibold px-2 py-1 rounded-lg ${
                             candidate.matchScore >= 90
-                              ? "text-emerald-400"
+                              ? "bg-emerald-100 text-emerald-700"
                               : candidate.matchScore >= 80
-                              ? "text-purple-400"
-                              : "text-slate-300"
+                              ? "bg-purple-100 text-purple-700"
+                              : "bg-gray-100 text-gray-600"
                           }`}
                         >
                           {candidate.matchScore}%
@@ -281,27 +303,32 @@ export default function DashboardPage() {
         </Card>
       </div>
 
-      <Card className="bg-slate-800/80 backdrop-blur-sm border-slate-700">
+      <Card className="bg-white border-gray-200 shadow-sm">
         <CardHeader>
-          <CardTitle className="text-white text-lg">Candidatos por Estado</CardTitle>
+          <CardTitle className="text-gray-900 text-lg">Candidates by Status</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {[
-              { status: "new", label: "Novos", color: "bg-blue-500" },
-              { status: "reviewing", label: "Em Análise", color: "bg-yellow-500" },
-              { status: "interview", label: "Entrevista", color: "bg-emerald-500" },
-              { status: "offer", label: "Proposta", color: "bg-purple-500" },
-              { status: "rejected", label: "Rejeitados", color: "bg-red-500" },
+              { status: "new", label: "New", color: "bg-blue-500" },
+              { status: "reviewing", label: "Reviewing", color: "bg-yellow-500" },
+              { status: "interview", label: "Interview", color: "bg-emerald-500" },
+              { status: "offer", label: "Offer", color: "bg-purple-500" },
+              { status: "rejected", label: "Rejected", color: "bg-red-500" },
             ].map((item) => {
               const count = topCandidates.filter((c) => c.status === item.status).length;
               const total = stats.totalCandidates || 1;
               const percentage = Math.round((count / total) * 100) || 0;
               return (
-                <div key={item.status} className="text-center">
-                  <div className={`${item.color} h-2 rounded-full mb-2`} style={{ width: `${percentage}%` }} />
-                  <p className="text-white font-medium">{count}</p>
-                  <p className="text-slate-400 text-sm">{item.label}</p>
+                <div key={item.status} className="text-center p-4 bg-gray-50 rounded-xl">
+                  <div className="flex justify-center mb-2">
+                    <div className={`w-3 h-3 rounded-full ${item.color}`} />
+                  </div>
+                  <p className="text-2xl font-bold text-gray-900">{count}</p>
+                  <p className="text-gray-500 text-sm">{item.label}</p>
+                  <div className="mt-2 h-1 bg-gray-200 rounded-full overflow-hidden">
+                    <div className={`h-full ${item.color}`} style={{ width: `${percentage}%` }} />
+                  </div>
                 </div>
               );
             })}
